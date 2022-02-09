@@ -3,6 +3,18 @@
     <span>TW Labs</span>
   </mat-toolbar>
   <div class="main-container">
-    <app-lab-list></app-lab-list>
+    <div class="content"> 
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <div class="tab-navigation">
+    <a class="tab" routerLink="labs" routerLinkActive="active" matRipple>
+      <mat-icon>school</mat-icon>
+      <div class="tab-title">Laboratoare</div>
+    </a>
+    <a class="tab" routerLink="info" routerLinkActive="active" matRipple>
+      <mat-icon>info</mat-icon>
+      <div class="tab-title">Informații</div>
+    </a>
   </div>
 </div>
