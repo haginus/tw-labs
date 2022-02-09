@@ -1,0 +1,17 @@
+<div class="lab-list">
+  <h1>Laboratoare</h1>
+  <div class="list-items">
+    <mat-card *ngFor="let lab of labs$ | async">
+      <mat-card-subtitle>{{ lab.meta.subtitle }}</mat-card-subtitle>
+      <mat-card-title>{{ lab.meta.title }}</mat-card-title>
+      <p *ngIf="lab.meta.description">
+        {{ lab.meta.description }}
+      </p>
+      <mat-card-actions align="end">
+        <button mat-icon-button (click)="goToLab(lab)">
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Lab1Component } from './labs/lab1/lab1.component';
 import { LabViewerComponent } from './pages/lab-viewer/lab-viewer.component';
 import { LabDirective } from './directives/lab.directive';
+import { LabListComponent } from './components/lab-list/lab-list.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { LabDirective } from './directives/lab.directive';
     LabViewerComponent,
     LabDirective,
     Lab1Component,
+    LabListComponent,
   ],
   imports: [
     BrowserModule,
