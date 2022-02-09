@@ -9,12 +9,18 @@ import { HomeComponent } from './pages/home/home.component';
 import { CodeExampleComponent } from './components/code-example/code-example.component';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { HttpClientModule } from '@angular/common/http';
+import { Lab1Component } from './labs/lab1/lab1.component';
+import { LabViewerComponent } from './pages/lab-viewer/lab-viewer.component';
+import { LabDirective } from './directives/lab.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    CodeExampleComponent
+    CodeExampleComponent,
+    LabViewerComponent,
+    LabDirective,
+    Lab1Component,
   ],
   imports: [
     BrowserModule,

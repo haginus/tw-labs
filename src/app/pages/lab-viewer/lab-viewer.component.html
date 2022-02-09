@@ -1,0 +1,21 @@
+<div class="standard-view">
+  <mat-toolbar *ngIf="lab">
+    <button mat-icon-button (click)="goHome()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <span class="toolbar-title">{{ lab.meta.subtitle }}</span>
+  </mat-toolbar>
+  <div class="main-container">
+    <div class="main-section-wrapper">
+      <div class="lab-container">
+        <div class="lab-header" *ngIf="lab">
+          <div class="lab-subtitle">{{ lab.meta.subtitle }}</div>
+          <h1 class="lab-title">{{ lab.meta.title }}</h1>
+        </div>
+        <div class="lab-content">
+          <ng-template labHost></ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

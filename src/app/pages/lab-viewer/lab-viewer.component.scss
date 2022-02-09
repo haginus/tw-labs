@@ -1,0 +1,19 @@
+.main-container {
+  display: flex;
+  .main-section-wrapper {
+    flex: 1;
+
+    .lab-container {
+      max-width: 800px;
+      padding: 24px;
+      margin: 0 auto;
+
+      .lab-header {
+        .lab-subtitle {
+          color: #616161;
+          margin-bottom: 6px;
+        }
+      }
+    }
+  }
+}

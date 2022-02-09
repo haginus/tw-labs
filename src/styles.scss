@@ -36,3 +36,9 @@ mat-tab-header {
 .mat-tab-label {
   min-width: 64px!important;
 }
+
+mat-toolbar {
+  .toolbar-title {
+    margin-left: 8px;
+  }
+}
