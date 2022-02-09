@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~highlight.js/styles/github.css';
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -18,4 +19,20 @@ app-root {
     flex: 1;
     overflow: auto;
   }
+}
+
+code span {
+  background: transparent;
+}
+
+mat-tab-header {
+  background: white;
+}
+
+.all-unset {
+  all: unset!important;
+}
+
+.mat-tab-label {
+  min-width: 64px!important;
 }
