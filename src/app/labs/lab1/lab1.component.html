@@ -1,1 +1,295 @@
-<p>lab1 works!</p>
+
+<section>
+  <h1>Ce este HTML?</h1>
+  <p>
+    HyperText Markup Language (HTML) este standardul pentru a crea pagini web. 
+    Acesta descrie structura unei pagini printr-o structură ierarhică arborescentă,
+    nodurile arborelui fiind tag-urile HTML.
+  </p>
+  <app-code-example gistId="lab1/html-structure" [html]="true" title="Structura unui document HTML"></app-code-example>
+  <app-tip>
+    Dacă folosiți VS Code, după ce ați creat un document HTML, puteți apăsa <code>!</code>
+    și selecta code snippet-ul. Veți avea astfel structura documentului deja creată.
+  </app-tip>
+</section>
+<section>
+  <h1>Tipuri de tag-uri</h1>
+  Există două tipuri de tag-uri:
+  <ul>
+    <li>
+      Tag-uri container - acestea pot conține în iteriorul acestora tag-uri copii sau text;
+      (ex. <code highlight="<div>conținut</div>"></code>)
+    </li>
+    <li>Tag-uri goale (ex. <code highlight="<img/>"></code>)</li>
+  </ul>
+  <p>Iată o listă cu cele mai comune tag-uri:</p>
+  <div class="common-table">
+    <table>
+      <tr>
+        <th>Tag</th>
+        <th>Descriere</th>
+      </tr>
+      <tr *ngFor="let tag of commonTags">
+        <td>
+          <code [highlight]="getTagClosing(tag)"></code>
+        </td>
+        <td> {{ tag.description }} </td>
+      </tr>
+    </table>
+  </div>
+  <div class="observation">
+    * Observați că tag-urile container se deschid și apoi închid, în timp ce cele goale nu.
+  </div>
+</section>
+<section>
+  <h1>Atribute HTML</h1>
+  <p>
+    Atributele HTML oferă informații suplimentare elementelor HTML. Acestea se specifică tot timpul în
+    tag-ul de deschidere, orice element HTML putând avea atribute. Un atribut este o pereche de cheie-valoare,
+    ex: <code highlight='<div atribut1="valoare1"></div>'></code> <br/><br/>
+    Atributele HTML sunt de două tipuri:
+  </p>
+  <ul>
+    <li>Globale - acestea funcționează pentru toate tag-urile;</li>
+    <li>Specifice unor tag-uri, precum atributul <code highlight='src'></code> pentru tag-urile multimedia;</li>
+  </ul>
+  <p>Iată o listă cu cele mai folosite atribute globale:</p>
+  <div class="common-table">
+    <table>
+      <tr>
+        <th>Atribut</th>
+        <th>Descriere</th>
+      </tr>
+      <tr *ngFor="let attribute of globalAttributes">
+        <td>
+          <code [highlight]="attribute.attributeName" [languages]="['xml']"></code>
+        </td>
+        <td> {{ attribute.description }} </td>
+      </tr>
+    </table>
+  </div>
+  <app-code-example gistId="lab1/html-attributes" [html]="true" [result]="true" title="Exemple de folosire"></app-code-example>
+</section>
+<section>
+  <h1>Elemente semantice</h1>
+  <p>
+    Paginile HTML pot fi structurate folosind elemente semantice (elemente cu înțeles). Elementele semantice
+    sunt acele elemente ale căror tag-uri spun ceva despre utilizarea lor în pagină. De exemplu, elementele
+    <code highlight="<div>"></code> și <code highlight="<span>"></code> nu sunt semantice, deoarece numele
+    tag-ului nu ne spune nimic despre ce se află în interiorul acestora. <br> <br>
+    Iată câteva elemente semantice:
+  </p>
+  <div class="common-table">
+    <table>
+      <tr>
+        <th>Tag</th>
+        <th>Descriere</th>
+      </tr>
+      <tr *ngFor="let tag of semanticTags">
+        <td>
+          <code [highlight]="getTagClosing(tag)"></code>
+        </td>
+        <td> {{ tag.description }} </td>
+      </tr>
+    </table>
+  </div>
+  <p>
+    Elementele HTML prezentate mai sus aduc un plus de readability codului, însă
+    acestea nu sunt obligatorii, putând fi înlocuite oricând de <code highlight="<div>"></code>,
+    de exemplu. Totuși, în unele cazuri pot fi importante, cum ar fi pentru SEO (Search Engine Optimization).
+  </p>
+</section>
+<section>
+  <h1>Liste HTML</h1>
+  <p>
+    Există trei tipuri de liste în HTML:
+  </p>
+  <ul>
+    <li><code highlight="<ul>"></code> Liste neordonate (cu puncte)</li>
+    <li><code highlight="<ol>"></code> Liste ordonate (cu numere)</li>
+    <li><code highlight="<dl>"></code> Liste descriptive (cu termeni și definiția acestora)</li>
+  </ul>
+  <p>
+  Acestea conțin drept noduri copil elementele din listă. Pentru primele două tipuri de liste, un element
+  din listă este wrapped în tag-ul <code highlight="<li>"></code> (list element). Listele descriptive folosesc
+  două tipuri de tag-uri pentru elemente: <code highlight="<dt>"></code> (termen) și <code highlight="<dd>"></code>
+  (definiție).
+  </p>
+  <section>
+    <h2>Liste ordonate</h2>
+    <p>Listele ordonate au două atribute specifice pe care le putem folosi pentru a seta comportamentul numărării:</p>
+    <ul>
+      <li>
+        <code>type</code> Tipul listei ordonate (se poate număra alfabetic sau folosind cifre arabe sau romane).
+        Valori acceptate: <code>["1", "A", "a", "I", "i"]</code>
+      </li>
+      <li><code>start</code> Număr întreg ce ne permite să alegem de unde să începem numărătoarea.</li>
+    </ul>
+    <p>În cazul în care acestea nu sunt setate, numărătoarea va începe de la 1, cu numere arabe.</p>
+  </section>
+  <app-code-example gistId="lab1/html-lists" [html]="true" [result]="true" title="Exemple de folosire"></app-code-example>
+</section>
+<section>
+  <h1>HyperLinks</h1>
+  <p>
+    Pentru a crea link-uri în HTML, folosim tag-ul <code highlight="<a>"></code>. Acesta are următoarele atribute:
+  </p>
+  <ul>
+    <li>
+      <code>href</code> - destinația la care vrem să ajungem;
+    </li>
+    <li>
+      <code>target</code> - modul în care se va deschide link-ul. Poate fi:
+      <ul>
+        <li><code>target="_self"</code> - deschide link-ul în fereastra curentă (implicit)</li>
+        <li><code>target="_blank"</code> - deschide link-ul într-o fereastră nouă</li>
+        <li class="obsolete"><code>target="_parent"</code> - deschide link-ul în fereastra părinte</li>
+        <li class="obsolete"><code>target="_top"</code> - deschide link-ul în cea mai înaltă fereastră din pagină</li>
+      </ul>
+    </li>
+  </ul>
+  <p>
+    Pentru a înțelege mai bine ultimele două target-uri, este important să prezentăm noțiunea de 
+    <code highlight="<iframe>"></code>. Acest element nu reprezintă altceva decât o ferestră în
+    interorul altei ferestre. Un exemplu de iframe poate fi observat chiar mai sus, exemplele de cod
+    prezentate având în dreapta (rezultatul codului) un iframe. <br>
+    Nu există un număr limită de încuibărire (nesting) pentru iframe-uri. Astfel, orice iframe poate conține
+    un altul și tot așa. Prin urmare <code>target="_self"</code> va schimba locația din iframe-ul care îl conține
+    direct, <code>target="_parent"</code> va schimba locația părintelui iframe-ului, iar  <code>target="_top"</code>
+    va schimba locația ferestrei rădăcină.
+  </p>
+  <app-code-example gistId="lab1/hyperlink" [html]="true" [result]="true"></app-code-example>
+  <section>
+    <h2>URL-uri absolute și relative</h2>
+    <p>
+      Există mai multe moduri prin care putem referenția link-uri în HTML. Pe lângă link-uri absolute,
+      în care scriem întreaga adresă, putem avea și link-uri relative. Pentru a exemplifica aceste moduri,
+      să presupunem că ne aflăm la locația <code>https://example.com/foo/bar</code>.
+    </p>
+    <div class="common-table break-word">
+      <table>
+        <tr>
+          <th>URL relativ</th>
+          <th>URL rezultat</th>
+          <th>Explicație</th>
+        </tr>
+        <tr>
+          <td><code>xyz</code></td>
+          <td><code>https://example.com/foo/xyz</code></td>
+          <td>Se înlocuiește tot ce este după ultimul <code>/</code> din locația curentă.</td>
+        </tr>
+        <tr>
+          <td><code>/xyz</code></td>
+          <td><code>https://example.com/xyz</code></td>
+          <td>Se păstrează domeniul și se înlocuiește tot ce este după.</td>
+        </tr>
+        <tr>
+          <td><code>//google.com</code></td>
+          <td><code>https://google.com</code></td>
+          <td>Se păstrează protocolul (HTTP/HTTPS) și se înlocuiește tot ce este după.</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+</section>
+<section>
+  <h1>Tag-uri media</h1>
+  <p>
+    Putem adăuga în paginile noastre HTML imagini, videoclipuri și fișiere audio. În timp ce pentru imagini
+    putem specifica o singură sursă prin intermediul atributului <code>src</code>, pentru videclipuri și sunete
+    avem de ales: fie specificăm o singură sursă prin același atribut, fie specificăm surse multiple folosind
+    tag-ul <code highlight="<source>"></code>.<br>
+    Putem ascunde controalele pentru audio și video omițând atributul <code>controls</code>. Atributul
+    <code>autoplay</code> ne permite pornirea videoclipului/sunetului odată cu încărcarea fișierului.
+  </p>
+  <app-code-example gistId="lab1/media" [html]="true" [result]="true"></app-code-example>
+</section>
+<section>
+  <h1>Tabele</h1>
+  <p>
+    Un tabel HTML consistă în rânduri și coloane. Structura acestuia arată în felul următor:
+  </p>
+  <app-code-example gistId="lab1/table" [html]="true" [result]="true"></app-code-example>
+  <p>Astfel, </p>
+  <ul>
+    <li>Folosim tag-ul <code highlight="<table>"></code> pentru a începe tabelul;</li>
+    <li>Tag-ul <code highlight="<tr>"></code> definește un rând din tabel;</li>
+    <li>Tag-ul <code highlight="<th>"></code> (table header) reprezintă o celulă de tip header;</li>
+    <li>Tag-ul <code highlight="<td>"></code> (table data) reprezintă o celulă în care introducem date.</li>
+  </ul>
+</section>
+<section>
+  <h1>Teme</h1>
+  <section>
+    <h2>Tema 1</h2>
+    <p>
+      Creați un fișier HTML care să conțină o prezentare detaliată a unui film preferat.
+      Structurați documentul folosind tagurile semantice. <br>
+      Folosiți și alte taguri sugestive pentru elementele din document 
+      (liste, tabel, paragrafe, imagini, video, ancore, etc.). <br>
+      Includeți informații ca:
+    </p>
+    <ul>
+      <li>titlul filmului, o imagine reprezentativă (poster)</li>
+      <li>informații generale despre film (gen, dată lansare, durată, regizor, actori principali, premii)</li>
+      <li>o scurtă prezentare (rezumat)</li>
+      <li>distribuția</li>
+      <li>galerie de imagini și video</li>
+      <li>review-uri</li>
+    </ul>
+    <p>Adăugați legături la paginile filmului și actorilor pe IMDb.</p>
+  </section>
+  <section>
+    <h2>Tema 2</h2>
+    <p>
+      Recreați următorul text într-un fișier HTML folosind tag-urile învățate în acest laborator.
+    </p>
+    <pre>
+    *Pateuri cu cașcaval*
+
+    Vă propun mai jos o rețetă simpla și gustoasă.
+
+    **Ustensile necesare:**
+    - o lingură pentru amestecat
+    - un castron
+    - un cuțit
+    - o tavă de tăiat
+    - o tavă de copt
+    - hârtie de copt
+    - o răzătoare
+    - răbdare și talent.
+
+    **Ingrediente și conținut caloric**
+    ------------------------------------
+    | Ingredient    | Cantitate | kcal |
+    ====================================
+    | Cașcaval      | 300g      | 950  |
+    ------------------------------------
+    | Ouă           | 3         | 450  |
+    ------------------------------------
+    | Sare          | 50g       | 0    |
+    ------------------------------------
+    | Foietaj aluat | 50g       | 0    |
+    ------------------------------------
+    | Total kcal    |           | 1800 |
+    ------------------------------------
+
+    **Pași pentru preparare**
+    1. Aluatul de foietaj trebuie lăsat câteva ore pentru a ajunge la temperatura camerei.
+    2. După ce ajunge la temperatura potrivită aluatul se taie în dreptunghiulete de dimensiuni egale.
+    3. Se rade cașcavalul și se amestecă bine cu cele 2 ouă. Se adaugă în compoziție și sarea.
+    4. Compoziția se presară pe câte un dreptunghi de aluat. Deasupra se asează un
+    alt dreptunghi de aluat pentru a închide compoziția.
+    5. Pateurile se asează pe o tavă cu hârtie de copt. Se lasă la copt aproximativ 30 de minute.
+
+    Vă dorim tuturor poftă bună!
+
+    Dicționar de termeni:
+    hârtie de copt
+      - hârtie specială care se aseaza pe tava de copt pentru ca aluatul să nu se lipească de tavă
+    aluatul de foietaj
+      - preparat special format din mai multe foi fine de aluat, suprapuse
+    </pre>
+  </section>
+</section>
+

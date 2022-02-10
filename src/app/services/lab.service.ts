@@ -16,9 +16,9 @@ export class LabService {
         Lab1Component,
         {
           id: 1,
-          title: "HTML. Inducere în CSS",
+          title: "Introducere în HTML",
           subtitle: "Laboratorul 1",
-          description: "Scurtă recapitulare a cunoștințelor de HTML din liceu și atribute CSS de bază."
+          description: "Recapitulare a cunoștințelor de HTML din liceu și înțelegerea noțiunilor de bază."
         }
       )
     ]);
