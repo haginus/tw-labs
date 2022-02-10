@@ -19,6 +19,7 @@
   .code-example-column {
     flex: 1;
     min-width: 0;
+    max-height: 50vh;
   }
 
   .result-column {
@@ -29,6 +30,10 @@
       height: 100%;
       border: none;
     }
+  }
+
+  mat-tab-group {
+    max-height: 100%;
   }
 }
 
@@ -41,9 +46,6 @@
     .result-column {
       border-top: 1px solid rgba(0, 0, 0, 0.2);
       border-left: none;
-    }
-    mat-tab-group {
-      max-height: 100%;
     }
   }
 }
