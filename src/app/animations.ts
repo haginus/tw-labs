@@ -7,7 +7,8 @@ export const routerFadeAnimation =
       query(':enter', [
         style({
           position: 'absolute',
-          top: '30px',
+          top: 0,
+          transform: 'translateY(30px)',
           left: 0,
           right: 0,
           opacity: 0
@@ -15,7 +16,7 @@ export const routerFadeAnimation =
       ], { optional: true }),
       query(':leave', animateChild(), { optional: true }),
       query(':enter', [
-        animate('300ms ease-in-out', style({ top: '0%', opacity: 1 }))
+        animate('300ms ease-in-out', style({ transform: 'translateY(0px)', opacity: 1 }))
       ], { optional: true }),
       query(':enter', animateChild(), { optional: true })
     ]),
@@ -27,17 +28,18 @@ export const routerFadeAnimation =
           top: 0,
           left: 0,
           right: 0,
+          transform: 'translateY(0px)',
         })
       ], { optional: true }),
       query(':enter', [
-        style({ top: '30px', opacity: 0 })
+        style({ transform: 'translateY(30px)', opacity: 0 })
       ], { optional: true }),
       query(':leave', animateChild(), { optional: true }),
       query(':leave', [
-        animate('300ms ease-in-out', style({ top: '30px', opacity: 0 }))
+        animate('300ms ease-in-out', style({ transform: 'translateY(30px)', opacity: 0 }))
       ], { optional: true }),
       query(':enter', [
-        animate('300ms ease-in-out', style({ top: '0%', opacity: 1 }))
+        animate('300ms ease-in-out', style({ transform: 'translateY(0px)', opacity: 1 }))
       ], { optional: true }),
       query(':enter', animateChild(), { optional: true }),
     ])
