@@ -47,7 +47,6 @@ export class LabViewerComponent implements OnInit, AfterViewInit {
 
     const componentRef = viewContainerRef.createComponent<ILabComponent>(this.lab.component);
     componentRef.instance.meta = this.lab.meta;
-    console.log(componentRef)
   }
 
   goHome() {

@@ -19,7 +19,6 @@ export class LabListComponent implements OnInit {
 
   goToLab(lab: Lab) {
     this.router.navigate(['labs', lab.meta.id]);
-    console.log(lab)
   }
 
 }
