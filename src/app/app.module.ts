@@ -14,6 +14,7 @@ import { LabViewerComponent } from './pages/lab-viewer/lab-viewer.component';
 import { LabDirective } from './directives/lab.directive';
 import { LabListComponent } from './components/lab-list/lab-list.component';
 import { InfoComponent } from './components/info/info.component';
+import { TipComponent } from './components/tip/tip.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { InfoComponent } from './components/info/info.component';
     Lab1Component,
     LabListComponent,
     InfoComponent,
+    TipComponent,
   ],
   imports: [
     BrowserModule,
