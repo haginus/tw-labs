@@ -12,6 +12,7 @@ export class CodeExampleComponent implements OnInit, OnDestroy {
   constructor(private gist: GistService) { }
 
   @Input('gistId') gistId: string;
+  @Input('title') title: string;
   @Input('html') html: boolean;
   @Input('css') css: boolean;
   @Input('js') js: boolean;

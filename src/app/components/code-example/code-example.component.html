@@ -1,6 +1,9 @@
+<mat-toolbar color="primary" class="code-example-title" *ngIf="title">
+  {{ title }}
+</mat-toolbar>
 <div class="code-example-wrapper">
   <div class="code-example-column">
-    <mat-tab-group mat-align-tabs="start">
+    <mat-tab-group mat-align-tabs="start" >
       <mat-tab label="HTML" *ngIf="html && htmlCode">
         <pre>
           <code [highlight]="htmlCode" [languages]="['xml']"></code>

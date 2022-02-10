@@ -1,8 +1,19 @@
-.code-example-wrapper {
+:host {
+  display: block;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   overflow: hidden;
+  margin: 16px 0;
   background: #f7f7f7;
+
+}
+
+.code-example-title {
+  height: 48px;
+  font-size: 14px;
+}
+
+.code-example-wrapper {
   display: flex;
 
   .code-example-column {
@@ -40,7 +51,14 @@
 pre {
   background: #f7f7f7;
   margin: 0;
+  white-space: pre-wrap;
+  display: flex;
   code {
     background: transparent!important;
+    padding: 8px;
   }
+}
+
+mat-tab-group {
+  background: white;
 }

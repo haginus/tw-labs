@@ -25,10 +25,6 @@ code span {
   background: transparent;
 }
 
-mat-tab-header {
-  background: white;
-}
-
 .all-unset {
   all: unset!important;
 }
@@ -47,4 +43,14 @@ a {
   color: #1976d2;
   text-decoration: none;
   font-weight: 500;
+}
+
+code {
+  background: #f7f7f7;
+  padding: 0 4px;
+  border-radius: 2px;
+}
+
+.tip code {
+  background: #ffc107;
 }
