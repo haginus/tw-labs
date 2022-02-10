@@ -46,11 +46,45 @@ a {
 }
 
 code {
-  background: #f7f7f7;
+  background: #f7f7f7!important;
   padding: 0 4px;
   border-radius: 2px;
 }
 
 .tip code {
-  background: #ffc107;
+  background: #ffc107!important;
+}
+
+.common-table {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 12px 0;
+  table {
+    width: calc(100% + 2px);
+    margin: -1px;
+    border-collapse: collapse;
+    th {
+      text-align: left;
+    }
+
+    th, td {
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      padding: 8px;
+    }
+  }
+}
+
+.observation {
+  margin-top: 6px;
+  margin-bottom: 8px;
+  font-style: italic;
+}
+
+.obsolete {
+  opacity: 0.5;
+}
+
+.break-word {
+  word-break: break-word;
 }
