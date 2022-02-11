@@ -18,7 +18,9 @@ export class LabService {
           id: 1,
           title: "Introducere în HTML",
           subtitle: "Laboratorul 1",
-          description: "Recapitulare a cunoștințelor de HTML din liceu și înțelegerea noțiunilor de bază."
+          description: "Recapitulare a cunoștințelor de HTML din liceu și înțelegerea noțiunilor de bază.",
+          homeworkLink: 'https://forms.gle/aJXtMSuu3YJpgGt27',
+          homeworkDue: "2022-02-22T00:00:00+02:00"
         }
       )
     ]);

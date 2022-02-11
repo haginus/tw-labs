@@ -3,4 +3,6 @@ export interface LabMeta {
   title: string;
   subtitle: string;
   description: string;
+  homeworkLink?: string;
+  homeworkDue?: string;
 }

@@ -19,6 +19,7 @@ export class LabViewerComponent implements OnInit, AfterViewInit {
   }
 
   lab!: Lab;
+  timePassed: boolean = false;
   @ViewChild(LabDirective, { static: true }) labHost!: LabDirective;
 
   ngAfterViewInit(): void {
@@ -47,10 +48,15 @@ export class LabViewerComponent implements OnInit, AfterViewInit {
 
     const componentRef = viewContainerRef.createComponent<ILabComponent>(this.lab.component);
     componentRef.instance.meta = this.lab.meta;
+    this.timePassed = !this.lab.meta.homeworkDue || new Date(this.lab.meta.homeworkDue).getTime() < Date.now();
   }
 
   goHome() {
     this.router.navigate(['']);
+  }
+
+  sendHomework() {
+    window.open(this.lab.meta.homeworkLink, "_blank");
   }
 
 }

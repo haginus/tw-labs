@@ -15,6 +15,9 @@
         <div class="lab-content">
           <ng-template labHost></ng-template>
         </div>
+        <div class="send-homework" *ngIf="lab?.meta?.homeworkLink">
+          <button mat-raised-button color="primary" (click)="sendHomework()" [disabled]="timePassed">Trimite tema</button>
+        </div>
       </div>
     </div>
   </div>
