@@ -62,6 +62,12 @@ export class LabViewerComponent implements OnInit, AfterViewInit {
     const content = this.labContent.nativeElement.children[0] as HTMLElement;
     this.contents = this._getSections(content);
     this._flatContents = this._flattenContents().reverse();
+    if(window.location.hash) {
+      const section = this._flatContents.find(section => section.slug == window.location.hash);
+      setTimeout(() => {
+        this.goToSection(section);
+      }, 300);
+    }
   }
 
   private _getSections(element: HTMLElement): TableOfContentsSection[] {
@@ -70,7 +76,7 @@ export class LabViewerComponent implements OnInit, AfterViewInit {
       const title = header?.textContent || 'Secțiune';
       return {
         title,
-        slug: sluggify(title),
+        slug: '#' + sluggify(title),
         element: el,
         subsections: this._getSections(el)
       }
@@ -83,7 +89,7 @@ export class LabViewerComponent implements OnInit, AfterViewInit {
 
   getSectionLink(slug: string) {
     let url = window.location.href.split('#')[0];
-    return url + '#' + slug;
+    return url + slug;
   }
 
   goHome() {
@@ -100,6 +106,7 @@ export class LabViewerComponent implements OnInit, AfterViewInit {
   }
 
   goToSection(section: TableOfContentsSection) {
+    if(!section) return;
     section.element.scrollIntoView({
       block: 'start',
       behavior: "smooth",
