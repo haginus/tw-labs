@@ -18,6 +18,7 @@ app-root {
   .main-container {
     flex: 1;
     overflow: auto;
+    position: relative;
   }
 }
 
@@ -87,4 +88,8 @@ code {
 
 .break-word {
   word-break: break-word;
+}
+
+.pre-wrap {
+  white-space: pre-wrap;
 }

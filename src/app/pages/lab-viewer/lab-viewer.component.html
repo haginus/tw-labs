@@ -5,19 +5,38 @@
     </button>
     <span class="toolbar-title">{{ lab.meta.subtitle }}</span>
   </mat-toolbar>
-  <div class="main-container">
+  <div class="main-container" (scroll)="onScroll($event)">
     <div class="main-section-wrapper">
       <div class="lab-container">
         <div class="lab-header" *ngIf="lab">
           <div class="lab-subtitle">{{ lab.meta.subtitle }}</div>
           <h1 class="lab-title">{{ lab.meta.title }}</h1>
         </div>
-        <div class="lab-content">
+        <div class="lab-content" #labContent>
           <ng-template labHost></ng-template>
         </div>
         <div class="send-homework" *ngIf="lab?.meta?.homeworkLink">
           <button mat-raised-button color="primary" (click)="sendHomework()" [disabled]="timePassed">Trimite tema</button>
         </div>
+      </div>
+    </div>
+    <div class="second-section-wrapper" *ngIf="lab">
+      <div class="table-of-contents">
+        <ul>
+          <b>{{ lab.meta.title }}</b>
+          <li *ngFor="let item of contents">
+            <a [href]="getSectionLink(item.slug)" [ngClass]="{ active: item == activeSection }" (click)="goToSection(item)">
+              {{ item.title }}
+            </a> 
+            <ul *ngIf="item.subsections.length">
+              <li *ngFor="let subitem of item.subsections">
+                <a [href]="getSectionLink(subitem.slug)" [ngClass]="{ active: subitem == activeSection }" (click)="goToSection(subitem)">
+                  {{ subitem.title }}
+                </a> 
+              </li>
+            </ul>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
