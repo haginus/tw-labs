@@ -15,6 +15,8 @@ import { LabDirective } from './directives/lab.directive';
 import { LabListComponent } from './components/lab-list/lab-list.component';
 import { InfoComponent } from './components/info/info.component';
 import { TipComponent } from './components/tip/tip.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,13 @@ import { TipComponent } from './components/tip/tip.component';
     BrowserAnimationsModule,
     AppMaterialModule,
     HighlightModule,
-    HttpClientModule
+    HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [
     {
