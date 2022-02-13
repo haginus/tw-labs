@@ -25,10 +25,17 @@
   .result-column {
     background: white;
     border-left: 1px solid rgba(0, 0, 0, 0.2);
+    position: relative;
     iframe {
       width: 100%;
       height: 100%;
       border: none;
+    }
+
+    .reload-window {
+      position: absolute;
+      top: 0;
+      right: 0;
     }
   }
 

@@ -22,7 +22,12 @@
     </mat-tab-group>
   </div>
   <div class="code-example-column result-column" *ngIf="result">
-    <iframe #resultFrame></iframe>
+    <iframe #resultFrame (load)="onSrcChange()"></iframe>
     <div class="console"></div>
+    <div class="reload-window" *ngIf="srcChanged">
+      <button mat-icon-button (click)="maybeSetIframe()">
+        <mat-icon>refresh</mat-icon>
+      </button>
+    </div>
   </div>
 </div>

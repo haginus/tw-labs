@@ -26,6 +26,8 @@ export class CodeExampleComponent implements OnInit, OnDestroy {
 
   loadedSnippets: number = 0;
   totalSnippets: number;
+  srcChanged: boolean = false;
+  firstLoad: boolean = true;
 
   subscriptions: Subscription[] = [];
 
@@ -71,9 +73,23 @@ export class CodeExampleComponent implements OnInit, OnDestroy {
       </html>
     `;
     const iframe = this.resultFrame.nativeElement;
-    iframe.contentWindow.document.open();
-    iframe.contentWindow.document.write(content);
-    iframe.contentWindow.document.close();
+    this.firstLoad = true;
+    iframe.src = '';
+    iframe.onload = () => {
+      iframe.contentWindow.document.open();
+      iframe.contentWindow.document.write(content);
+      iframe.contentWindow.document.close();
+      this.srcChanged = false;
+      iframe.onload = () => {};
+    }
+  }
+
+  onSrcChange() {
+    if(this.firstLoad) {
+      this.firstLoad = false;
+      return;
+    }
+    this.srcChanged = true;
   }
 
   ngOnDestroy(): void {
