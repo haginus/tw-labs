@@ -35,7 +35,16 @@
 
     &.active {
       color: #3f51b5;
-      transform: scale(1.05);
+      .tab-content {
+        transform: scale(1.05);
+      }
+    }
+
+    .tab-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
   }
 }
