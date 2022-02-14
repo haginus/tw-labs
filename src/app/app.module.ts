@@ -17,6 +17,7 @@ import { InfoComponent } from './components/info/info.component';
 import { TipComponent } from './components/tip/tip.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { PromptUpdateService } from './services/prompt-update.service';
 
 @NgModule({
   declarations: [

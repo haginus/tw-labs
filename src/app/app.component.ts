@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { routerFadeAnimation } from './animations';
+import { PromptUpdateService } from './services/prompt-update.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,8 @@ import { routerFadeAnimation } from './animations';
   animations: [routerFadeAnimation]
 })
 export class AppComponent {
-  title = 'tw-labs';
+
+  constructor(private pus: PromptUpdateService) { }
 
   prepareRoute(outlet: RouterOutlet) {
     if (outlet && outlet.isActivated) {
