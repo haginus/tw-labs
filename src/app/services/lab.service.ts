@@ -20,7 +20,7 @@ export class LabService {
           subtitle: "Laboratorul 1",
           description: "Recapitulare a cunoștințelor de HTML din liceu și înțelegerea noțiunilor de bază.",
           homeworkLink: 'https://forms.gle/aJXtMSuu3YJpgGt27',
-          homeworkDue: "2022-02-22T00:00:00+02:00"
+          homeworkDue: "2022-02-24T12:00:00+02:00"
         }
       )
     ]);
