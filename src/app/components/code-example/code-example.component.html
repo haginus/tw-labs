@@ -1,31 +1,21 @@
-<mat-toolbar color="primary" class="code-example-title" *ngIf="title">
-  {{ title }}
+<mat-toolbar color="primary" class="code-example-title" *ngIf="gist?.title">
+  {{ gist.title }}
 </mat-toolbar>
 <div class="code-example-wrapper">
-  <div class="code-example-column">
-    <mat-tab-group mat-align-tabs="start" >
-      <mat-tab label="HTML" *ngIf="html && htmlCode">
+  <div class="code-example-column" *ngIf="gist?.files && filesLoaded">
+    <mat-tab-group mat-align-tabs="start">
+      <mat-tab [label]="file.label" *ngFor="let file of gistFiles">
         <pre>
-          <code [highlight]="htmlCode" [languages]="['xml']"></code>
-        </pre>
-      </mat-tab>
-      <mat-tab label="CSS" *ngIf="css && cssCode">
-        <pre>
-          <code [highlight]="cssCode" [languages]="['css']"></code>
-        </pre>
-      </mat-tab>
-      <mat-tab label="JS" *ngIf="js && jsCode">
-        <pre>
-          <code [highlight]="jsCode" [languages]="['javascript']"></code>
+          <code [highlight]="file.content" [languages]="file.language"></code>
         </pre>
       </mat-tab>
     </mat-tab-group>
   </div>
-  <div class="code-example-column result-column" *ngIf="result">
+  <div class="code-example-column result-column" *ngIf="gist?.result">
     <iframe #resultFrame (load)="onSrcChange()"></iframe>
     <div class="console"></div>
     <div class="reload-window" *ngIf="srcChanged">
-      <button mat-icon-button (click)="maybeSetIframe()">
+      <button mat-icon-button (click)="setIframe()">
         <mat-icon>refresh</mat-icon>
       </button>
     </div>

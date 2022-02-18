@@ -1,0 +1,11 @@
+{
+  "title": "Exemple de folosire",
+  "showFileNames": false,
+  "result": true,
+  "files": [
+    {
+      "name": "html-attributes.html",
+      "fileType": "html"
+    }
+  ]
+}
