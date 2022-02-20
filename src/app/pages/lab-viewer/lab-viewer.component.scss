@@ -43,6 +43,8 @@
     border-left: solid 4px #3f51b5;
     box-sizing: border-box;
     min-width: 200px;
+    overflow: auto;
+    max-height: calc(100% - 24px);
     ul {
       margin: 0;
       list-style-type: none;
