@@ -1,0 +1,12 @@
+.box {
+  background: #fff;
+  margin: 12px;
+  box-sizing: border-box;
+  border: 1px solid #000;
+}
+
+.box > div {
+  margin: 12px;
+  border: 1px solid #000;
+  height: 40px;
+}

@@ -1,0 +1,14 @@
+.description {
+  display: block;
+  font-style: italic;
+}
+
+.first-col-no-wrap {
+  td:first-child {
+    white-space: nowrap!important;
+  }
+}
+
+.divs-image {
+  max-width: 100%;
+}

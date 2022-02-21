@@ -1,0 +1,15 @@
+{
+  "title": "Aceleași culori definite în diferite moduri",
+  "showFileNames": false,
+  "result": true,
+  "files": [
+    {
+      "name": "colors.html",
+      "fileType": "html"
+    },
+    {
+      "name": "colors.css",
+      "fileType": "css"
+    }
+  ]
+}

@@ -18,6 +18,7 @@ import { TipComponent } from './components/tip/tip.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { PromptUpdateService } from './services/prompt-update.service';
+import { Lab2Component } from './labs/lab2/lab2.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { PromptUpdateService } from './services/prompt-update.service';
     LabListComponent,
     InfoComponent,
     TipComponent,
+    Lab2Component,
   ],
   imports: [
     BrowserModule,

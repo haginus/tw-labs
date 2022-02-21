@@ -1,0 +1,1291 @@
+<section>
+  <h1>Ce este CSS?</h1>
+  <p>
+    Cascading Style Sheets (CSS) este limbajul pe care îl folosim pentru a stiliza paginile web.
+    Acesta descrie cum sunt afișate elementele HTML pe ecranul utilizatorului.
+  </p>
+  <section>
+    <h2>Sintaxă</h2>
+    <p>
+      Pentru a stiliza elemente în CSS, folosim următoarea sintaxă:
+      <code highlight="selector { proprietate1: valoare1; proprietate2: valoare2; ... }" [languages]="['css']"></code>.
+      Observați faptul că proprietățile CSS sunt despărțite între ele de <code>;</code>, fiecare bloc de proprietăți
+      CSS fiind inconjurat de acolade și aplicându-se elementelor HTML ce sunt găsite de selector.
+    </p>
+  </section>
+  <section>
+    <h2>Moduri de includere</h2>
+    <p>Există trei moduri de a stiliza elementele HTML:</p>
+    <section>
+      <h3>Inline styling</h3>
+      <p>
+        Stilizarea în linie ne permite să adăugăm stil direct către un element HTML folosind atributul
+        <code>style</code>. Deoarece ne adresăm unui singur element HTML, nu mai este nevoie de selector,
+        fiind intodus doar blocul de proprietăți în interiorul valorii atributului. Această metodă este
+        puternic nerecomandată, deoarece crează redundanță (deci modificările ulterioare vor fi mai greu de făcut)
+        și face codul mai puțin citibil.
+      </p>
+    </section>
+    <section>
+      <h3>Internal styling</h3>
+      <p>
+        Avem posibilitatea să adăugăm CSS direct în fișierele HTML, adăugând tag-uri
+        <code highlight="<style></style>"></code> în head-ul fișierului.
+        Deși această metodă este mult mai bună decât stilizarea în linie, continuă să creeze redundanță
+        din moment ce nu putem distribui codul între fișierele HTML.
+      </p>
+    </section>
+    <section>
+      <h3>External styling</h3>
+      <p>
+        Ne este permis să creem și să includem în HTML fișiere ce conțin doar cod CSS (stylesheets).
+        Asfel putem avea unul sau mai multe fișiere de stiluri care sunt distribuite între mai multe fișiere HTML.
+        De exemplu, acestea pot conține stiluri pentru elemente comune, cum ar fi header-ul paginii, navigația,
+        diferite elemente custom, etc. Pentru a ne folosi de stilurile dintr-un fișier CSS, adăugăm în head-ul
+        fișierului HTML următorul cod: <code highlight='<link rel="stylesheet" type="text/css" href="cale_fișier.css">'></code>.
+      </p>
+    </section>
+    <app-code-example gistId="lab2/css-insert"></app-code-example>
+  </section>
+</section>
+<section>
+  <h1>Valori și unități CSS</h1>
+  <p>
+    Valorile în CSS pot avea diferite tipuri, precum <code highlight="<number>"></code> sau 
+    <code highlight="<length>"></code>. Este important să le cunoaștem pentru a putea înțelege
+    mai departe sintaxa diferitelor proprietăți CSS pe care le vom învăța.
+  </p>
+  <section>
+    <h2>Numere, lungimi, și procente</h2>
+    Există numeroase tipuri de valori numerice pe care le putem găsi în CSS.
+    <div class="common-table">
+      <table>
+        <tr>
+          <th>Tip de date</th>
+          <th>Descriere</th>
+        </tr>
+        <tr>
+          <td><code highlight="<integer>" [languages]="['css']"></code></td>
+          <td>
+            Număr întreg. Exemplu: <code>-40</code>, <code>1</code>.
+          </td>
+        </tr>
+        <tr>
+          <td><code highlight="<number>" [languages]="['css']"></code></td>
+          <td>
+            Număr rațional - poate avea sau nu un punct decimal ce determină partea fracțională.
+            Exemplu: <code>0.456</code>, <code>12</code>.
+          </td>
+        </tr>
+        <tr>
+          <td><code highlight="<dimension>" [languages]="['css']"></code></td>
+          <td>
+            O dimensiune este un număr cu o unitate de măsură atașată acestuia.
+            Exemplu: <code>45deg</code>, <code>5s</code>, <code>40px</code>. <br>
+            <code highlight="<dimension>" [languages]="['css']"></code> este o categorie umbrelă ce include 
+            tipurile <code highlight="<length>" [languages]="['css']"></code>,
+            <code highlight="<angle>" [languages]="['css']"></code>,
+            <code highlight="<time>" [languages]="['css']"></code> și
+            <code highlight="<resolution>" [languages]="['css']"></code>.
+          </td>
+        </tr>
+        <tr>
+          <td><code highlight="<percentage>" [languages]="['css']"></code></td>
+          <td>
+            Procent dintr-o anumită valoare.
+            Exemplu: <code>40%</code>. Valorile procentuale sunt tot timpul relative
+            la altă cantitate (de obicei proprietățile părintelui).
+          </td>
+        </tr>
+      </table>
+    </div>
+    <section>
+      <h3>Lungimi</h3>
+      <p>
+        Lungimile sunt probabil tipul pe care îl vom întâlni cel mai mult. Așa cum este descris mai sus,
+        acestea nu sunt altceva decât un număr urmat imediat de o unitate de măsură. <br>
+        CSS dispune de două tipuri de unități de măsură - absolute și relative.
+      </p>
+      <section>
+        <h4>Unități absolute</h4>
+        <div class="common-table">
+          <table>
+            <tr>
+              <th>Unitate</th>
+              <th>Nume</th>
+              <th>Echivalent cu</th>
+            </tr>
+            <tr *ngFor="let unit of absoluteUnits">
+              <td *ngFor="let part of unit">{{ part }}</td>
+            </tr>
+          </table>
+        </div>
+        <p>
+          Majoritatea acestor valori sunt pentru suport de hârtie, pixelul fiind cel pe care îl vom
+          putea folosi pentru ecrane.
+        </p>
+      </section>
+      <section>
+        <h4>Unități relative</h4>
+        <p>
+          Unitățile relative sunt relative la altceva, cum ar fi mărimea fontului părintelui sau lungimea
+          viewport-ului. Au diferite beneficii, cum ar fi scalarea textului și a elementelor 
+          în funcție de mărimea dispozitivului. Iată unele dintre cele mai folosite:
+        </p>
+        <div class="common-table">
+          <table>
+            <tr>
+              <th>Unitate</th>
+              <th>Reletiv la</th>
+            </tr>
+            <tr *ngFor="let unit of relativeUnits">
+              <td *ngFor="let part of unit">{{ part }}</td>
+            </tr>
+          </table>
+        </div>
+        <app-code-example gistId="lab2/relative-units"></app-code-example>
+        <app-tip>
+          Feriți-vă să folosiți pixelul drept unitate de măsură, deoarece aceasta este una absolută.
+          Setați mai degrabă font-size-ul nodului <code highlight="<html>"></code> în pixeli, iar mai departe
+          folosiți unitățile <code>em</code> și <code>rem</code>.
+        </app-tip>
+      </section>
+    </section>
+    <section>
+      <h3>Procente</h3>
+      <p>
+        Pe lânga unitățile relative din CSS, există și procentele. Acestea sunt valori care sunt tot 
+        timpul relative la o altă valoare. De exemplu, dacă proprietatea <code>font-size</code> a unui
+        element este un procent, atunci va fi acel procent din <code>font-size</code>-ul părintelui. Dacă
+        proprietatea <code>width</code> este un procent, atunci va fi relativă la <code>width</code>-ul 
+        părintelui și tot așa. Iată un exemplu:
+      </p>
+      <app-code-example gistId="lab2/percentages"></app-code-example>
+    </section>
+  </section>
+  <section>
+    <h2>Culori</h2>
+    <p>
+      Există mai multe moduri prin care se pot defini culori în CSS. Culorile create pot fi folosite
+      oriunde, fie pentru modificarea culorii de fundal, a textului sau alte elemente.
+    </p>
+    <p>
+      Sistemul standard folosit este cel pe 24 de biți, ceea ce ne permite să generăm în jur de
+      16,7 milioane de culori, prin combinarea celor 3 canale de roșu, galben și albastru, fiecare 
+      putând avea o valoare între 0 și 255 (astfel obținem 256<sup>3</sup> combinații posibile).
+    </p>
+    <section>
+      <h3>Color keywords</h3>
+      <p>
+        CSS are o serie de culori predefinite, care pot fi accesate folosind keyword-uri, precum:
+      </p>
+      <ul>
+        <li><code>red</code> → <code>#ff0000</code></li>
+        <li><code>white</code> → <code>#ffffff</code></li>
+        <li><code>black</code> → <code>#000000</code></li>
+        <li>
+          Pentru o listă completă cu toate keyword-urile, vizitați
+          <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#color_keywords">acest link.</a>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h3>Valori hexadecimale RGB</h3>
+      <p>
+        Putem defini culori în CSS folosind coduri hexadecimale (hex codes). Fiecare cod hexadecimal
+        este precedat de un diez (<code>#</code>) și apoi 6 cifre hexadecimale (în baza 16 - <code>0123456789abcdef</code>).
+        Aceste cifre se citesc în perechi de câte două, reprezentând canalele RGB (astfel avem 16 x 16 = 256, pentru fiecare canal). 
+      </p>
+      <p>
+        Chiar dacă aceste coduri sunt mai greu de citit de către un om, sunt mult mai versatile decât metoda
+        cu keyword-uri, permitându-ne să generăm tot spectrul de 16,7 milioane de culori.
+      </p>
+    </section>
+    <section>
+      <h3>Valori RGB și RGBA</h3>
+      <p>
+        Spre deosebire de varianta codurilor hexadecimale, această metodă ne permite să setăm culoarile
+        rămânând în baza 10, definirea unei culor făcându-se astfel: <code>rgb(r, g, b)</code>, unde
+        <code>r</code>, <code>g</code> și <code>b</code> sunt valori întregi între 0 și 255, reprezentând
+        cele 3 canale de culori.
+      </p>
+      <p>
+        Pentru a genera culori translucide, putem folosi funcția <code>rgba(r, g, b, a)</code>, ce adaugă
+        cananul <code>alpha</code> - un număr fracționar cuprins între 0 și 1 ce ne permite să setăm opacitatea
+        culorii (0 fiind transparent și 1 total opac).
+      </p>
+    </section>
+    <app-code-example gistId="lab2/colors"></app-code-example>
+  </section>
+  <section>
+    <h2>String-uri și identificatori</h2>
+    <p>
+      După cum s-a observat în secțiunea anterioară, există locuri în care folosim keyword-uri drept valori
+      (precum la culori, unde avem <code>red</code>, <code>purple</code>, etc.). Aceste keyword-uri pot fi 
+      definite mai bine drept <i>identificatori,</i> o valoare specială înțeleasă de CSS. Aceste valori nu 
+      sunt în ghilimele și <b>nu sunt tratate drept string-uri.</b>
+      <br>
+      Există locuri în care folosim string-uri în CSS, precum în conținut generat. In acest caz, valoarea este
+      pusă în ghilimele pentru a demonstra că este vorba de un string. Iată un exemplu:
+    </p>
+    <app-code-example gistId="lab2/strings"></app-code-example>
+  </section>
+  <section>
+    <h2>Funcții</h2>
+    <p>
+      Funcțiile sunt un tip de valoare folositor în CSS ce ne ajută să rezolvăm valori la "runtime". Le folosim
+      atunci când nu putem defini o valoare exactă în stilul nostru, așa că lăsăm browser-ul care afișează
+      pagina web să calculeze acea valoare pentru noi. Am văzut deja câteva funcții, precum <code>rgb()</code>
+      și <code>rgba()</code>.<br>
+      O funcție care s-ar apropia mai mult de conceptul de funcție învățat în limbajele de programare tradiționale
+      este <code>calc()</code>. Acesta ne permite să îi pasăm o expresie pe care o va evalua. Iată un exemplu:
+    </p>
+    <app-code-example gistId="lab2/calc"></app-code-example>
+  </section>
+</section>
+<section>
+  <h1>Proprietăți CSS</h1>
+  <p>
+    Proprietățile CSS au uneori sintaxe diferite în ceea ce privește setarea valorilor acestora.
+    În special, proprietățile shorthand (care permit setarea mai multor proprietăți deodată) au 
+    o anumită sintaxă specifică. Totuși, există două valori pe care orice propietate CSS le acceptă:
+  </p>
+  <ul>
+    <li><code>initial</code> - setează proprietatea CSS la valoarea ei inițială;</li>
+    <li><code>inherit</code> - setează proprietatea CSS la valoarea moștenită de la părinte;</li>
+  </ul>
+  <p>
+    Deci, pentru următoarele proprietăți enumerate se va face abstracție că aceste două valori sunt 
+    posibile.
+  </p>
+  <section>
+    <h2>Display și vizibitate</h2>
+    <section>
+      <h3><code>display</code></h3>
+      <p>
+        <b>Sintaxă: </b> <code highlight="display: valoare;" [languages]="['css']"></code><br>
+      </p>
+      <ul>
+        <li>
+          <code>block</code> - afișează elementul ca un element block (precum <code highlight="<div>"></code>).
+          Începe pe o linie nouă și ocupă toată linia.
+        </li>
+        <li>
+          <code>inline</code> - afișează elementul ca un element inline (precum <code highlight="<span>"></code>).
+          Acesta ocupă doar spațiul de care are nevoie, iar proprietățile de dimenionare nu funcționează.
+        </li>
+        <li>
+          <code>inline-block</code> - afișează elementul ca un element inline-block.
+          Deși este formatat în linie, acesta poate conține alte elemente de tip block și este permisă schimbarea dimensiunilor.
+        </li>
+        <li>
+          <code>none</code> - ascunde complet elementul. Este ca și cum acesta nu ar exista în pagină.
+        </li>
+      </ul>
+      <p class="observation">
+        <b>Notă: </b> Există mai multe valori pentru display pe care le vom descoperi în laboratoarele viitoare.
+      </p>
+    </section>
+    <section>
+      <h3><code>visibility</code></h3>
+      <b>Sintaxă: </b> <code highlight="visibility: visible|hidden|collapse;" [languages]="['css']"></code><br>
+      <ul>
+        <li>
+          <code>visible</code> - elementul este vizibil (valoare implicită).
+        </li>
+        <li>
+          <code>hidden</code> - elementul este ascuns, însă spațiul pe care acesta îl ocupa rămâne acolo.
+        </li>
+        <li>
+          <code>collapse</code> - (doar pentru rânduri de tabele) Ascunde un rând de tabel dar nu afectează
+          layout-ul tabelului. Spațiul ocupat este valabil pentru alt conținut.
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h3><code>opacity</code></h3>
+      <b>Sintaxă: </b> <code highlight="opacity: <number>" [languages]="['css']"></code><br>
+      <ul>
+        <li>
+          <code>number</code> - Număr rațional între 0 și 1 (implicit 1).
+        </li>
+      </ul>
+    </section>
+    <p>
+      La prima vedere, pare că <code highlight="display: none;" [languages]="['css']"></code>,
+      <code highlight="visibility: hidden;" [languages]="['css']"></code> și
+      <code highlight="opacity: 0;" [languages]="['css']"></code> fac exact același lucru.
+      Totuși, acestă intuiție poate fi ușor infirmată în exemplul de mai jos.
+    </p>
+    <app-code-example gistId="lab2/display-visibility-opacity"></app-code-example>
+  </section>
+  <section>
+    <h2>Dimensionare și scroll</h2>
+    <p>Următoarele proprietăți nu sunt valabile pentru elementele inline.</p>
+    <section>
+      <h3><code>width</code></h3>
+      <p class="description">Setează lungimea unui element.</p>
+      <b>Sintaxă: </b> <code highlight="width: auto|<length>;" [languages]="['css']"></code><br>
+      <ul>
+        <li>
+          <code>auto</code> - (implicit) Browser-ul calculată lungimea.
+        </li>
+        <li>
+          <code>length</code> - O valoare de tip lungime (discutată într-un capitol anterior).
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h3><code>max-width</code></h3>
+      <p class="description">Setează lungimea maximă a unui element. Ia precedență față de <code>width</code>.</p>
+      <b>Sintaxă: </b> <code highlight="max-width: none|<length>;" [languages]="['css']"></code><br>
+      <ul>
+        <li>
+          <code>none</code> - (implicit) Fără lungime maximă.
+        </li>
+        <li>
+          <code>length</code> - O valoare de tip lungime (implicit 0).
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h3><code>min-width</code></h3>
+      <p class="description">
+        Setează lungimea minimă a unui element. Ia precedență față de <code>width</code> și <code>max-width</code>.
+      </p>
+      <b>Sintaxă: </b> <code highlight="min-width: <length>;" [languages]="['css']"></code><br>
+      <ul>
+        <li>
+          <code>length</code> - O valoare de tip lungime (implicit 0).
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h3><code>height</code></h3>
+      <p class="description">Setează înălțimea unui element.</p>
+      <b>Sintaxă: </b> <code highlight="height: auto|<length>;" [languages]="['css']"></code><br>
+      <ul>
+        <li>
+          <code>auto</code> - (implicit) Browser-ul calculată lungimea.
+        </li>
+        <li>
+          <code>length</code> - O valoare de tip lungime (discutată într-un capitol anterior).
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h3><code>max-height</code></h3>
+      <p class="description">Setează înălțimea maximă a unui element. Ia precedență față de <code>height</code>.</p>
+      <b>Sintaxă: </b> <code highlight="max-height: none|<length>;" [languages]="['css']"></code><br>
+      <ul>
+        <li>
+          <code>none</code> - (implicit) Fără lungime maximă.
+        </li>
+        <li>
+          <code>length</code> - O valoare de tip lungime (implicit 0).
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h3><code>min-height</code></h3>
+      <p class="description">
+        Setează înălțimea minimă a unui element. Ia precedență față de <code>height</code> și <code>max-height</code>.
+      </p>
+      <b>Sintaxă: </b> <code highlight="min-height: <length>;" [languages]="['css']"></code><br>
+      <ul>
+        <li>
+          <code>length</code> - O valoare de tip lungime (implicit 0).
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h3><code>overflow</code></h3>
+      <p class="description">
+        Setează comportamentul scrollului în cazul în care dimensiunea conținutului depășește
+        dimensiunea setată a elementului HTML. Acesta funcționează pe două axe: axa <code>x</code>
+        (pe orizontală) și axa <code>y</code> (pe verticală).
+      </p>
+      <b>Sintaxă: </b> <code highlight="overflow: visible|hidden|clip|scroll|auto;" [languages]="['css']"></code><br>
+      <ul>
+        <li>
+          <code>visible</code> - (implicit) conținutul nu este tăiat și poate continua în afara elementului.
+        </li>
+        <li>
+          <code>hidden</code> - conținutul este tăiat în cazul în care depășește înălțimea elementului,
+          însă nu există suport pentru utilizator astfel încât să scrolleze conținutul. Acesta poate fi
+          scrollat doar programatic prin JavaScript.
+        </li>
+        <li>
+          <code>clip</code> - asemănător <code>hidden</code>, dar blochează toate posibilitățile de 
+          scrolling, inclusiv prin JavaScript.
+        </li>
+        <li>
+          <code>scroll</code> - conținutul este tăiat și browserele arată tot timpul scrollbar-uri care 
+          permit utilizatorului să deruleze conținutul.
+        </li>
+        <li>
+          <code>auto</code> - browserele arată scrollbar-uri doar dacă lungimea scroll-ului depășește
+          lungimea elementului (deci dacă scrollarea este posibilă).
+        </li>
+      </ul>
+      <p>
+        <code>overflow</code> este un shorthand care ne permite să setăm subproprietățile
+        <code>overflow-x</code> și <code>overflow-y</code> deodată. Acestea pot fi setate
+        separat și au precedență față de <code>overflow</code>.
+      </p>
+    </section>
+  </section>
+  <section>
+    <h2>Box Model</h2>
+    <p>
+      CSS Box Model este o cutie care înconjoară fiecare element HTML. Aceasta constă în padding, borduri,
+      margini și conținutul efectiv (width și height).
+    </p>
+    <section>
+      <h3><code>box-sizing</code></h3>
+      <p class="description">
+        Definește cum sunt lungimea și înălțimea elementului calculate - încluzând sau nu padding-ul și bordurile.  
+      </p>
+      <b>Sintaxă: </b> <code highlight="box-sizing: content-box|border-box;" [languages]="['css']"></code><br>
+      <ul>
+        <li>
+          <code>content-box</code> - (implicit) Lungimea și înălțimea elementului includ doar conținutul (fără padding și borduri).
+        </li>
+        <li>
+          <code>border-box</code> - Lungimea și înălțimea elementului includ conținutul plus mărimea padding-ului și a bordurilor.
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h3><code>padding</code></h3>
+      <p class="description">
+        Definește mărimea padding-ului unui element HTML. 
+      </p>
+      <b>Sintaxă: </b> <code highlight="padding: [ <length> | <percentage> ]{1,4}" [languages]="['css']"></code><br>
+      <ul>
+        <li>
+          <i>Dacă proprietatea are o singură valoare: </i> <code highlight="padding: 10px;" [languages]="['css']"></code>
+          <ul>
+            <li>Toate cele patru padding-uri au valoarea <code>10px</code></li>
+          </ul>
+        </li>
+        <li>
+          <i>Dacă proprietatea are două valori: </i> <code highlight="padding: 10px 5px;" [languages]="['css']"></code>
+          <ul>
+            <li>padding-urile de sus și jos au valoarea <code>10px</code></li>
+            <li>padding-urile din stânga și dreapta au valoarea <code>5px</code></li>
+          </ul>
+        </li>
+        <li>
+          <i>Dacă proprietatea are trei valori: </i> <code highlight="padding: 10px 5px 15px;" [languages]="['css']"></code>
+          <ul>
+            <li>padding-ul de sus are valoarea <code>10px</code></li>
+            <li>padding-urile din stânga și dreapta au valoarea <code>5px</code></li>
+            <li>padding-ul de jos are valoarea <code>15px</code></li>
+          </ul>
+        </li>
+        <li>
+          <i>Dacă proprietatea are patru valori: </i> <code highlight="padding: 10px 5px 15px 20px;" [languages]="['css']"></code>
+          <ul>
+            <li>padding-ul de sus are valoarea <code>10px</code></li>
+            <li>padding-ul din dreapta are valoarea <code>5px</code></li>
+            <li>padding-ul de jos are valoarea <code>15px</code></li>
+            <li>padding-ul din stânga are valoarea <code>20px</code></li>
+          </ul>
+        </li>
+      </ul>
+      <p>
+        <code>padding</code> este un shorthand care ne permite să setăm subproprietățile
+        <code>padding-top</code>, <code>padding-right</code>, <code>padding-left</code>, <code>padding-bottom</code>
+        deodată. Acestea pot fi setate separat, iau drept valoare o lungime sau un procentaj și au precedență
+        față de <code>padding</code>.
+      </p>
+    </section>
+    <section>
+      <h3><code>margin</code></h3>
+      <p class="description">
+        Definește mărimea marginilor unui element HTML. 
+      </p>
+      <b>Sintaxă: </b> <code highlight="margin: [ <length> | <percentage> ]{1,4}" [languages]="['css']"></code><br>
+      <ul>
+        <li>
+          <i>Dacă proprietatea are o singură valoare: </i> <code highlight="margin: 10px;" [languages]="['css']"></code>
+          <ul>
+            <li>Toate cele patru margini au valoarea <code>10px</code></li>
+          </ul>
+        </li>
+        <li>
+          <i>Dacă proprietatea are două valori: </i> <code highlight="margin: 10px 5px;" [languages]="['css']"></code>
+          <ul>
+            <li>marginile de sus și jos au valoarea <code>10px</code></li>
+            <li>marginile din stânga și dreapta au valoarea <code>5px</code></li>
+          </ul>
+        </li>
+        <li>
+          <i>Dacă proprietatea are trei valori: </i> <code highlight="margin: 10px 5px 15px;" [languages]="['css']"></code>
+          <ul>
+            <li>marginea de sus are valoarea <code>10px</code></li>
+            <li>marginile din stânga și dreapta au valoarea <code>5px</code></li>
+            <li>marginea de jos are valoarea <code>15px</code></li>
+          </ul>
+        </li>
+        <li>
+          <i>Dacă proprietatea are patru valori: </i> <code highlight="margin: 10px 5px 15px 20px;" [languages]="['css']"></code>
+          <ul>
+            <li>marginea de sus are valoarea <code>10px</code></li>
+            <li>marginea din dreapta are valoarea <code>5px</code></li>
+            <li>marginea de jos are valoarea <code>15px</code></li>
+            <li>marginea din stânga are valoarea <code>20px</code></li>
+          </ul>
+        </li>
+      </ul>
+      <p>
+        <code>margin</code> este un shorthand care ne permite să setăm subproprietățile
+        <code>margin-top</code>, <code>margin-right</code>, <code>margin-left</code>, <code>margin-bottom</code>
+        deodată. Acestea pot fi setate separat, iau drept valoare o lungime sau un procentaj și au precedență
+        față de <code>margin</code>.
+      </p>
+    </section>
+    <section>
+      <h3><code>border</code></h3>
+      <p class="description">
+        Definește mărimea marginilor unui element HTML. 
+      </p>
+      <b>Sintaxă: </b> <code highlight="border: <line-width> <line-style> <color>" [languages]="['css']"></code><br>
+      <ul>
+        <li>
+          <code highlight="<line-width> = <length>|thin|medium|thick" [languages]="['css']"></code> - grosimea liniei bordurii
+        </li>
+        <li>
+          <code highlight="<line-style> = none|hidden|dotted|dashed|solid|double" [languages]="['css']"></code>
+          - stilul liniei bordurii
+          <ul>
+            <li><code>none</code> - fără bordură (implicit)</li>
+            <li><code>hidden</code> - bordura este ascunsă</li>
+            <li><code>dotted</code> - linia bordurii este punctată</li>
+            <li><code>dashed</code> - linia bordurii este întreruptă</li>
+            <li><code>solid</code> - linia bordurii este continuă</li>
+            <li><code>double</code> - linia bordurii este dublă</li>
+          </ul>
+        </li>
+        <li>
+          <code highlight="<color>" [languages]="['css']"></code>
+          - culoarea bordurii
+        </li>
+      </ul>
+      <p>
+        <code>border</code> este un shorthand care ne permite să setăm subproprietățile
+        <code>border-width</code>, <code>border-style</code> și <code>border-color</code>, <code>margin-bottom</code>
+        deodată. Acestea se pot seta și separat și au precedență față de <code>border</code>. <br>
+        Dacă dorim să setăm separat bordura dintr-o parte specifică, putem folosi
+        <code>border-top</code>, <code>border-right</code>, <code>border-left</code>, <code>border-bottom</code>, 
+        care au exact aceeași sintaxă ca <code>border</code>. Este de observat că și aceste patru proprietăți sunt
+        shorthand-uri, astfel că dacă dorim să setăm separat grosimea, stilul sau coloarea în mod separat, o putem
+        face: <code highlight="border-[top|right|left|bottom]-[width|style|color]" [languages]="['css']"></code>
+        (exemplu <code highlight="border-top-color: red;" [languages]="['css']"></code>)
+      </p>
+    </section>
+    <section>
+      <h3><code>border-radius</code></h3>
+      <p class="description">
+        Permite rotunjirea în colțuri a bordurilor unui element HTML.
+      </p>
+      <p>
+        <b>Sintaxă: </b> <code highlight="border-radius: <length> | <percentage>" [languages]="['css']"></code>
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="border-radius: 10px;" [languages]="['css']"></code>
+      </p>
+      <p>
+        Dacă dorim să setăm separat raza bordurii pentru fiecare colț în parte, putem folosi proprietățile:
+      </p>
+      <ul>
+        <li><code>border-top-left-radius</code> - setează conțul din stânga-sus</li>
+        <li><code>border-top-right-radius</code> - setează conțul din dreapta-sus</li>
+        <li><code>border-bottom-right-radius</code> - setează conțul din dreapta-jos</li>
+        <li><code>border-bottom-left-radius</code> - setează conțul din stânga-jos</li>
+      </ul>
+    </section>
+  </section>
+  <section>
+    <h2>Culori și fundaluri</h2>
+    <section>
+      <h3><code>color</code></h3>
+      <p class="description">
+        Definește culoarea textului din interiorul elemetului HTML.
+      </p>
+      <p><b>Sintaxă: </b> <code highlight="color: <color>" [languages]="['css']"></code></p>
+    </section>
+    <section>
+      <h3><code>background</code></h3>
+      <p class="description">
+        Definește fundalul unui element HTML.
+      </p>
+      <b>Sintaxă: </b> <code highlight="background: bg-color bg-image position/bg-size bg-repeat bg-origin bg-clip bg-attachment" [languages]="['css']"></code>
+      <br>
+      <ul>
+        <li><code>bg-color</code> - culoarea fundalului</li>
+        <li><code>bg-image</code> - imaginea fundalului</li>
+        <li><code>position</code> - poziția fundalului</li>
+        <li><code>bg-size</code> - mărimea fundalului</li>
+        <li><code>bg-repeat</code> - specifică dacă fundalul se repetă sau nu</li>
+        <li><code>bg-origin</code> - originea fundalului</li>
+        <li><code>bg-clip</code> - cât de departe trebuie să se exindă fundalul în element</li>
+        <li><code>bg-attachment</code> - specifică dacă fundalul scrollează odată cu conținutul elementului sau rămâne fix</li>
+      </ul>
+      <p>
+        Deoarece proprietatea <code>background</code> este un shorthand iar sintaxa sa este destul de greu de reținut,
+        vom prefera să folosim subproprietățile acesteia.
+      </p>
+      <section>
+        <h4><code>background-color</code></h4>
+        <p class="description">
+          Definește culoarea fundalului.
+        </p>
+        <p>
+          <b>Sintaxă: </b> <code highlight="background-color: none|<color>" [languages]="['css']"></code>
+        </p>
+      </section>
+      <section>
+        <h4><code>background-image</code></h4>
+        <p class="description">
+          Definește imaginea fundalului.
+        </p>
+        <p>
+          <b>Sintaxă: </b> <code highlight="background-image: none|<image>" [languages]="['css']"></code>
+        </p>
+        <ul>
+          <li><code>image</code> - se specifică folosind funcția <code>url()</code>; pot exista mai multe imagini separate prin virgulă</li>
+        </ul>
+        <p>
+          <b>Exemplu: </b> <code highlight='background-image: url("/imagini/img1.png"), url("/imagini/img2.png");' [languages]="['css']"></code>
+        </p>
+      </section>
+      <section>
+        <h4><code>background-position</code></h4>
+        <p class="description">
+          Definește poziția fundalului.
+        </p>
+        <p>
+          <b>Sintaxă: </b> <code highlight="background-position: position_keywords | (<length>|<percentage> (<length>|<percentage>)?)" [languages]="['css']"></code>
+        </p>
+        <ul>
+          <li>
+            <code>position_keywords</code> - Putem seta poziția folosind keyword-uri. Dacă al doilea keyword lipsește, acesta va li center.
+            <ul>
+              <li><code>left top</code></li>
+              <li><code>left center</code></li>
+              <li><code>left bottom</code></li>
+              <li><code>right top</code></li>
+              <li><code>right center</code></li>
+              <li><code>right bottom</code></li>
+              <li><code>center top</code></li>
+              <li><code>center center</code></li>
+              <li><code>center bottom</code></li>
+            </ul>
+          </li>
+          <li>
+            <code highlight="<length>|<percentage> (<length>|<percentage>)?" [languages]="['css']"></code>
+            - Putem folosi lungimi sau procente pentru a seta poziția. Dacă al doilea argument lipsește, acesta va fi 50%.
+          </li>
+        </ul>
+        <p>
+          <b>Exemplu: </b> <code highlight='background-position: 20% 50px;' [languages]="['css']"></code>
+        </p>
+      </section>
+      <section>
+        <h4><code>background-size</code></h4>
+        <p class="description">
+          Definește mărimea fundalului.
+        </p>
+        <p>
+          <b>Sintaxă: </b> <code highlight="background-size: auto|cover|contain|(<length>|<percentage> <length>|<percentage>)" [languages]="['css']"></code>
+        </p>
+        <ul>
+          <li>
+            <code>auto</code> - (implicit) Imaginea de fundal este afișată în mărimea originală.
+          </li>
+          <li>
+            <code>cover</code> - Imaginea de fundal va fi mărită astfel încât să cuprindă tot elementul HTML.
+          </li>
+          <li>
+            <code>contain</code> - Imaginea de fundal va fi conținută în elementul HTML.
+          </li>
+          <li>
+            <code highlight="<length>|<percentage> <length>|<percentage>" [languages]="['css']"></code>
+            - Putem specifica în lungime sau procentaj lățimea și inălțimea imagii de fundal
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h4><code>background-repeat</code></h4>
+        <p class="description">
+          Definește mărimea fundalului.
+        </p>
+        <p>
+          <b>Sintaxă: </b> <code highlight="background-repeat: repeat|repeat-x|repeat-y|no-repeat|space|round" [languages]="['css']"></code>
+        </p>
+        <ul>
+          <li>
+            <code>repeat</code> - (implicit) Imaginea de fundal este repetată pe orizontală și verticală.
+            Ultima imagine va fi tăiată dacă nu încape în element.
+          </li>
+          <li>
+            <code>repeat-x</code> - Imaginea de fundal este repetată doar pe orizontală.
+          </li>
+          <li>
+            <code>repeat-y</code> - Imaginea de fundal este repetată doar pe verticală.
+          </li>
+          <li>
+            <code>no-repeat</code> - Imaginea de fundal nu este deloc repetată.
+          </li>
+          <li>
+            <code>space</code> - Imagea de fundal este repetată de câte ori încape întreagă,
+            adăugându-se un spațiu alb între repetiții.
+          </li>
+          <li>
+            <code>round</code> - Imagea de fundal este repetată de câte ori încape întreagă și este
+            distorsionată astfel încât să acopere tot elementulul.
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h4><code>background-clip</code></h4>
+        <p class="description">
+          Definește dacă fundalul se extinde sub border box, padding box sau content box.
+        </p>
+        <p>
+          <b>Sintaxă: </b> <code highlight="background-clip: border-box|padding-box|content-box|text" [languages]="['css']"></code>
+        </p>
+        <ul>
+          <li>
+            <code>border-box</code> - (implicit) Fundalul se va extinde sub borduri.
+          </li>
+          <li>
+            <code>padding-box</code> - Fundalul se va extinde sub padding box (deci se va opri la borduri).
+          </li>
+          <li>
+            <code>content-box</code> - Fundalul se va extinde sub conținut (se oprește unde începe padding-ul).
+          </li>
+          <li>
+            <code>text</code> - Fundalul va lua forma textului din conținut și se va afla în spatele acestuia.
+          </li>
+        </ul>
+      </section>
+      <app-code-example gistId="lab2/background-clip"></app-code-example>
+    </section>
+  </section>
+  <section>
+    <h2>Fonturi</h2>
+    <p>
+      CSS ne permite să folosim diferite fonturi pentru a paginile noastre web, să le setăm mărimea
+      și stilul. 
+    </p>
+    <section>
+      <h3><code>font-family</code></h3>
+      <p class="description">
+        Definește fontul pentru un element HTML.
+      </p>
+      <p>
+        <b>Sintaxă: </b> <code highlight="font-family: font-name" [languages]="['css']"></code>
+      </p>
+      <ul>
+        <li>
+          <code>font-name</code> - numele fontului pe care vrem să-l folosim; se pot specifica mai multe
+          separate prin virgulă.
+        </li>
+      </ul>
+      <p>
+        <b>Exemplu: </b> <code highlight='font-family: "Times New Roman", Times, serif;' [languages]="['css']"></code>
+      </p>
+      <app-tip>
+        Este important să specificăm mai multe fonturi pe care să le avem drept fallback în cazul în care
+        utilizatorul nu are fontul respectiv instalat. De exemplu, Times New Roman este un font proprietar
+        al Microsoft și majoritatea distribuțiilor de Linux nu au acest font instalat.
+      </app-tip>
+    </section>
+    <section>
+      <h3><code>font-size</code></h3>
+      <p class="description">
+        Definește mărimea fontului pentru un element HTML.
+      </p>
+      <p>
+        <b>Sintaxă: </b> <code highlight="font-size: <length> | <percentage>" [languages]="['css']"></code>
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight='font-size: 2rem;' [languages]="['css']"></code>
+      </p>
+    </section>
+    <section>
+      <h3><code>font-style</code></h3>
+      <p class="description">
+        Definește stilul fontului pentru un element HTML.
+      </p>
+      <p>
+        <b>Sintaxă: </b> <code highlight="font-style: normal|italic|(oblique <angle>?)" [languages]="['css']"></code>
+      </p>
+      <ul>
+        <li>
+          <code>normal</code> - (implicit) selectează un font clasificat drept normal
+        </li>
+        <li>
+          <code>italic</code> - selectează un font clasificat drept italic
+        </li>
+        <li>
+          <code highlight="oblique <angle>?"></code> - selectează un font clasificat drept oblic.
+          Valoarea <code>angle</code> este un unghi între <code>-90deg</code> și <code>90deg</code> 
+          care ne permite să specificăm câte de oblic să fie textul.
+        </li>
+      </ul>
+      <p>
+        În cazul în care nu există un font italic sau oblic, CSS va lua variata normală și va încerca
+        să simuleze înclinația. <br>
+        <b>Exemplu: </b> <code highlight='font-style: italic;' [languages]="['css']"></code>
+      </p>
+    </section>
+    <section>
+      <h3><code>font-weight</code></h3>
+      <p class="description">
+        Definește grosimea fontului pentru un element HTML.
+      </p>
+      <p>
+        <b>Sintaxă: </b> <code highlight="font-weight: normal|bold|<number>|border|lighter" [languages]="['css']"></code>
+      </p>
+      <ul>
+        <li>
+          <code>normal</code> - (implicit) Același lucru ca <code>400</code>.
+        </li>
+        <li>
+          <code>bold</code> - Același lucru ca <code>700</code>.
+        </li>
+        <li>
+          <code highlight="<number>"></code> - un număr din mulțimea 
+          <code>[100, 200, 300, 400, 500, 600, 700, 800, 900]</code>. Numerele mici înseamnă text mai
+          subțire, iar cele mari text mai gros.
+        </li>
+        <li>
+          <code>bolder</code> - Font mai gros decât al părintelui.
+        </li>
+        <li>
+          <code>lighter</code> - Font mai subțire decât al părintelui.
+        </li>
+      </ul>
+    </section>
+  </section>
+  <section>
+    <h2>Aliniere</h2>
+    <section>
+      <h3><code>text-align</code></h3>
+      <p class="description">
+        Aliniază textul dintr-un element HTML.
+      </p>
+      <p>
+        <b>Sintaxă: </b> <code highlight="text-align: left|right|center|justify" [languages]="['css']"></code>
+      </p>
+      <ul>
+        <li><code>left</code> - Aliniază textul la stânga.</li>
+        <li><code>right</code> - Aliniază textul la dreapta.</li>
+        <li><code>right</code> - Aliniază textul în centru.</li>
+        <li><code>justify</code> - Aliniere justify (ca în reviste, ziare).</li>
+      </ul>
+    </section>
+    <section>
+      <h3><code>vertical-align</code></h3>
+      <p class="description">
+        Aliniază un element inline sau inline-block vertical.
+      </p>
+      <p>
+        <b>Sintaxă: </b> <code highlight="text-align: baseline|sub|super|text-top|text-bottom|middle" [languages]="['css']"></code>
+      </p>
+    </section>
+  </section>
+  <section>
+    <h2>Alte proprietăți</h2>
+    <section>
+      <h3><code>border-collapse</code></h3>
+      <p class="description">
+        Aplicată unui tabel, această proprietate permite unirea bordurilor vecine într-una singură.
+      </p>
+      <p>
+        <b>Sintaxă: </b> <code highlight="border-collapse: separate|collapse" [languages]="['css']"></code>
+      </p>
+      <ul>
+        <li><code>separate</code> - (implicit) Bordurile din tabel sunt separate. Fiecare celulă are propriile borduri.</li>
+        <li><code>collapse</code> - Bordurile din tabel sunt colapsate într-una singură atunci când e posibil.</li>
+      </ul>
+    </section>
+    <section>
+      <h3><code>list-style-type</code></h3>
+      <p class="description">
+        Aplicată unui element <code>ul</code> permite modificarea aparenței markerului din elementele <code>li</code>.
+      </p>
+      <p>
+        <b>Sintaxă: </b> <code highlight="list-style-type: <string>|none|disc|circle|square|lower-roman|..." [languages]="['css']"></code>
+      </p>
+      <ul>
+        <li><code>string</code> - Permite folosirea unui string dat de noi ca marker.</li>
+        <li><code>none</code> - Markerul lipsește.</li>
+      </ul>
+      <app-code-example gistId="lab2/list-style-type"></app-code-example>
+    </section>
+  </section>
+</section>
+<section>
+  <h1>Selectori CSS</h1>
+  <p>
+    CSS ne permite să selectăm diferite elemente HTML folisindu-ne de selectori.
+  </p>
+  <section>
+    <h2>Selectori de bază</h2>
+    <div class="common-table">
+      <table>
+        <tr>
+          <th>Sintaxă</th>
+          <th>Descriere</th>
+        </tr>
+        <tr>
+          <td><code>*</code></td>
+          <td>
+            <b>Selectorul universal</b><br>
+            Selectează toate elementele.<br>
+            Exemplu: <code>*</code> va selecta toate elementele din document.
+          </td>
+        </tr>
+        <tr>
+          <td><code>nume-element</code></td>
+          <td>
+            <b>Selectorul de tip</b><br>
+            Selectează toate elementele cu un anume tag.<br>
+            Exemplu: <code>p</code> va selecta toate elementele de tip paragraf.
+          </td>
+        </tr>
+        <tr>
+          <td><code>.nume-clasă</code></td>
+          <td>
+            <b>Selectorul de clasă</b><br>
+            Selectează toate elementele ce au o anumită clasă.<br>
+            Exemplu: <code>.title</code> va selecta toate elementele care conțin clasa "title".
+          </td>
+        </tr>
+        <tr>
+          <td><code>#idElement</code></td>
+          <td>
+            <b>Selectorul de ID</b><br>
+            Selectează elementul cu ID-ul specificat.<br>
+            Exemplu: <code>#toc</code> va selecta elementul cu ID-ul "toc".
+          </td>
+        </tr>
+        <tr>
+          <td><code>[attr]</code></td>
+          <td>
+            <b>Selectorul de atribut</b><br>
+            Selectează elementele care au atributul specificat.<br>
+            Exemplu: <code>[autoplay]</code> va selecta toate elementele care au atributul
+            <code>autoplay</code> setat (la orice valoare).
+          </td>
+        </tr>
+      </table>
+    </div>
+    <section>
+      <h3>Selectorul de atribut</h3>
+      <p>
+        CSS ne permite să selectăm elemente și după valoarea atributelor.
+        Iată o listă cu cele mai importante variații selectorului de atribut:
+      </p>
+      <ul>
+        <li>
+          <code>[attr]</code> Selectează elementele care au atributul <i>attr</i> setat.
+        </li>
+        <li>
+          <code>[attr=value]</code> Selectează elementele al căror <i>attr</i> este fix egal cu <i>value</i>.
+        </li>
+        <li>
+          <code>[attr~=value]</code> Selectează elementele al căror <i>attr</i> este o listă de cuvinte
+          separate prin spațiu, unul dintre ele fiind exact <i>value</i>.
+        </li>
+        <li>
+          <code>[attr^=value]</code> Selectează elementele al căror <i>attr</i> este prefixat <i>value</i>.
+        </li>
+        <li>
+          <code>[attr$=value]</code> Selectează elementele al căror <i>attr</i> este sufixat <i>value</i>.
+        </li>
+        <li>
+          <code>[attr*=value]</code> Selectează elementele al căror <i>attr</i> conține <i>value</i>.
+        </li>
+      </ul>
+    </section>
+  </section>
+  <section>
+    <h2>Combinatori</h2>
+    <p>
+      Putem combina mai mulți selectori pentru a obține selectori combinați. Iată cum:
+    </p>
+    <div class="common-table first-col-no-wrap">
+      <table>
+        <tr>
+          <th>Sintaxă</th>
+          <th>Descriere</th>
+        </tr>
+        <tr>
+          <td><code>A B</code></td>
+          <td>
+            <b>Combinatorul descendent</b><br>
+            Combinatorul " " (spațiu) ne permite să selectăm toate elementele B care sunt descendenți ai lui A.<br>
+            Exemplu: <code>div span</code> selecteză toate elementele <code>span</code> din interiorul unui <code>div</code>.
+          </td>
+        </tr>
+        <tr>
+          <td><code>A > B</code></td>
+          <td>
+            <b>Combinatorul copil</b><br>
+            Combinatorul <code>></code> ne permite să selectăm toate elementele B care sunt copii direcți ai lui A.<br>
+            Exemplu: <code>ul > li</code> selecteză toate elementele <code>li</code> încuibărite direct într-un <code>ul</code>.
+          </td>
+        </tr>
+        <tr>
+          <td><code>A ~ B</code></td>
+          <td>
+            <b>Combinatorul frate general</b><br>
+            Combinatorul <code>~</code> ne permite să selectăm toate elementele B care urmează după A și împart același părinte.<br>
+            Exemplu: <code>p ~ span</code> selecteză toate elementele <code>span</code> care urmează după <code>p</code>, imediat sau nu.
+          </td>
+        </tr>
+        <tr>
+          <td><code>A + B</code></td>
+          <td>
+            <b>Combinatorul frate adiacent</b><br>
+            Combinatorul <code>+</code> ne permite să selectăm toate elementele B care urmează <b>direct</b> după A și împart același părinte.<br>
+            Exemplu: <code>h2 + p</code> selecteză primul <code>p</code> după <code>h2</code>.
+          </td>
+        </tr>
+      </table>
+    </div>
+  </section>
+  <section>
+    <h2>Pseudo-clase</h2>
+    <p>
+      CSS ne pune la dispoziție posibilitatea de a selecta elemente pe baza unor informații
+      ce nu sunt prezente explicit în documentul HTML, însă se pot deduce. Iată câteva dintre
+      aceste tipuri de selectori:
+    </p>
+    <div class="common-table first-col-no-wrap">
+      <table>
+        <tr>
+          <th>Sintaxă</th>
+          <th>Descriere</th>
+        </tr>
+        <tr>
+          <td><code>:hover</code></td>
+          <td>
+            Selectează elementele asupra cărora utilizatorul ține mouse-ul.<br>
+          </td>
+        </tr>
+        <tr>
+          <td><code>:active</code></td>
+          <td>
+            Selectează un element pe care utilizatorul îl apasă.<br>
+          </td>
+        </tr>
+        <tr>
+          <td><code>:focus</code></td>
+          <td>
+            Selectează elemenutul care este focusat.<br>
+          </td>
+        </tr>
+        <tr>
+          <td><code>:empty</code></td>
+          <td>
+            Selectează elementele goale (care nu au copii).<br>
+          </td>
+        </tr>
+        <tr>
+          <td><code>:first-child</code></td>
+          <td>
+            Selectează elementul care este primul printre frații săi.<br>
+          </td>
+        </tr>
+        <tr>
+          <td><code>:last-child</code></td>
+          <td>
+            Selectează elementul care este ultimul printre frații săi.<br>
+          </td>
+        </tr>
+        <tr>
+          <td><code>:nth-child(An+B)</code></td>
+          <td>
+            Selectează elementul al cărui număr este egal cu <code>An+B</code>.
+            <code>n</code> este un număr natural care începe de la 0.<br>
+            Exemplu: <code>:nth-child(3n+2)</code> va selecta din 3 în 3 elemente începând cu al doilea element.
+          </td>
+        </tr>
+        <tr>
+          <td><code>:first-of-type</code></td>
+          <td>
+            Selectează elementul care este primul <b>de același tip</b> printre frații săi.<br>
+          </td>
+        </tr>
+        <tr>
+          <td><code>:last-of-type</code></td>
+          <td>
+            Selectează elementul care este ultimul <b>de același tip</b> printre frații săi.<br>
+          </td>
+        </tr>
+        <tr>
+          <td><code>:nth-of-type(An+B)</code></td>
+          <td>
+            Selectează elementul al cărui număr printre elementele de același tip este egal cu <code>An+B</code>.
+            <code>n</code> este un număr natural care începe de la 0.<br>
+            Exemplu: <code>p:nth-of-type(3n+2)</code> va selecta din 3 în 3 paragrafe începând cu al doilea paragraf.
+          </td>
+        </tr>
+        <tr>
+          <td><code>:not(selector)</code></td>
+          <td>
+            Selectează elementele care nu sunt selectate de <code>selector</code>.<br>
+            Exemplu: <code>:not(p)</code> va selecta toate elementele care nu sunt de tip paragraf.
+          </td>
+        </tr>
+        <tr>
+      </table>
+    </div>
+    <app-code-example gistId="lab2/pseudo-classes"></app-code-example>
+  </section>
+  <section>
+    <h2>Pseudo-elemente</h2>
+    <p>
+      CSS ne permite să stilizăm o parte specifică a unui element prin selectorii de 
+      pseudo-elemente. Iată cei mai folosiți selectori de acest tip:
+    </p>
+    <div class="common-table first-col-no-wrap">
+      <table>
+        <tr>
+          <th>Sintaxă</th>
+          <th>Descriere</th>
+        </tr>
+        <tr>
+          <td><code>::before</code></td>
+          <td>
+            Crează un pseudo-element care este primul copil al elementului selectat.<br>
+          </td>
+        </tr>
+        <tr>
+          <td><code>::after</code></td>
+          <td>
+            Crează un pseudo-element care este ultimul copil al elementului selectat.<br>
+          </td>
+        </tr>
+        <tr>
+          <td><code>::first-letter</code></td>
+          <td>
+            Selectează prima literă de pe prima linie a unui element de tip block.<br>
+          </td>
+        </tr>
+        <tr>
+          <td><code>::first-line</code></td>
+          <td>
+            Selectează prima linie a unui element de tip block.<br>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <app-code-example gistId="lab2/pseudo-elements"></app-code-example>
+  </section>
+  <section>
+    <h2>Compunere și grupare</h2>
+    <section>
+      <h3>Compunere</h3>
+      <p>
+        Selectorii CSS pot fi compuși (alăturați fără spațiu) pentru a genera selectori complecși.
+        Compunerea se face în următoarea ordine:
+      </p>
+      <ol>
+        <li>selector de tip</li>
+        <li>selector de id</li>
+        <li>selectori de clasă (pot fi mai mulți)</li>
+        <li>selectori de atribute (pot fi mai mulți)</li>
+        <li>selector de pseudo-clase (pot fi mai mulți)</li>
+        <li>selector de pseudo-elemente (pot fi mai mulți)</li>
+      </ol>
+      <p>
+        Exemplu: <code highlight="div#audi.vehicle.car[tabindex='2']" [languages]="['css']"></code> va selecta
+        elementul de tip <code>div</code> cu ID-ul <code>audi</code> ce care clasele <code>vehicle</code> și <code>car</code> și
+        valoarea atributului <code>tabindex</code> egală cu <code>2</code>.
+      </p>
+    </section>
+    <section>
+      <h3>Grupare</h3>
+      <p>
+        Selectorii CSS pot fi de asemena grupați, mai mulți selectori împărțind astfel același block de proprietăți.
+        Pentru a grupa mai mulți selectori, îi despărțim prin virgulă. <br>
+        Exemplu: <code highlight="p, div:first-of-type { color: red; }" [languages]="['css']"></code> - paragraful și
+        primul <code>div</code> din fiecare părinte au coloare roșie. 
+      </p>
+    </section>
+  </section>
+  <section>
+    <h2>Specificitatea selectorilor</h2>
+    <p>
+      Pentru a determina care selector are precedență față de alții, CSS implementează un sistem de ranking
+      ce funcționează în modul următor:
+    </p>
+    <ul>
+      <li>Se pleacă de la valoarea 0 pentru fiecare selector.</li>
+      <li>
+        Se adaugă:
+        <ul>
+          <li>100 pentru fiecare selectare prin ID</li>
+          <li>10 pentru fiecare selectare a unei clase, unui atribut sau unei pseudo-clase</li>
+          <li>1 pentru fiecare selectare a unui element sau pseudo-element</li>
+        </ul>
+      </li>
+    </ul>
+    <p>
+      De exemplu, <code>span#iepure.alb::first-child</code> are precedență 121 (1 element, un ID, o clasă și o pseudo-clasă).
+    </p>
+    <p>
+      Trebuie reținut că stilizarea în linie are precedență mai mare decât codul CSS definit în tag-ul 
+      <code highlight="<style>"></code> sau într-un fișier extern.<br><br>
+      De asemenea, în cazul în care specificitatea a doi selectori este egală, precedență va avea cel care se regăște
+      mai târziu în stylesheet (este după ca ordine).
+    </p>
+    <app-tip>
+      O modalitate prin care putem impune o anumită valoare a unei proprietăți este regula <code>!important</code>.
+      Aceasta va suprascrie chiar și stilizarea în linie. Exemplu: <code highlight="p { color: red!important; }"></code>
+      va seta culoarea pentru toate paragrafele ca fiind roșie.
+    </app-tip>
+  </section>
+</section>
+<section>
+  <h1>Teme</h1>
+  <p>
+    Creați un fișier CSS pentru fiecare temă în parte și verificați corectitudinea structurii
+    folosind <a href="https://jigsaw.w3.org/css-validator/#validate_by_input" target="_blank">validatorul W3C</a>. 
+  </p>
+  <section>
+    <h2>Tema 2.1</h2>
+    <p>
+      Adăugați elemente de stilizare (ex: culoare, font, aliniere) pentru text,
+      background, border, padding folosind selectori de tip, selector de ID, de clasă, 
+      pseudo-selectori în pagina HTML creată în <a href="/labs/1#tema-11" target="_blank">Tema 1.1</a>.
+    </p>
+  </section>
+  <section>
+    <h2>Tema 2.2</h2>
+    <p>
+      Creați un meniu drop-down folosind numai HTML și CSS, fie în pagina creată la Tema 1, fie separat. <br>
+      <b>Hint: </b> Folosiți <code>display: none;</code> pentru a ascunde lista nested și <code>:hover</code>
+      pentru a o afișa când este nevoie.
+    </p>
+  </section>
+  <section>
+    <h2>Tema 2.3</h2>
+    <p>
+      Se consideră următoarea stuctură HTML:
+    </p>
+    <app-code-example gistId="lab2/homework-3"></app-code-example>
+    <p>
+      Adăugați cod CSS astfel încât să arate ca în următoarea imagine:
+    </p>
+    <img src="/assets/gists/lab2/homework-3/divs.png" class="divs-image"/>
+  </section>
+</section>

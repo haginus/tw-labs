@@ -1,0 +1,15 @@
+{
+  "title": "Difrența dintre :first-child și :first-of-type",
+  "showFileNames": false,
+  "result": true,
+  "files": [
+    {
+      "name": "pseudo-classes.html",
+      "fileType": "html"
+    },
+    {
+      "name": "pseudo-classes.css",
+      "fileType": "css"
+    }
+  ]
+}

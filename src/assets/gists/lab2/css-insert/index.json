@@ -1,0 +1,23 @@
+{
+  "title": "Diferențe între modurile de includere",
+  "showFileNames": true,
+  "result": true,
+  "files": [
+    {
+      "name": "inline.html",
+      "fileType": "html"
+    },
+    {
+      "name": "internal.html",
+      "fileType": "html"
+    },
+    {
+      "name": "external.html",
+      "fileType": "html"
+    },
+    {
+      "name": "styles.css",
+      "fileType": "css"
+    }
+  ]
+}

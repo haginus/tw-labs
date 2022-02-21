@@ -1,0 +1,12 @@
+div {
+  border: 1px dashed;
+  margin-bottom: 2rem;
+}
+
+.wrapper-1 p:first-child {
+  color: red;
+}
+
+.wrapper-2 p:first-of-type {
+  color: green;
+}

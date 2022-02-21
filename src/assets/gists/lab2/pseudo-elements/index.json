@@ -1,0 +1,15 @@
+{
+  "title": "Exemple de folosire",
+  "showFileNames": false,
+  "result": true,
+  "files": [
+    {
+      "name": "pseudo-elements.html",
+      "fileType": "html"
+    },
+    {
+      "name": "pseudo-elements.css",
+      "fileType": "css"
+    }
+  ]
+}

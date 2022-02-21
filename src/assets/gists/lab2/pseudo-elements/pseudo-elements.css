@@ -1,0 +1,21 @@
+.important-message {
+  background: lightcoral;
+  border: 2px solid red;
+  padding: 0.5rem 1rem;
+}
+
+.important-message::before {
+  content: '!';
+  color: red;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-right: 0.5rem;
+}
+
+.important-message > div {
+  display: inline-block;
+}
+
+.important-message > div::first-letter {
+  font-size: 200%;
+}

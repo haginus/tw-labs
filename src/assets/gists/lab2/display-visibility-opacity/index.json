@@ -1,0 +1,15 @@
+{
+  "title": null,
+  "showFileNames": false,
+  "result": true,
+  "files": [
+    {
+      "name": "display-visibility-opacity.html",
+      "fileType": "html"
+    },
+    {
+      "name": "display-visibility-opacity.css",
+      "fileType": "css"
+    }
+  ]
+}

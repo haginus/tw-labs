@@ -1,0 +1,15 @@
+{
+  "title": null,
+  "showFileNames": false,
+  "result": true,
+  "files": [
+    {
+      "name": "background-clip.html",
+      "fileType": "html"
+    },
+    {
+      "name": "background-clip.css",
+      "fileType": "css"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+.box {
+  border: 10px dotted black;
+  padding: 10px;
+  background: linear-gradient(60deg, red, yellow, red, yellow, red);
+  margin-bottom: 16px;
+}
+
+.border-box { background-clip: border-box; }
+.padding-box { background-clip: padding-box; }
+.content-box { background-clip: content-box; }
+.text { 
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: rgba(0, 0, 0, 0.2);
+}

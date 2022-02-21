@@ -1,0 +1,33 @@
+html {
+  font-size: 12px;
+}
+
+.wrapper {
+  font-size: 1em;
+}
+
+.box {
+  background: lightblue;
+  border: 5px solid blue;
+  margin-bottom: 1rem;
+}
+
+.px {
+  width: 200px;
+}
+
+.vw {
+  width: 10vw;
+}
+
+.em {
+  width: 10em;
+}
+
+.ems li {
+  font-size: 1.3em;
+}
+
+.rems li {
+  font-size: 1.3rem;
+}
