@@ -30,9 +30,9 @@ export class LabService {
           id: 2,
           title: "Introducere în CSS",
           subtitle: "Laboratorul 2",
-          description: "Selectori, atribute CSS, unități de măsură, moduri de aplicare a stilurilor, etc.",
-          // homeworkLink: 'https://forms.gle/aJXtMSuu3YJpgGt27',
-          // homeworkDue: "2022-02-22T00:00:00+02:00"
+          description: "Sintaxă, moduri de includere, valori și unități de măsură, proprietăți CSS comune, selectori, etc.",
+          homeworkLink: 'https://forms.gle/26SiZGVPdx644AjP6',
+          homeworkDue: "2022-03-03T12:00:00+02:00"
         }
       )
     ]);
