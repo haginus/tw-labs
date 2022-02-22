@@ -26,9 +26,13 @@
     background: white;
     border-left: 1px solid rgba(0, 0, 0, 0.2);
     position: relative;
+
+    display: flex;
+    flex-direction: column;
+
     iframe {
       width: 100%;
-      height: 100%;
+      flex: 1;
       border: none;
     }
 
@@ -36,6 +40,21 @@
       position: absolute;
       top: 0;
       right: 0;
+    }
+
+    .console {
+      font-family: 'Courier New', Courier, monospace;
+      overflow: auto;
+      max-height: 20%;
+      border-top: 1px solid rgba(0, 0, 0, 0.2);
+      .log {
+        padding: 4px;
+        border-bottom: 1px solid #eeeeee;
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
     }
   }
 

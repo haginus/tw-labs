@@ -27,6 +27,8 @@ export class CodeExampleComponent implements OnInit, OnDestroy {
   filesLoaded: boolean = false;
   gistFiles: GistFileEnritched[];
 
+  consoleLogs: ConsoleLog[] = [];
+
   ngOnInit(): void {
     this.subscription = this.gistService.getGist(this.gistId)
       .pipe(
@@ -41,21 +43,27 @@ export class CodeExampleComponent implements OnInit, OnDestroy {
           language: this.getFileLanguage(file)
         }));
         this.filesLoaded = true;
+        if(this.gist.result) {
+          window.addEventListener("message", this.getSetConsoleLogFunction());
+        }
         this.setIframe();
       });
   }
 
   setIframe() {
     if (!this.gist.result) return;
+    this.consoleLogs = [];
     const htmlCode = this.gistFiles.find(file => file.fileType == 'html')?.content;
 
     const cssCode = this.gistFiles
       .filter(file => file.fileType == 'css')
       .reduce((acc, jsFile) => acc + `<style>${jsFile.content || ''}</style>`, '');
     
-    const jsCode = this.gistFiles
-      .filter(file => file.fileType == 'js')
-      .reduce((acc, jsFile) => acc + `<script>${jsFile.content || ''}<\/script>`, '');
+    const jsCode = this.prepareJsCode(
+      this.gistFiles
+        .filter(file => file.fileType == 'js')
+        .reduce((acc, jsFile) => acc + `<script>${jsFile.content || ''}<\/script>`, '')
+    );
 
     let content = `
       <html>
@@ -76,6 +84,7 @@ export class CodeExampleComponent implements OnInit, OnDestroy {
       iframe.contentWindow.document.write(content);
       iframe.contentWindow.document.close();
       this.srcChanged = false;
+      iframe.parentElement.style.height = iframe.contentDocument.querySelector('body').scrollHeight + "px";
       iframe.onload = () => {};
     }
   }
@@ -90,6 +99,9 @@ export class CodeExampleComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    if(this.gist.result) {
+      window.removeEventListener("message", this.getSetConsoleLogFunction());
+    }
   }
 
   getFileLanguage(gistFile: GistFile) {
@@ -105,9 +117,39 @@ export class CodeExampleComponent implements OnInit, OnDestroy {
   getFileLabel(gistFile: GistFile) {
     return this.gist.showFileNames ? gistFile.name : gistFile.fileType.toLocaleUpperCase();
   } 
+
+  prepareJsCode(code: string) {
+    let result = code.replace(/console.log/g, 'sendLog');
+    let sendLogFn = `
+      <script>
+        let from = '${this.gistId}';
+        function sendLog(...args) {
+          window.parent.postMessage({ message: 'consoleLog', value: args, from }, window.origin);
+        }
+      <\/script>
+    `;
+    return sendLogFn + result;
+  }
+
+  getSetConsoleLogFunction() {
+    return (event: any) => {
+      if(event.data?.from != this.gistId) return;
+      if(event.origin != window.origin) return;
+      if(event.data?.message != 'consoleLog') return;
+      let values: any[] = (event.data?.value || []).map(value => {
+        if(typeof value == 'object') {
+          return JSON.stringify(value, null, 2);
+        }
+        return value;
+      });
+      this.consoleLogs.push(values);
+    }
+  }
 }
 
 interface GistFileEnritched extends GistFile {
   label: string;
   language: string[];
 }
+
+type ConsoleLog = (number | string)[];
