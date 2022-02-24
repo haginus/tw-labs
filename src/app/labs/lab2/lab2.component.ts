@@ -16,7 +16,6 @@ export class Lab2Component implements OnInit {
     ['cm', 'Centimetri', '1cm = 37.8px = 25.2/64in'],
     ['mm', 'Milimetri', '1mm = 1/10cm'],
     ['Q', 'sfert-milimentri', '1Q = 1/4mm = 1/40cm'],
-    ['cm', 'Centimetri', '1cm = 37.8px = 25.2/64in'],
     ['in', 'Inci', '1in = 2.54cm = 96px'],
     ['pc', 'Picas', '1pc = 1/6in'],
     ['pt', 'Puncte', '1pt = 1/72in'],
