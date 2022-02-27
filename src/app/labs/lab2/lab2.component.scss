@@ -12,3 +12,80 @@
 .divs-image {
   max-width: 100%;
 }
+
+.box-model-example {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  .box {
+    width: calc(100% - 80px);
+    margin: 40px;
+    box-sizing: border-box;
+    padding-top: calc(100% - 80px);
+    position: relative;
+    
+
+    .box-content {
+      position: absolute;
+      inset: 0 0 0 0;
+      * {
+        text-align: center;
+      }
+      .abs {
+        position: absolute;
+        white-space: nowrap;
+      }
+
+      .box-left {
+        transform: rotate(-90deg) translate(10px, -100%);
+        left: 4px;
+        top: 50%;
+      }
+
+      .box-right {
+        transform: rotate(90deg) translate(-10px, -100%);
+        right: 2px;
+        top: 50%;
+      }
+
+      .box-top, .box-bottom {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .box-top {
+        top: 10px;
+      }
+
+      .box-bottom {
+        bottom: 10px;
+      }
+    }
+
+    &.margin {
+      background: #ffd54f;
+      margin: 0;
+      width: 100%;
+      padding-top: 100%;
+    }
+
+    &.border {
+      background: #fff59d;
+    }
+
+    &.padding {
+      background: lightgreen;
+    }
+
+    &.content {
+      background: #2196f3;
+      .box-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
+    }
+  }
+}
