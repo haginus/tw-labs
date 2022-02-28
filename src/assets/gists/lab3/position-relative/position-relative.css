@@ -1,0 +1,14 @@
+.relative {
+  position: relative;
+  top: 20px;
+  left: 10px;
+  background: rgba(0, 255, 0, 0.4);
+}
+
+p {
+  margin: 0;
+  padding: 20px;
+  background: black;
+  color: white;
+  opacity: 0.4;
+}

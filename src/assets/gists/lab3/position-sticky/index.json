@@ -1,0 +1,15 @@
+{
+  "title": null,
+  "showFileNames": false,
+  "result": true,
+  "files": [
+    {
+      "name": "position-sticky.html",
+      "fileType": "html"
+    },
+    {
+      "name": "position-sticky.css",
+      "fileType": "css"
+    }
+  ]
+}

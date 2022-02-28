@@ -1,0 +1,108 @@
+<section>
+  <h1>Metode de poziționare a elementelor</h1>
+  <p>
+    CSS ne permite să alegem din câteva metode de poziționare pentru elementele HTML. În acest sens,
+    vom folosi proprietatea <code>position</code>. Iată cele cinci valori pe care această proprietate le
+    poate avea:
+  </p>
+  <ul>
+    <li><code>static</code></li>
+    <li><code>relative</code></li>
+    <li><code>absolute</code></li>
+    <li><code>fixed</code></li>
+    <li><code>sticky</code></li>
+  </ul>
+  <p>
+    Pe lângă setarea poziției, există patru proprietăți CSS poziționale, ce ne vor permite să setăm
+    poziția efectivă a elementelor: <code>top</code>, <code>bottom</code>, <code>left</code> și <code>right</code>.
+    Aceste proprietăți iau drept valoare o lungime sau un procentaj (acestea pot fi și negative).
+  </p>
+  <section>
+    <h2>Poziționare statică</h2>
+    <p>
+      <b>Sintaxă: </b> <code highlight="position: static;" [languages]="['css']"></code>
+    </p>
+    <p>
+      Poziționarea statică este implicită pentru toate elementele HTML. Aceasta este o poziționare normală,
+      în conformitate cu fluxul normal al paginii web. Cele patru proprietăți CSS poziționale descrise mai sus
+      nu funcționează în cazul acestui tip de poziționare.
+    </p>
+  </section>
+  <section>
+    <h2>Poziționare relativă</h2>
+    <p>
+      <b>Sintaxă: </b> <code highlight="position: relative;" [languages]="['css']"></code>
+    </p>
+    <p>
+      Poziționarea relativă descrie faptul că elementul HTML este poziționat relativ la poziția sa normală.
+      Astfel, setând proprietățile proziționale putem devia poziția elementului. Totuși, restul conținutului
+      din pagină se va raporta la poziția inițială a elementului, după cum se poate observa în exemplul de mai jos.
+    </p>
+    <app-code-example gistId="lab3/position-relative"></app-code-example>
+  </section>
+  <section>
+    <h2>Poziționare absolută</h2>
+    <p>
+      <b>Sintaxă: </b> <code highlight="position: absolute;" [languages]="['css']"></code>
+    </p>
+    <p>
+      Un element cu poziție absolută e poziționat relativ la cel mai apropiat element strămoș (parinte direct sau
+      indirect) care are o poziționare alta decât statică. Elementele cu poziția absolută sunt scoase din fluxul 
+      obișnuit al paginii web (deci nu lasă spațiu liber), însă în cazul în care strămoșul este scrollabil, acesta
+      se va mișca odată cu scroll-ul.
+    </p>
+    <app-code-example gistId="lab3/position-absolute"></app-code-example>
+  </section>
+  <section>
+    <h2>Poziționare fixă</h2>
+    <p>
+      <b>Sintaxă: </b> <code highlight="position: fixed;" [languages]="['css']"></code>
+    </p>
+    <p>
+      Spre deosebire de poziționarea absolută, poziționarea fixă se raportează mereu la viewport. Astfel,
+      un element poziționat fix va apărea mereu în același loc, chiar și în cazul scrollării.
+    </p>
+    <app-code-example gistId="lab3/position-fixed"></app-code-example>
+  </section>
+  <section>
+    <h2>Poziționare sticky</h2>
+    <p>
+      <b>Sintaxă: </b> <code highlight="position: sticky;" [languages]="['css']"></code>
+    </p>
+    <p>
+      Poziționarea sticky este o combinație între poziționarea relativă și cea fixă. Este necesar ca cel puțin
+      una dintre cele patru proprități de poziționare ca aceasta să funcționeze. Cât timp offset-ul nu este atins,
+      elementul va avea poziție revolută, iar apoi poziția se transformă în fixă.
+    </p>
+    <app-code-example gistId="lab3/position-sticky"></app-code-example>
+  </section>
+  <section>
+    <h2>Proprietatea <code>z-index</code></h2>
+    <p>
+      <b>Sintaxă: </b> <code highlight="z-index: <integer>;" [languages]="['css']"></code>
+    </p>
+    <p>
+      În cazul în care două sau mai multe elemente se suprapun, punem folosi proprietatea 
+      <code>z-index</code> pentru a specifica care element să iasă în față. Această proprietate
+      ia drept valoare un număr întreg, numerele mai mari apărând mai în față. În cazul în care
+      această proprietate nu este specificată, elementele care sunt declarate în codul HTML mai jos
+      vor fi în față.
+    </p>
+  </section>
+  <section>
+    <h2>Proprietatea <code>float</code></h2>
+    <p>
+      <b>Sintaxă: </b> <code highlight="float: left|right|none;" [languages]="['css']"></code>
+    </p>
+    <ul>
+      <li><code>left</code> - Elementul plutește în stânga</li>
+      <li><code>right</code> - Elementul plutește în dreapta</li>
+      <li><code>right</code> - Elementul nu plutește deloc (va apărea oriunde este în text)</li>
+    </ul>
+    <p>
+      Pentru poziționa și formata diferite elemente în interiorul unui text, folosim proprietatea
+      <code>float</code>.
+    </p>
+    <app-code-example gistId="lab3/float"></app-code-example>
+  </section>
+</section>

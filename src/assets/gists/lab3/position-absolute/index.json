@@ -1,0 +1,15 @@
+{
+  "title": null,
+  "showFileNames": false,
+  "result": true,
+  "files": [
+    {
+      "name": "position-absolute.html",
+      "fileType": "html"
+    },
+    {
+      "name": "position-absolute.css",
+      "fileType": "css"
+    }
+  ]
+}

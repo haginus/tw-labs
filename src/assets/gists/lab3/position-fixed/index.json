@@ -1,0 +1,15 @@
+{
+  "title": null,
+  "showFileNames": false,
+  "result": true,
+  "files": [
+    {
+      "name": "position-fixed.html",
+      "fileType": "html"
+    },
+    {
+      "name": "position-fixed.css",
+      "fileType": "css"
+    }
+  ]
+}

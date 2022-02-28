@@ -1,0 +1,15 @@
+{
+  "title": null,
+  "showFileNames": false,
+  "result": true,
+  "files": [
+    {
+      "name": "float.html",
+      "fileType": "html"
+    },
+    {
+      "name": "float.css",
+      "fileType": "css"
+    }
+  ]
+}
