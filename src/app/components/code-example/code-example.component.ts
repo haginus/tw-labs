@@ -84,7 +84,9 @@ export class CodeExampleComponent implements OnInit, OnDestroy {
       iframe.contentWindow.document.write(content);
       iframe.contentWindow.document.close();
       this.srcChanged = false;
-      iframe.parentElement.style.height = iframe.contentDocument.querySelector('body').scrollHeight + "px";
+      const maxHeight = window.innerHeight / 2;
+      const scrollHeight = iframe.contentDocument.querySelector('body').scrollHeight;
+      iframe.parentElement.style.minHeight = Math.min(scrollHeight, maxHeight) + "px";
       iframe.onload = () => {};
     }
   }
