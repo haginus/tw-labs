@@ -20,6 +20,7 @@ import { environment } from '../environments/environment';
 import { PromptUpdateService } from './services/prompt-update.service';
 import { Lab2Component } from './labs/lab2/lab2.component';
 import { Lab3Component } from './labs/lab3/lab3.component';
+import { HomeworkPackComponent } from './components/homework-pack/homework-pack.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { Lab3Component } from './labs/lab3/lab3.component';
     TipComponent,
     Lab2Component,
     Lab3Component,
+    HomeworkPackComponent,
   ],
   imports: [
     BrowserModule,
