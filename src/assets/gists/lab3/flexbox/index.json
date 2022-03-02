@@ -1,0 +1,15 @@
+{
+  "title": null,
+  "showFileNames": false,
+  "result": true,
+  "files": [
+    {
+      "name": "flexbox.html",
+      "fileType": "html"
+    },
+    {
+      "name": "flexbox.css",
+      "fileType": "css"
+    }
+  ]
+}

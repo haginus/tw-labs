@@ -1,0 +1,15 @@
+{
+  "title": null,
+  "showFileNames": false,
+  "result": true,
+  "files": [
+    {
+      "name": "animations.html",
+      "fileType": "html"
+    },
+    {
+      "name": "animations.css",
+      "fileType": "css"
+    }
+  ]
+}

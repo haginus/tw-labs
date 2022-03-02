@@ -1,0 +1,12 @@
+span {
+  display: inline-block;
+  padding: 8px 12px;
+  background: lightcoral;
+  border: 1px solid #eee;
+  cursor: pointer;
+  transition: 1s;
+}
+
+span:hover {
+  background: yellow;
+}

@@ -1,0 +1,15 @@
+{
+  "title": null,
+  "showFileNames": false,
+  "result": true,
+  "files": [
+    {
+      "name": "media-queries.html",
+      "fileType": "html"
+    },
+    {
+      "name": "media-queries.css",
+      "fileType": "css"
+    }
+  ]
+}

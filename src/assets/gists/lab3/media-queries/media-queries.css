@@ -1,0 +1,9 @@
+.text {
+  color: red;
+}
+
+@media screen and (max-width: 200px), print {
+  .text {
+    color: blue;
+  }
+}

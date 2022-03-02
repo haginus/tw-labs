@@ -106,3 +106,599 @@
     <app-code-example gistId="lab3/float"></app-code-example>
   </section>
 </section>
+<section>
+  <h1>Metode de layout</h1>
+  <p>
+    Pentru a aranja mai ușor elementele în pagină, avem la dispoziție, pe lângă modalitățile de display
+    prezentate în laboratorul anterior, încă două: flex și grid.
+  </p>
+  <section>
+    <h2>Flexbox</h2>
+    <p>
+      Flexbox-ul ne permite să creem un responsive design flexibil fără să ne folosim de float sau poziționare.
+      Pentru ca un element HTML să aibă un layout de tip flexbox, este nevoie să specificăm proprietății
+      <code>display</code> valorile <code>flex</code> sau <code>inline-flex</code>. Un flexbox funcționează
+      pe două axe, cea principală (inplicit orizontală) și cea secundară.
+    </p>
+    <section>
+      <h3>
+        <div class="badge">C</div>
+        <code highlight="flex-direction"></code>
+      </h3>
+      <p class="definition">
+        Setează direcția flexbox-ului și implicit schimbă axa principală.
+      </p>
+      <p>
+        <b>Sintaxă: </b> <code highlight="flex-direction: row|row-reverse|column|column-reverse;" [languages]="['css']"></code>
+      </p>
+      <ul>
+        <li>
+          <code>row</code> - (implicit) elementele sunt afișate pe orizontală
+        </li>
+        <li>
+          <code>row-reverse</code> - elementele sunt afișate pe orizontală, dar în ordine inversă
+        </li>
+        <li>
+          <code>column</code> - elementele sunt afișate pe verticală
+        </li>
+        <li>
+          <code>column-reverse</code> - elementele sunt afișate pe verticală, dar în ordine inversă
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h3>
+        <div class="badge">C</div>
+        <code highlight="justify-content"></code>
+      </h3>
+      <p class="definition">
+        Aliniază elementele din interiorul flexbox-ului pe axa principală.
+      </p>
+      <p>
+        <b>Sintaxă: </b> <code highlight="justify-content: flex-start|flex-end|center|space-between|space-around|space-evenly;" [languages]="['css']"></code>
+      </p>
+      <ul>
+        <li>
+          <code>flex-start</code> - elementele sunt aliniate la începutul flexbox-ului
+        </li>
+        <li>
+          <code>flex-end</code> - elementele sunt aliniate la sfârșitul flexbox-ului
+        </li>
+        <li>
+          <code>center</code> - elementele sunt aliniate în mijlocul flexbox-ului
+        </li>
+        <li>
+          <code>space-between</code> - elementele au spațiu între ele
+        </li>
+        <li>
+          <code>space-around</code> - elementele au spațiu înainte, între și după ele
+        </li>
+        <li>
+          <code>space-evenly</code> - elementele au spațiu egal în jurul lor
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h3>
+        <div class="badge">C</div>
+        <code highlight="align-items"></code>
+      </h3>
+      <p class="definition">
+        Aliniază elementele din interiorul flexbox-ului pe axa secundară.
+      </p>
+      <p>
+        <b>Sintaxă: </b> <code highlight="align-items: stretch|center|flex-start|flex-end|baseline;" [languages]="['css']"></code>
+      </p>
+      <ul>
+        <li>
+          <code>stretch</code> - (implicit) elementele sunt întinse pentru a ajunge la mărimea container-ului
+        </li>
+        <li>
+          <code>center</code> - elementele sunt aliniate în mijlocul flexbox-ului
+        </li>
+        <li>
+          <code>flex-start</code> - elementele sunt aliniate la începutul flexbox-ului
+        </li>
+        <li>
+          <code>flex-end</code> - elementele sunt aliniate la sfârșitul flexbox-ului
+        </li>
+        <li>
+          <code>baseline</code> - elementele sunt aliniate la baseline-ul container-ului
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h3>
+        <div class="badge">C</div>
+        <code highlight="flex-wrap"></code>
+      </h3>
+      <p class="definition">
+        În mod normal, toate elementele din flexbox vor fi plasate pe aceeași linie. Această proprietate
+        ne permite să schimbăm acest lucru.
+      </p>
+      <p>
+        <b>Sintaxă: </b> <code highlight="flex-wrap: nowrap|wrap|wrap-reverse;" [languages]="['css']"></code>
+      </p>
+      <ul>
+        <li>
+          <code>nowrap</code> - (implicit) elementele sunt plasate pe o singură linie
+        </li>
+        <li>
+          <code>wrap</code> - elementele sunt plasate pe mai multe linii (dacă este cazul)
+        </li>
+        <li>
+          <code>wrap-reverse</code> - elementele sunt plasate pe mai multe linii, de jos în sus 
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h3>
+        <div class="badge">E</div>
+        <code highlight="flex"></code>
+      </h3>
+      <p>
+        <b>Sintaxă: </b> <code highlight="flex: (<flex-grow> <flex-shrink>? <flex-basis>?)|auto;" [languages]="['css']"></code>
+      </p>
+      <ul>
+        <li>
+          <code>flex-grow</code> - număr ce specifică cât de mult să se lărgească elementul în raport cu celelalte
+          elemente din flexbox. O valoare mai mare înseamnă că elementul se va lărgi mai mult.
+        </li>
+        <li>
+          <code>flex-shrink</code> - număr ce specifică cât de mult să se strângă elementul în raport cu celelalte
+          elemente din flexbox. O valoare mai mare înseamnă că elementul se va strânge mai mult.
+        </li>
+        <li>
+          <code>flex-basis</code> - lungime sau procent ce specifică lungimea inițială a elementului. Poate fi 
+          specificat ca valoare și <code>auto</code>.
+        </li>
+      </ul>
+      <p>
+        <code>flex</code> este un shorthand pentru proprietățile <code>flex-grow</code>, <code>flex-shrink</code>
+        și <code>flex-basis</code>.
+      </p>
+    </section>
+    <app-code-example gistId="lab3/flexbox"></app-code-example>
+  </section>
+  <section>
+    <h2>Grid</h2>
+    <p>
+      Gridul CSS ne permite să împărțim un element HTML în rânduri și coloane (de aici și numele de grid).
+      Pentru a obține acest layout, trebuie să setăm proprietatea <code>display</code> la <code>grid</code>
+      sau <code>inline-grid</code>.
+    </p>
+    <section>
+      <h3>Unitatea de măsură <code>fr</code> și funcția <code>repeat</code></h3>
+      <p>
+        CSS ne oferă o unitate de măsură ce ne permite să facem un grid responsize. Un <code>fr</code>
+        reprezintă o fracție din spațiul rămas în grid. De exemplu, <code>grid-template-columns: 2fr 1fr;</code>
+        va crea două coloane: prima va lua 2/3 din spațiu, iar a doua 1/3. <br><br>
+        Funcția <code>repeat</code> ne permite să repetăm diferite valori, ajutându-ne să scriem mai puțin cod.
+        De exemplu, <code>grid-template-columns: repeat(3, 100px 1fr) repeat(2, 2fr);</code> se traduce în
+        <code>grid-template-columns: 100px 1fr 100px 1fr 100px 1fr 2fr 2fr;</code>.
+      </p>
+    </section>
+    <section>
+      <h3>
+        <div class="badge">C</div>
+        <code highlight="grid-template-columns"></code>
+      </h3>
+      <p class="definition">
+        Setează numărul de coloane și dimensiunea acestora.
+      </p>
+      <p>
+        <b>Sintaxă: </b> <code highlight="grid-template-columns: (<length> | <percentage> | auto)+;" [languages]="['css']"></code>
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="grid-template-columns: 200px 1fr auto;" [languages]="['css']"></code>
+      </p>
+    </section>
+    <section>
+      <h3>
+        <div class="badge">C</div>
+        <code highlight="grid-template-rows"></code>
+      </h3>
+      <p class="definition">
+        Setează numărul de rânduri și dimensiunea acestora.
+      </p>
+      <p>
+        <b>Sintaxă: </b> <code highlight="grid-template-rows: (<length> | <percentage> | auto)+;" [languages]="['css']"></code>
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="grid-template-rows: 300px 1fr;" [languages]="['css']"></code>
+      </p>
+    </section>
+    <section>
+      <h3>
+        <div class="badge">E</div>
+        <code highlight="grid-column-start"></code>, <code highlight="grid-column-end"></code>,
+        <code highlight="grid-row-start"></code>, <code highlight="grid-row-end"></code>
+      </h3>
+      <p class="definition">
+        Definesc sfârșitul și începutul elementului în grid. Elementele în grid se pot suprapune.
+      </p>
+      <p>
+        <b>Sintaxă: </b> <code highlight='grid-[column|row]-[start|end]: <line>|(span <number>)|auto;' [languages]="['css']"></code>
+      </p>
+      <ul>
+        <li>
+          <code>line</code> - număr care să referențieze rândul/coloana dorită
+        </li>
+        <li>
+          <code highlight="span <number>"></code> - elementul se va întinde pe numărul respectiv de rânduri/coloane
+        </li>
+      </ul>
+      <p>
+        <b>Exemplu: </b> <code highlight='grid-column-start: 1;' [languages]="['css']"></code> și
+        <code highlight='grid-column-end: 3;' [languages]="['css']"></code> va determina ca elementul
+        să înceapă la coloana 1 și să se termine la coloana 3.
+      </p>
+    </section>
+    <section>
+      <h3>
+        <div class="badge">E</div>
+        <code highlight="grid-area"></code>
+      </h3>
+      <p class="definition">
+        Oferă un nume unui element al gridului sau poate fi folosit ca shorthand pentru proprietățile descrise mai sus.
+      </p>
+      <p>
+        <b>Sintaxă: </b> <code highlight='grid-area: "<string> | <row-start> / <column-start> / <row-end> / <column-end>;' [languages]="['css']"></code>
+      </p>
+    </section>
+    <section>
+      <h3>
+        <div class="badge">C</div>
+        <code highlight="grid-template-areas"></code>
+      </h3>
+      <p class="definition">
+        Definește un șablon grid referențiând numele ariilor grid specificate folosind proprietatea
+        <code highlight="grid-area"></code>.
+      </p>
+      <p>
+        <b>Sintaxă: </b> <code highlight='grid-template-areas: "<grid-area-name> | . | none | ...";' [languages]="['css']"></code>
+      </p>
+      <ul>
+        <li><code>grid-area-name</code> - numele ariei grid specificat folosind <code highlight="grid-area"></code></li>
+        <li><code>.</code> - spațiu gol</li> 
+      </ul>
+      <app-code-example gistId="lab3/grid-area"></app-code-example>
+    </section>
+  </section>
+</section>
+<section>
+  <h1>Tranziții și animații</h1>
+  <section>
+    <h2>Tranziții</h2>
+    <p>
+      Tranzițiile CSS ne permit să modificăm valorile proprietăților într-un mod <i>smooth</i>,
+      pe o durată dată. O tranziție are următoarele componente:
+    </p>
+    <ul>
+      <li>proprietățile pentru care tranziția se aplică</li>
+      <li>durata tranziției</li>
+      <li>delay-ul tranziției</li>
+      <li>funcția de timing a tranziției</li>
+    </ul>
+    <section>
+      <h3><code highlight="transition-property"></code></h3>
+      <p class="definition">
+        Definește proprietățile pentru care se aplică tranziția.
+      </p>
+      <p>
+        <b>Sintaxă: </b> <code highlight='transition-property: none|all|property;' [languages]="['css']"></code>
+      </p>
+      <ul>
+        <li><code>none</code> - tranziția nu se aplică pentru nicio proprietate</li>
+        <li><code>all</code> - (implicit) tranziția se aplică pentru toate proprietățile</li>
+        <li><code>property</code> - tranziția se aplică unei liste de proprietăți despărțite prin spațiu</li>
+      </ul>
+      <p>
+        <b>Exemplu: </b> <code highlight='transition-property: width opacity;' [languages]="['css']"></code>
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="transition-duration"></code></h3>
+      <p class="definition">
+        Definește durata tranziției.
+      </p>
+      <p>
+        <b>Sintaxă: </b> <code highlight='transition-duration: <time>;' [languages]="['css']"></code>
+      </p>
+      <ul>
+        <li><code>time</code> - durată în secunde sau milisecunde</li>
+      </ul>
+      <p>
+        <b>Exemplu: </b> <code highlight='transition-duration: 5s;' [languages]="['css']"></code>
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="transition-delay"></code></h3>
+      <p class="definition">
+        Definește delay-ul tranziției (timp până când tranziția să înceapă).
+      </p>
+      <p>
+        <b>Sintaxă: </b> <code highlight='transition-delay: <time>;' [languages]="['css']"></code>
+      </p>
+      <ul>
+        <li><code>time</code> - durată în secunde sau milisecunde</li>
+      </ul>
+      <p>
+        <b>Exemplu: </b> <code highlight='transition-delay: 2s;' [languages]="['css']"></code>
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="transition-timing-function" [languages]="['css']"></code></h3>
+      <p class="definition">
+        Definește funcția de timing pentru tranziție.
+      </p>
+      <p>
+        <b>Sintaxă: </b> 
+        <code highlight='transition-timing-function: linear|ease|ease-in|ease-out|ease-in-out|cubic-bezier(<number>, <number>, <number>, <number>);' [languages]="['css']"></code>
+      </p>
+      <div class="common-table">
+        <table>
+          <tr>
+            <th>Valoare</th>
+            <th>Descriere</th>
+            <th>Echivalent cu</th>
+          </tr>
+          <tr>
+            <td><code>linear</code></td>
+            <td>tranziția are aceași viteză de la început la sfârșit</td>
+            <td><code>cubic-bezier(0, 0, 1, 1)</code></td>
+          </tr>
+          <tr>
+            <td><code>ease</code></td>
+            <td>(implicit) tranziția va începe lent, apoi viteza crește și scade din nou spre sfârșit</td>
+            <td><code>cubic-bezier(0.25, 0.1, 0.25, 1)</code></td>
+          </tr>
+          <tr>
+            <td><code>ease-in</code></td>
+            <td>tranziția va începe lent</td>
+            <td><code>cubic-bezier(0.42, 0, 1, 1)</code></td>
+          </tr>
+          <tr>
+            <td><code>ease-out</code></td>
+            <td>tranziția se va sfârși lent</td>
+            <td><code>cubic-bezier(0, 0, 0.58, 1)</code></td>
+          </tr>
+          <tr>
+            <td><code>ease-out</code></td>
+            <td>tranziția are aceași viteză de la început la sfârșit</td>
+            <td><code>cubic-bezier(0, 0, 1, 1)</code></td>
+          </tr>
+          <tr>
+            <td><code>cubic-bezier</code></td>
+            <td>
+              Preia 4 parametri și ne permite să personalizăm funcția de timing.
+              Folosiți <a href="https://cubic-bezier.com/" target="_blank">acest site</a>
+              pentru a testa funcțiile de timing.
+            </td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+      <p>
+        <b>Exemplu: </b> <code highlight='transition-timing-function: ease-in-out;' [languages]="['css']"></code>
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="transition" [languages]="['css']"></code></h3>
+      <p class="definition">
+        Shorthand pentru proprietățile de tranziție.
+      </p>
+      <p>
+        <b>Sintaxă: </b> 
+        <code highlight='transition: property duration timing-function delay;' [languages]="['css']"></code>
+      </p>
+      <p>
+        <b>Exemplu: </b>
+        <code highlight='transition: width 200ms, opacity 0.3s linear 200ms;' [languages]="['css']"></code> -
+        lungimea elementului va avea o tranziție de durată 200 milisecunde, iar opacitatea va aștepta
+        200 de milisecunde iar apoi va tranziționa liniar timp de 300 de milisecunde.
+      </p>
+    </section>
+    <app-code-example gistId="lab3/transitions"></app-code-example>
+  </section>
+  <section>
+    <h2>Animații</h2>
+    <p>
+      Animațiile pot rula la apariția unui component în pagină sau în mod infinit repetându-se la nesfârșit.
+    </p>
+    <section>
+      <h3>Definirea animațiilor folosind <code>@keyframes</code></h3>
+      <p>
+        Regula <code>@keyframes</code> ne permite să definim animații în CSS. Astfel, specificăm numele animației
+        și punctele acesteia, exprimate în procente (sau, în cazul în care avem doar două puncte, putem specifica
+        <code>from</code> și <code>to</code>). Iată cum putem crea o animație și apoi să o folosim:
+      </p>
+      <app-code-example gistId="lab3/animations"></app-code-example>
+    </section>
+    <section>
+      <h3><code highlight="animation-name" [languages]="['css']"></code></h3>
+      <p class="definition">
+        Numele animației.
+      </p>
+      <p>
+        <b>Sintaxă: </b> 
+        <code highlight='animation-name: keyframe_name;' [languages]="['css']"></code>
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="animation-duration" [languages]="['css']"></code></h3>
+      <p class="definition">
+        Durata animației.
+      </p>
+      <p>
+        <b>Sintaxă: </b> 
+        <code highlight='animation-duration: <time>;' [languages]="['css']"></code>
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="animation-delay" [languages]="['css']"></code></h3>
+      <p class="definition">
+        Delay-ul animației.
+      </p>
+      <p>
+        <b>Sintaxă: </b> 
+        <code highlight='animation-delay: <time>;' [languages]="['css']"></code>
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="animation-direction" [languages]="['css']"></code></h3>
+      <p class="definition">
+        Direcția animației.
+      </p>
+      <p>
+        <b>Sintaxă: </b> 
+        <code highlight='animation-direction: normal|reverse|alternate|alternate-reverse;' [languages]="['css']"></code>
+      </p>
+      <ul>
+        <li><code>normal</code> - animația este redată înainte</li>
+        <li><code>reverse</code> - animația este redată înapoi (invers)</li>
+        <li><code>alternate</code> - animația este redată înainte și apoi înapoi (alternanță)</li>
+        <li><code>alternate-reverse</code> - animația este redată înaipo și apoi înainte</li>
+      </ul>
+    </section>
+    <section>
+      <h3><code highlight="animation-iteration-count" [languages]="['css']"></code></h3>
+      <p class="definition">
+        Numărul de repetiții ale animației.
+      </p>
+      <p>
+        <b>Sintaxă: </b> 
+        <code highlight='animation-iteration-count: <number>|infinite;' [languages]="['css']"></code>
+      </p>
+      <ul>
+        <li><code>number</code> - numărul de repetiții (implicit 1)</li>
+        <li><code>infinite</code> - animația se repetă la infinit</li>
+      </ul>
+    </section>
+    <section>
+      <h3><code highlight="animation-timing-function" [languages]="['css']"></code></h3>
+      <p class="definition">
+        Funcția de timing a animației.
+      </p>
+      <p>
+        <b>Sintaxă: </b> 
+        <code highlight='animation-timing-function: linear|ease|ease-in|ease-out|ease-in-out|cubic-bezier(<number>, <number>, <number>, <number>);' [languages]="['css']"></code>
+        <br> <i>La fel ca în cazul tranzițiilor.</i>
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="animation" [languages]="['css']"></code></h3>
+      <p class="definition">
+        Shorthand pentru proprietățile de mai sus.
+      </p>
+      <p>
+        <b>Sintaxă: </b> 
+        <code highlight='animation: name duration timing-function delay iteration-count direction;' [languages]="['css']"></code>
+      </p>
+    </section>
+  </section>
+</section>
+<section>
+  <h1>Media queries</h1>
+  <p>
+    Un media query este compus dintr-un <i>media type</i> opțional și un număr de <i>media features</i> 
+    ce pot fi combinate prin operatori logici. Acestea ne permit să ne stilizăm diferit paginile în funcție
+    de caracteristicile dispozitivului care ne accesează site-ul.
+  </p>
+  <section>
+    <h2>Media types</h2>
+    <p>
+      Există 3 media type-uri:
+    </p>
+    <ul>
+      <li><code>screen</code> - targetează un ecran</li>
+      <li><code>print</code> - targetează un suport de hârtie (pentru imprimare)</li>
+      <li><code>all</code> - targetează cele două media type-uri descrise mai sus</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Media features</h2>
+    <p>
+      Iată câteva dintre cele mai utile media features:
+    </p>
+    <div class="common-table">
+      <table>
+        <tr>
+          <th>Sintaxă și descriere</th>
+        </tr>
+        <tr>
+          <td>
+            <code highlight="@media (hover: hover|none)" [languages]="['css']"></code>
+            <div>Targetează device-urile care au capabilități de hover.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code highlight="@media (color)" [languages]="['css']"></code>
+            <div>Targetează device-urile care au ecrane colore.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code highlight="@media (width: <length>)" [languages]="['css']"></code><br>
+            <div>Targetează device-urile care au fix lungimea dată.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code highlight="@media (min-width: <length>)" [languages]="['css']"></code><br>
+            <div>Targetează device-urile care au lungimea minimă dată.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code highlight="@media (min-width: <length>)" [languages]="['css']"></code><br>
+            <div>Targetează device-urile care au lungimea maximă dată.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code highlight="@media (height: <length>)" [languages]="['css']"></code><br>
+            <div>Targetează device-urile care au fix înălțimea dată.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code highlight="@media (min-height: <length>)" [languages]="['css']"></code><br>
+            <div>Targetează device-urile care au înălțimea minimă dată.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code highlight="@media (min-height: <length>)" [languages]="['css']"></code><br>
+            <div>Targetează device-urile care au înălțimea maximă dată.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code highlight="@media (orientation: portrait|landscape)" [languages]="['css']"></code><br>
+            <div>Targetează orietarea dispozitivului.</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </section>
+  <section>
+    <h2>Combinarea multiplelor tipuri și feature-uri</h2>
+    <p>
+      În vederea creării unor media queries mai complexe, putem folosi operatorii logici pentru a le
+      combina: <code>not</code>, <code>and</code> și <code>only</code>. Mai mult, similar modului cum putem
+      grupa selectorii CSS, putem grupa și media query-urile separându-le prin virgulă. <br><br>
+      Operatorul <code>and</code> ne permite să înlănțuim mai multe tipuri și feature-uri, iar stilurile se 
+      vor aplica doar în cazul în care toate condițiile sunt împlinite. Operatorul <code>not</code> neagă un
+      media query, modul de funcționare fiind similar selectorilor. Operatorul <code>only</code> previne 
+      ca aceste stiluri să fie aplicate în browserele vechi care nu suportă media queries.
+    </p>
+    <app-tip>
+      Spre deosebire de selectori, operatorul <code>not</code> neagă întreg media query-ul, nu doar
+      tipul sau feature-ul înainte căruia este. De exemplu, <code>@media not screen and (color)</code> este
+      echivalent cu <code>@media not(screen and (color))</code>.
+    </app-tip>
+  </section>
+  <app-code-example gistId="lab3/media-queries"></app-code-example>
+</section>

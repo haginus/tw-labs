@@ -1,0 +1,15 @@
+{
+  "title": null,
+  "showFileNames": false,
+  "result": true,
+  "files": [
+    {
+      "name": "transitions.html",
+      "fileType": "html"
+    },
+    {
+      "name": "transitions.css",
+      "fileType": "css"
+    }
+  ]
+}

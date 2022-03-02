@@ -1,0 +1,15 @@
+{
+  "title": "Exemplu de folosire",
+  "showFileNames": false,
+  "result": true,
+  "files": [
+    {
+      "name": "grid-area.html",
+      "fileType": "html"
+    },
+    {
+      "name": "grid-area.css",
+      "fileType": "css"
+    }
+  ]
+}
