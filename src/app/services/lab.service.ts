@@ -33,18 +33,18 @@ export class LabService {
           subtitle: "Laboratorul 2",
           description: "Sintaxă, moduri de includere, valori și unități de măsură, proprietăți CSS comune, selectori, etc.",
           homeworkLink: 'https://forms.gle/26SiZGVPdx644AjP6',
-          homeworkDue: "2022-03-03T12:00:00+02:00"
+          homeworkDue: "2022-03-17T12:00:00+02:00"
         }
       ),
       new Lab(
         Lab3Component,
         {
           id: 3,
-          title: "CSS: Poziționare, layout și animații",
+          title: "CSS: Layout, animații și media queries",
           subtitle: "Laboratorul 3",
-          description: "Sintaxă, moduri de includere, valori și unități de măsură, proprietăți CSS comune, selectori, etc.",
-          // homeworkLink: 'https://forms.gle/26SiZGVPdx644AjP6',
-          // homeworkDue: "2022-03-03T12:00:00+02:00"
+          description: "Metode de poziționare a elementelor, flex, grid, tranziții și animații și media queries.",
+          homeworkLink: 'https://forms.gle/zW64tWiHUHNAR1RG7',
+          homeworkDue: "2022-03-17T12:00:00+02:00"
         }
       )
     ]);
