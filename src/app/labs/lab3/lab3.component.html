@@ -47,7 +47,7 @@
     </p>
     <p>
       Un element cu poziție absolută e poziționat relativ la cel mai apropiat element strămoș (parinte direct sau
-      indirect) care are o poziționare alta decât statică. Elementele cu poziția absolută sunt scoase din fluxul 
+      indirect) care are o poziționare alta decât statică. Elementele cu poziția absolută sunt scoase din fluxul
       obișnuit al paginii web (deci nu lasă spațiu liber), însă în cazul în care strămoșul este scrollabil, acesta
       se va mișca odată cu scroll-ul.
     </p>
@@ -82,7 +82,7 @@
       <b>Sintaxă: </b> <code highlight="z-index: <integer>;" [languages]="['css']"></code>
     </p>
     <p>
-      În cazul în care două sau mai multe elemente se suprapun, punem folosi proprietatea 
+      În cazul în care două sau mai multe elemente se suprapun, punem folosi proprietatea
       <code>z-index</code> pentru a specifica care element să iasă în față. Această proprietate
       ia drept valoare un număr întreg, numerele mai mari apărând mai în față. În cazul în care
       această proprietate nu este specificată, elementele care sunt declarate în codul HTML mai jos
@@ -129,7 +129,8 @@
         Setează direcția flexbox-ului și implicit schimbă axa principală.
       </p>
       <p>
-        <b>Sintaxă: </b> <code highlight="flex-direction: row|row-reverse|column|column-reverse;" [languages]="['css']"></code>
+        <b>Sintaxă: </b> <code highlight="flex-direction: row|row-reverse|column|column-reverse;"
+          [languages]="['css']"></code>
       </p>
       <ul>
         <li>
@@ -155,7 +156,9 @@
         Aliniază elementele din interiorul flexbox-ului pe axa principală.
       </p>
       <p>
-        <b>Sintaxă: </b> <code highlight="justify-content: flex-start|flex-end|center|space-between|space-around|space-evenly;" [languages]="['css']"></code>
+        <b>Sintaxă: </b> <code
+          highlight="justify-content: flex-start|flex-end|center|space-between|space-around|space-evenly;"
+          [languages]="['css']"></code>
       </p>
       <ul>
         <li>
@@ -187,7 +190,8 @@
         Aliniază elementele din interiorul flexbox-ului pe axa secundară.
       </p>
       <p>
-        <b>Sintaxă: </b> <code highlight="align-items: stretch|center|flex-start|flex-end|baseline;" [languages]="['css']"></code>
+        <b>Sintaxă: </b> <code highlight="align-items: stretch|center|flex-start|flex-end|baseline;"
+          [languages]="['css']"></code>
       </p>
       <ul>
         <li>
@@ -227,7 +231,7 @@
           <code>wrap</code> - elementele sunt plasate pe mai multe linii (dacă este cazul)
         </li>
         <li>
-          <code>wrap-reverse</code> - elementele sunt plasate pe mai multe linii, de jos în sus 
+          <code>wrap-reverse</code> - elementele sunt plasate pe mai multe linii, de jos în sus
         </li>
       </ul>
     </section>
@@ -236,8 +240,12 @@
         <div class="badge">E</div>
         <code highlight="flex"></code>
       </h3>
+      <p class="definition">
+        Determină cât se va lărgi sau strânge elementele din flexbox.
+      </p>
       <p>
-        <b>Sintaxă: </b> <code highlight="flex: (<flex-grow> <flex-shrink>? <flex-basis>?)|auto;" [languages]="['css']"></code>
+        <b>Sintaxă: </b> <code highlight="flex: (<flex-grow> <flex-shrink>? <flex-basis>?)|auto;"
+          [languages]="['css']"></code>
       </p>
       <ul>
         <li>
@@ -249,7 +257,7 @@
           elemente din flexbox. O valoare mai mare înseamnă că elementul se va strânge mai mult.
         </li>
         <li>
-          <code>flex-basis</code> - lungime sau procent ce specifică lungimea inițială a elementului. Poate fi 
+          <code>flex-basis</code> - lungime sau procent ce specifică lungimea inițială a elementului. Poate fi
           specificat ca valoare și <code>auto</code>.
         </li>
       </ul>
@@ -259,6 +267,32 @@
       </p>
     </section>
     <app-code-example gistId="lab3/flexbox"></app-code-example>
+    <section>
+      <h3>
+        <div class="badge">E</div>
+        <code highlight="order"></code>
+      </h3>
+      <p class="definition">
+        Setează ordinea apariției elementului în flexbox.
+      </p>
+      <p>
+        <b>Sintaxă: </b> <code highlight="order: <number>"
+          [languages]="['css']"></code>
+      </p>
+    </section>
+    <section>
+      <h3>
+        <div class="badge">E</div>
+        <code highlight="align-self"></code>
+      </h3>
+      <p class="definition">
+        Setează alinierea elementului respectiv în flexbox.
+      </p>
+      <p>
+        <b>Sintaxă: </b> <code highlight="align-self: flex-start|flex-end|center;"
+          [languages]="['css']"></code>
+      </p>
+    </section>
   </section>
   <section>
     <h2>Grid</h2>
@@ -287,7 +321,8 @@
         Setează numărul de coloane și dimensiunea acestora.
       </p>
       <p>
-        <b>Sintaxă: </b> <code highlight="grid-template-columns: (<length> | <percentage> | auto)+;" [languages]="['css']"></code>
+        <b>Sintaxă: </b> <code highlight="grid-template-columns: (<length> | <percentage> | auto)+;"
+          [languages]="['css']"></code>
       </p>
       <p>
         <b>Exemplu: </b> <code highlight="grid-template-columns: 200px 1fr auto;" [languages]="['css']"></code>
@@ -302,10 +337,33 @@
         Setează numărul de rânduri și dimensiunea acestora.
       </p>
       <p>
-        <b>Sintaxă: </b> <code highlight="grid-template-rows: (<length> | <percentage> | auto)+;" [languages]="['css']"></code>
+        <b>Sintaxă: </b> <code highlight="grid-template-rows: (<length> | <percentage> | auto)+;"
+          [languages]="['css']"></code>
       </p>
       <p>
         <b>Exemplu: </b> <code highlight="grid-template-rows: 300px 1fr;" [languages]="['css']"></code>
+      </p>
+    </section>
+    <section>
+      <h3>
+        <div class="badge">C</div>
+        <code highlight="gap"></code>
+      </h3>
+      <p class="definition">
+        Setează spațiul lăsat liber între rânduri și coloane.
+      </p>
+      <p>
+        <b>Sintaxă: </b> <code highlight="gap: (<length> | <percentage) (<length> | <percentage)?;" [languages]="['css']"></code>
+      </p>
+      <ul>
+        <li>primul argument setează spațiul între rânduri, iar al doilea între coloane</li>
+        <li>dacă al doilea argument lipsește, atunci și spațiul între rânduri și cel între coloane iau drept valoare primul argument</li>
+      </ul>
+      <p>
+        <b>Exemplu: </b> <code highlight="gap: 10px;" [languages]="['css']"></code>
+      </p>
+      <p>
+        <code>gap</code> este un shorthand pentru <code>row-gap</code> și <code>column-gap</code>.
       </p>
     </section>
     <section>
@@ -318,7 +376,8 @@
         Definesc sfârșitul și începutul elementului în grid. Elementele în grid se pot suprapune.
       </p>
       <p>
-        <b>Sintaxă: </b> <code highlight='grid-[column|row]-[start|end]: <line>|(span <number>)|auto;' [languages]="['css']"></code>
+        <b>Sintaxă: </b> <code highlight='grid-[column|row]-[start|end]: <line>|(span <number>)|auto;'
+          [languages]="['css']"></code>
       </p>
       <ul>
         <li>
@@ -343,7 +402,9 @@
         Oferă un nume unui element al gridului sau poate fi folosit ca shorthand pentru proprietățile descrise mai sus.
       </p>
       <p>
-        <b>Sintaxă: </b> <code highlight='grid-area: "<string> | <row-start> / <column-start> / <row-end> / <column-end>;' [languages]="['css']"></code>
+        <b>Sintaxă: </b> <code
+          highlight='grid-area: "<string> | <row-start> / <column-start> / <row-end> / <column-end>;'
+          [languages]="['css']"></code>
       </p>
     </section>
     <section>
@@ -356,11 +417,12 @@
         <code highlight="grid-area"></code>.
       </p>
       <p>
-        <b>Sintaxă: </b> <code highlight='grid-template-areas: "<grid-area-name> | . | none | ...";' [languages]="['css']"></code>
+        <b>Sintaxă: </b> <code highlight='grid-template-areas: "<grid-area-name> | . | none | ...";'
+          [languages]="['css']"></code>
       </p>
       <ul>
         <li><code>grid-area-name</code> - numele ariei grid specificat folosind <code highlight="grid-area"></code></li>
-        <li><code>.</code> - spațiu gol</li> 
+        <li><code>.</code> - spațiu gol</li>
       </ul>
       <app-code-example gistId="lab3/grid-area"></app-code-example>
     </section>
@@ -433,8 +495,10 @@
         Definește funcția de timing pentru tranziție.
       </p>
       <p>
-        <b>Sintaxă: </b> 
-        <code highlight='transition-timing-function: linear|ease|ease-in|ease-out|ease-in-out|cubic-bezier(<number>, <number>, <number>, <number>);' [languages]="['css']"></code>
+        <b>Sintaxă: </b>
+        <code
+          highlight='transition-timing-function: linear|ease|ease-in|ease-out|ease-in-out|cubic-bezier(<number>, <number>, <number>, <number>);'
+          [languages]="['css']"></code>
       </p>
       <div class="common-table">
         <table>
@@ -489,7 +553,7 @@
         Shorthand pentru proprietățile de tranziție.
       </p>
       <p>
-        <b>Sintaxă: </b> 
+        <b>Sintaxă: </b>
         <code highlight='transition: property duration timing-function delay;' [languages]="['css']"></code>
       </p>
       <p>
@@ -521,7 +585,7 @@
         Numele animației.
       </p>
       <p>
-        <b>Sintaxă: </b> 
+        <b>Sintaxă: </b>
         <code highlight='animation-name: keyframe_name;' [languages]="['css']"></code>
       </p>
     </section>
@@ -531,7 +595,7 @@
         Durata animației.
       </p>
       <p>
-        <b>Sintaxă: </b> 
+        <b>Sintaxă: </b>
         <code highlight='animation-duration: <time>;' [languages]="['css']"></code>
       </p>
     </section>
@@ -541,7 +605,7 @@
         Delay-ul animației.
       </p>
       <p>
-        <b>Sintaxă: </b> 
+        <b>Sintaxă: </b>
         <code highlight='animation-delay: <time>;' [languages]="['css']"></code>
       </p>
     </section>
@@ -551,7 +615,7 @@
         Direcția animației.
       </p>
       <p>
-        <b>Sintaxă: </b> 
+        <b>Sintaxă: </b>
         <code highlight='animation-direction: normal|reverse|alternate|alternate-reverse;' [languages]="['css']"></code>
       </p>
       <ul>
@@ -567,7 +631,7 @@
         Numărul de repetiții ale animației.
       </p>
       <p>
-        <b>Sintaxă: </b> 
+        <b>Sintaxă: </b>
         <code highlight='animation-iteration-count: <number>|infinite;' [languages]="['css']"></code>
       </p>
       <ul>
@@ -581,8 +645,10 @@
         Funcția de timing a animației.
       </p>
       <p>
-        <b>Sintaxă: </b> 
-        <code highlight='animation-timing-function: linear|ease|ease-in|ease-out|ease-in-out|cubic-bezier(<number>, <number>, <number>, <number>);' [languages]="['css']"></code>
+        <b>Sintaxă: </b>
+        <code
+          highlight='animation-timing-function: linear|ease|ease-in|ease-out|ease-in-out|cubic-bezier(<number>, <number>, <number>, <number>);'
+          [languages]="['css']"></code>
         <br> <i>La fel ca în cazul tranzițiilor.</i>
       </p>
     </section>
@@ -592,8 +658,9 @@
         Shorthand pentru proprietățile de mai sus.
       </p>
       <p>
-        <b>Sintaxă: </b> 
-        <code highlight='animation: name duration timing-function delay iteration-count direction;' [languages]="['css']"></code>
+        <b>Sintaxă: </b>
+        <code highlight='animation: name duration timing-function delay iteration-count direction;'
+          [languages]="['css']"></code>
       </p>
     </section>
   </section>
@@ -601,7 +668,7 @@
 <section>
   <h1>Media queries</h1>
   <p>
-    Un media query este compus dintr-un <i>media type</i> opțional și un număr de <i>media features</i> 
+    Un media query este compus dintr-un <i>media type</i> opțional și un număr de <i>media features</i>
     ce pot fi combinate prin operatori logici. Acestea ne permit să ne stilizăm diferit paginile în funcție
     de caracteristicile dispozitivului care ne accesează site-ul.
   </p>
@@ -689,9 +756,9 @@
       În vederea creării unor media queries mai complexe, putem folosi operatorii logici pentru a le
       combina: <code>not</code>, <code>and</code> și <code>only</code>. Mai mult, similar modului cum putem
       grupa selectorii CSS, putem grupa și media query-urile separându-le prin virgulă. <br><br>
-      Operatorul <code>and</code> ne permite să înlănțuim mai multe tipuri și feature-uri, iar stilurile se 
+      Operatorul <code>and</code> ne permite să înlănțuim mai multe tipuri și feature-uri, iar stilurile se
       vor aplica doar în cazul în care toate condițiile sunt împlinite. Operatorul <code>not</code> neagă un
-      media query, modul de funcționare fiind similar selectorilor. Operatorul <code>only</code> previne 
+      media query, modul de funcționare fiind similar selectorilor. Operatorul <code>only</code> previne
       ca aceste stiluri să fie aplicate în browserele vechi care nu suportă media queries.
     </p>
     <app-tip>
@@ -701,4 +768,101 @@
     </app-tip>
   </section>
   <app-code-example gistId="lab3/media-queries"></app-code-example>
+</section>
+<section>
+  <h1>Teme</h1>
+  <section>
+    <h2>Tema 3.1</h2>
+    <p>
+      Se consideră fișierul <code>layout.html</code>. Creați fișierul <code>layout.css</code>
+      astfel încât să obțineți rezultatul prezentat în imaginea <code>layout.png</code>. Indicații:
+    </p>
+    <ul>
+      <li>
+        Headerul va avea o înălțime de 80px, titlul din interiorul headerului va fi aliniat la stânga
+        și centrat pe verticală iar logoul va avea o poziție fixă în partea dreaptă a headerului,
+        ocupând 10% din lățimea headerului;
+      </li>
+      <li>Meniul drop-down va fi dispus pe orizontală și va avea o înălțime de 50px;</li>
+      <li>
+        Conținutul va fi poziționat centrat în pagină, ocupând 95% din pagină și având
+        înălțimea calculată automat în funcție de conținut;
+      </li>
+      <li>
+        Folosiți proprietatea <code>float</code> pentru a poziționa articolele în cadrul conținutului,
+        precum și pentru pozitonarea elementelor componente ale articolelor;
+      </li>
+      <li>
+        Poziționați fiecare din cele trei imagini (conținute în articolul trei) folosind
+        proprietatea <code>position</code>. Suprapuneți imaginile folosind <code>z-index</code>
+        și schimbați z-index-ul la hover pe una din imagini;
+      </li>
+      <li>Antetul va avea o înălțime de 60px</li>
+    </ul>
+    <app-homework-pack src="/assets/homework/lab3/tema 3.1.zip"></app-homework-pack>
+  </section>
+  <section>
+    <h2>Tema 3.2</h2>
+    <p>
+      Se consideră fișierul <code>flex.html</code> și fișierul <code>css_flex.css</code>. Completați fisierul CSS
+      folosind
+      proprietăți ce țin de flexbox astfel încât:
+    </p>
+    <ul>
+      <li>
+        Afișați cele 4 secțiuni din divul cu id-ul "coloane" pe 4 coloane egale
+        (ocupând toată lățimea containerului); se va considera o lățime inițială a secțiunilor de 200px.
+      </li>
+      <li>
+        Când micșorăm fereastra pe orizontală, coloanele care nu mai au loc să fie mutate dedesubt.
+      </li>
+      <li>
+        Când venim cu cursorul pe divul "ordonare dreapta stânga", coloanele se vor afișa în ordine inversă.
+      </li>
+      <li>
+        Când venim cu cursorul pe divul "ordonare dreapta stânga", coloanele se vor afișa în ordine inversă.
+      </li>
+      <li>
+        Când venim cu cursorul pe divul "ordonare 3124", coloanele se vor aranja astfel: coloana 3, coloana 1, coloana
+        2, coloana 4. În plus, coloana 4 va fi de 3 ori mai mare, în lățime, decât restul.
+      </li>
+      <li>
+        Afișați imaginile din coloana 4 una sub alta. Faceți astfel încât lățimea lor să nu fie lățimea containerului ci
+        lățimea inițială a fiecărei imagini, iar imaginile să fie aliniate spre stânga.
+      </li>
+      <li>
+        La hover pe butonul "img invers" ordinea imaginilor se va inversa, și vor fi aliniate la dreapta. Faceți astfel
+        încât titlul secțiunii cu imagini să rămână aliniat la stânga și tot sus (nu sub imagini).
+      </li>
+    </ul>
+    <app-homework-pack src="/assets/homework/lab3/tema 3.2.zip"></app-homework-pack>
+  </section>
+  <section>
+    <h2>Tema 3.3</h2>
+    <p>Porniți de la următorul exemplu:</p>
+    <app-code-example gistId="lab3/homework-3"></app-code-example>
+    <ul>
+      <li>
+        Mai adăugați celule astfel încât să fie 12. Faceți gridul să fie pe 4 coloane.
+        Prima și ultima coloana să aibă lățime de 100px.
+      </li>
+      <li>
+        Faceți astfel încât intre linii să fie un spațiu de 10px și între coloane să fie un spațiu de 8px.
+      </li>
+      <li>
+        Faceți astfel încât celula 1 să se întindă pe 2 coloane.
+      </li>
+      <li>
+        Faceți astfel încât celula 4 să înceapă de pe rândul 2 coloana 1 și să se întindă pe 2 coloane și 2 rânduri.
+      </li>
+      <li>
+        Folosind <code>grid-area</code>, faceți astfel încât celula 12 să înceapă pe rândul 4 coloana 2 
+        și să se întindă pe 3 rânduri și 2 coloane.
+      </li>
+    </ul>
+    <p>
+      În final, gridul trebuie să arate așa:
+    </p>
+    <img src="/assets/gists/lab3/homework-3/grid.png" />
+  </section>
 </section>
