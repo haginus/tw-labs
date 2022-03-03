@@ -17,6 +17,7 @@
         </div>
         <div class="send-homework" *ngIf="lab?.meta?.homeworkLink">
           <button mat-raised-button color="primary" (click)="sendHomework()" [disabled]="timePassed">Trimite tema</button>
+          <div *ngIf="lab?.meta?.homeworkDue">Termen limită: {{ lab?.meta?.homeworkDue | date:'dd.MM.yyyy' }}</div>
         </div>
       </div>
     </div>
