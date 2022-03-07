@@ -1,9 +1,16 @@
 .text {
   color: red;
+  margin-bottom: 20px;
 }
 
 @media screen and (max-width: 200px), print {
   .text {
     color: blue;
+  }
+}
+
+@media print {
+  .print-button {
+    display: none;
   }
 }
