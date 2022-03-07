@@ -56,6 +56,16 @@
         }
       }
     }
+
+    &.full-console {
+      iframe {
+        display: none;
+      }
+      .console {
+        max-height: none;
+        flex: 1;
+      }
+    }
   }
 
   mat-tab-group {

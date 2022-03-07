@@ -28,6 +28,7 @@ export class CodeExampleComponent implements OnInit, OnDestroy {
   gistFiles: GistFileEnritched[];
 
   consoleLogs: ConsoleLog[] = [];
+  onlyJs: boolean = false;
 
   ngOnInit(): void {
     this.subscription = this.gistService.getGist(this.gistId)
@@ -79,6 +80,7 @@ export class CodeExampleComponent implements OnInit, OnDestroy {
     const iframe = this.resultFrame.nativeElement;
     this.firstLoad = true;
     iframe.src = '';
+    this.onlyJs = jsCode && !htmlCode;
     iframe.onload = () => {
       iframe.contentWindow.document.open();
       iframe.contentWindow.document.write(content);

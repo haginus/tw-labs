@@ -11,7 +11,7 @@
       </mat-tab>
     </mat-tab-group>
   </div>
-  <div class="code-example-column result-column" *ngIf="gist?.result">
+  <div class="code-example-column result-column" *ngIf="gist?.result" [class]="{ 'full-console': onlyJs }">
     <iframe #resultFrame (load)="onSrcChange()"></iframe>
     <div class="console" *ngIf="consoleLogs.length">
       <div class="log" *ngFor="let log of consoleLogs">
