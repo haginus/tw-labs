@@ -3,6 +3,7 @@ import { map, Observable, of } from 'rxjs';
 import { Lab1Component } from '../labs/lab1/lab1.component';
 import { Lab2Component } from '../labs/lab2/lab2.component';
 import { Lab3Component } from '../labs/lab3/lab3.component';
+import { Lab4Component } from '../labs/lab4/lab4.component';
 import { Lab } from '../lib/models/Lab';
 
 @Injectable({
@@ -45,6 +46,17 @@ export class LabService {
           description: "Metode de poziționare a elementelor, flex, grid, tranziții și animații și media queries.",
           homeworkLink: 'https://forms.gle/zW64tWiHUHNAR1RG7',
           homeworkDue: "2022-03-17T12:00:00+02:00"
+        }
+      ),
+      new Lab(
+        Lab4Component,
+        {
+          id: 4,
+          title: "Introducere în JavaScript",
+          subtitle: "Laboratorul 4",
+          description: "Moduri de includere, tipuri de date, variabile, operatori, funcții, statements, etc.",
+          homeworkLink: 'https://forms.gle/wEvQ9NuwS8ch42pR7',
+          homeworkDue: "2022-03-24T12:00:00+02:00"
         }
       )
     ]);

@@ -1,0 +1,19 @@
+{
+  "title": "Funcții normale vs. arrow functions",
+  "showFileNames": true,
+  "result": false,
+  "files": [
+    {
+      "name": "normal-functions-broken.js",
+      "fileType": "js"
+    },
+    {
+      "name": "normal-functions.js",
+      "fileType": "js"
+    },
+    {
+      "name": "arrow-functions.js",
+      "fileType": "js"
+    }
+  ]
+}

@@ -1,0 +1,774 @@
+<section>
+  <h1>Ce este JavaScript?</h1>
+  <p>
+    JavaScript (abreviat JS) este un limbaj de programare high-level conceput pentru web.
+    Este un limbaj multi-paradigmă, suportând paradigmele event-driven, functional și imperative.
+    Toate browsere cunoscute au un JavaScript engine ce este capabil să ruleze cod JavaScript pe
+    dispozitivele utilizatorului.
+  </p>
+  <section>
+    <h2>Moduri de includere</h2>
+    <section>
+      <h3>Inline</h3>
+      <p>
+        Având în vedere că JavaScript e un limbaj de programare event-driven, putem să adăugăm în elementele
+        HTML ca atribute evenimente JavaScript și să specificăm ce să se întâmple la declanșarea acestora.
+      </p>
+    </section>
+    <section>
+      <h3>Internal</h3>
+      <p>
+        La fel ca în cazul CSS, putem să scriem cod JavaScript în head-ul documentului HTML, în interiorul tag-ului
+        <code>script</code>.
+      </p>
+    </section>
+    <section>
+      <h3>External</h3>
+      <p>
+        Codul JavaScript poate fi scris în fișiere separate de extensie <code>.js</code> și inclus în documentul HTML
+        în head, prin introducerea <code highlight='<script src="cale_fișier.js">'></code>.
+      </p>
+    </section>
+    <app-code-example gistId="lab4/js-insert"></app-code-example>
+  </section>
+</section>
+<section>
+  <h1>Tipuri de date</h1>
+  <p>
+    JavaScript este un limbaj de programare <i>loosely typed</i> și dinamic. Acest lucru înseamnă
+    că variabilele nu au un tip anume, orice variabilă putând lua o valoare (și apoi altă valoare)
+    de orice tip.
+  </p>
+  <section>
+    <h2>Valori primitive</h2>
+    <p>
+      Toate tipurile în afară de obiecte definesc valori imutabile (ce nu pot fi schimbate).
+      De exemplu, tipul de date String este imutabil (spre deosebire de C).
+    </p>
+    <section>
+      <h3>Tipul Boolean</h3>
+      <p>
+        Boolean poate avea două valori: <code>true</code> sau <code>false</code>. <br> Toate tipurile de
+        date din JavaScript pot fi convertite la Boolean fie prin utilizarea constructorului <code>Boolean</code>,
+        fie prin dublă negație (exemplu: <code highlight="!!23 === true"></code>). Astfel, valorile <code>0</code>,
+        <code>""</code> (string gol), <code>NaN</code> (not a number), <code>null</code> și <code>undefined</code>
+        vor fi evaluate la <code>false</code>. Restul valorilor transformate în Boolean vor fi evaluate la
+        <code>true</code>.
+      </p>
+    </section>
+    <section>
+      <h3>Tipul Null</h3>
+      <p>
+        Tipul Null are o singură valoare: <code>null</code>. <br>
+        Folosim această valoare când vrem să lăsăm intenționat o variabilă goală.
+      </p>
+    </section>
+    <section>
+      <h3>Tipul Undefined</h3>
+      <p>
+        O variabilă căreia nu i-a fost atribuită nicio valoare are valoarea <code>undefined</code>.
+      </p>
+    </section>
+    <section>
+      <h3>Tipul Number</h3>
+      <p>
+        Folosim tipul Number pentru a reprezenta numere. Acesta stochează numerele într-un format de dublă precizie
+        pe 64 de biți (valori între -2<sup>53</sup> + 1 și 2<sup>53</sup> - 1). Pe lângă valorile numerice normale,
+        tipul number mai are trei valori simbolice: <code>Infinity</code>, <code>-Infinity</code> și <code>NaN</code>
+        (not a number).
+      </p>
+    </section>
+    <section class="following-defs">
+      <h3>Tipul String</h3>
+      <p>
+        Pentru a stoca text, folosim tipul String. Valorile de tip String se înconjoară de <code>"</code> (ghilimele),
+        <code>'</code> (apostrof) sau <code>`</code> (backtick). String-urile sunt un șir de "elemente" reprezentate
+        ca întregi fără semn pe 16 biți (Unicode). Indexarea acestora începe de la 0. Deși intern string-urile sunt un
+        șir de caractere Unicode, accesarea elementelor din string folosind operatorul <code>[]</code> (precum în C)
+        nu este posibilă, aceasta putând să se facă printr-o metodă.
+      </p>
+      <app-tip>
+        În următoarele secțiuni, prezența <code>prototype</code> semnifică că metoda/proprietatea se
+        referă la o instanță a obiectului respectiv, în loc de obiect în sine.
+      </app-tip>
+      <section>
+        <h4><code>String.prototype.charAt(index)</code></h4>
+        <p class="definition">Obține caracterul prezent la indexul dat.</p>
+      </section>
+      <section>
+        <h4><code>String.prototype.includes(searchString [, position])</code></h4>
+        <p class="definition">
+          Returnează o valoarea booleană ce determină dacă string-ul pe care se apelează conține
+          <code>searchString</code>. Opțional se poate oferi poziția de la care să se înceapă căutarea.
+        </p>
+        <p>
+          <b>Exemplu: </b> <code>"bună ziua".includes("zi")</code> va returna <code>true</code>.
+        </p>
+      </section>
+      <section>
+        <h4><code>String.prototype.startsWith(searchString)</code></h4>
+        <p class="definition">
+          Returnează o valoarea booleană ce determină dacă string-ul pe care se apelează începe cu
+          <code>searchString</code>.
+        </p>
+        <p>
+          <b>Exemplu: </b> <code>"bună ziua".startsWith("ziua")</code> va returna <code>false</code>.
+        </p>
+      </section>
+      <section>
+        <h4><code>String.prototype.endsWith(searchString)</code></h4>
+        <p class="definition">
+          Returnează o valoarea booleană ce determină dacă string-ul pe care se apelează se termină cu
+          <code>searchString</code>.
+        </p>
+        <p>
+          <b>Exemplu: </b> <code>"bună ziua".endsWith("ziua")</code> va returna <code>true</code>.
+        </p>
+      </section>
+      <section>
+        <h4><code>String.prototype.replace(searchFor, replaceWith)</code></h4>
+        <p class="definition">
+          Înlocuiește prima ocurență a <code>searchFor</code> cu <code>replaceWith</code>.
+        </p>
+        <p>
+          <b>Exemplu: </b> <code>"bar bar foo".replace("bar", "zoo")</code> va returna <code>"zoo bar foo"</code>.
+        </p>
+      </section>
+      <section>
+        <h4><code>String.prototype.indexOf(searchValue [, fromIndex])</code></h4>
+        <p class="definition">
+          Returnează index-ul primei ocurențe a <code>searchValue</code>, începând căutarea de la
+          <code>fromIndex</code> (opțional). În cazul în care nu există ocurența, se va returna <code>-1</code>.
+        </p>
+        <p>
+          <b>Exemplu: </b> <code>"bună ziua".indexOf("ziua")</code> va returna <code>5</code>.
+        </p>
+      </section>
+      <section>
+        <h4><code>String.prototype.substring(indexStart [, indexEnd])</code></h4>
+        <p class="definition">
+          Returnează un substring al string-ului pe care se apelează ce începe la poziția
+          <code>indexStart</code> și se termină la <code>indexEnd</code>. În cazul în care
+          <code>indexEnd</code> nu e specificat, se va merge până la sfârșit.
+        </p>
+        <p>
+          <b>Exemplu: </b> <code>"bar bar foo".replace("bar", "zoo")</code> va returna <code>"zoo bar foo"</code>.
+        </p>
+      </section>
+      <section>
+        <h4><code>String.prototype.toLowerCase()</code></h4>
+        <p class="definition">
+          Returnează o copie a string-ului cu toate caracterele minuscule.
+        </p>
+        <p>
+          <b>Exemplu: </b> <code>"HEllo".toLowerCase()</code> va returna <code>"hello"</code>.
+        </p>
+      </section>
+      <section>
+        <h4><code>String.prototype.toUpperCase()</code></h4>
+        <p class="definition">
+          Returnează o copie a string-ului cu toate caracterele majuscule.
+        </p>
+        <p>
+          <b>Exemplu: </b> <code>"HEllo".toUpperCase()</code> va returna <code>"HELLO"</code>.
+        </p>
+      </section>
+      <section>
+        <h4><code>String.prototype.split([sep [, limit] ])</code></h4>
+        <p class="definition">
+          Returnează un array de string-uri populat prin separarea la găsirea string-ului <code>sep</code>
+          (în cazul în care acesta nu este prezent, se va returna un array ce conține tot string-ul).
+        </p>
+        <p>
+          <b>Exemplu: </b> <code>"buna ziua".split(" ")</code> va returna <code>["buna", "ziua"]</code>.
+        </p>
+      </section>
+      <section>
+        <h4><code>String.prototype.length</code></h4>
+        <p class="definition">
+          Returnează lungimea unui string.
+        </p>
+        <p>
+          <b>Exemplu: </b> <code>"hello".length</code> va returna <code>5</code>.
+        </p>
+      </section>
+    </section>
+  </section>
+  <section class="following-defs">
+    <h2>Obiecte</h2>
+    <p>
+      În JavaScript, un obiect este o structură de tip cheie-valoare. Valorile pot fi pot fi primitive,
+      alte obiecte sau funcții. În JavaScript, obiectele sunt pasate prin referință. Există mai multe
+      moduri prin care putem crea obiecte:
+    </p>
+    <ul>
+      <li>folosind object literals</li>
+      <li>folosind constructorul generic <code>Object()</code></li>
+      <li>folosind un constuctor definit de către noi</li>
+    </ul>
+    <app-code-example gistId="lab4/objects"></app-code-example>
+    <section>
+      <h3><code>Object.assign(target, source)</code></h3>
+      <p class="definition">
+        Copiază toate proprietățile din <code>source</code> în <code>target</code>.
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="let x = { a: 1, c: 3 }; Object.assign({ b: 2, d: 4 });"></code>
+        va face ca <code highlight="x = { a: 1, b: 2, c: 3, d: 4 }"></code>
+      </p>
+    </section>
+    <section>
+      <h3><code>Object.create(source)</code></h3>
+      <p class="definition">
+        Crează un nou obiect pornind se la obiectul <code>source</code>.
+      </p>
+    </section>
+    <section>
+      <h3><code>Object.entries(object)</code></h3>
+      <p class="definition">
+        Crează un array ce conține elemente de forma <code>[key, value]</code>, unde
+        <code>key</code> este numele propietății și <code>value</code> este valoarea acesteia.
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="Object.entries({ a: 1, b: '2'})"></code>
+        va returna <code highlight="[['a', 1], ['b', '2']]"></code>.
+      </p>
+    </section>
+    <section>
+      <h3><code>Object.keys(object)</code></h3>
+      <p class="definition">
+        Crează un array ce conține numele tuturor proprietăților din obiect.
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="Object.keys({ a: 1, b: '2'})"></code>
+        va returna <code highlight="['a', 'b']"></code>.
+      </p>
+    </section>
+    <section>
+      <h3><code>Object.values(object)</code></h3>
+      <p class="definition">
+        Crează un array ce conține valorile tuturor proprietăților din obiect.
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="Object.values({ a: 1, b: '2'})"></code>
+        va returna <code highlight="['1', '2']"></code>.
+      </p>
+    </section>
+  </section>
+  <section class="following-defs">
+    <h2>Array-uri</h2>
+    <p>
+      În JavaScript, un array este un <i>obiect enumerabil.</i> Acesta are comportamentul cunoscut
+      al array-urilor din alte limbaje de programare high-level. Având în vedere faptul că JavaScript
+      este un limbaj dinamic, nu este nevoie ca elementele dintr-un array să fie de același tip.
+    </p>
+    <section>
+      <h3><code>Array.from(arr)</code></h3>
+      <p class="definition">
+        Crează un array dintr-o altă structură iterabilă (precum <code>String</code> sau <code>NodeList</code>).
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="Array.from('hello')"></code>
+        va returna <code highlight="['h', 'e', 'l', 'l', 'o']"></code>.
+      </p>
+    </section>
+    <section>
+      <h3><code>Array.isArray(arr)</code></h3>
+      <p class="definition">
+        Returnează <code>true</code> dacă <code>arr</code> este un array sau <code>false</code> altfel.
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="Array.isArray('hello')"></code>
+        va returna <code highlight="false"></code>.
+      </p>
+    </section>
+    <section>
+      <h3><code>Array.of(...elements)</code></h3>
+      <p class="definition">
+        Construiește un array cu elementele date ca argumente.
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="Array.of('1', 2, 3)"></code>
+        va returna <code highlight="['1', 2, 3]"></code>.
+      </p>
+    </section>
+    <section>
+      <h3><code>Array.prototype.length</code></h3>
+      <p class="definition">
+        Returnează lungimea array-ului.
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="[1, 2, 3, 5]"></code>
+        va returna <code highlight="4"></code>.
+      </p>
+    </section>
+    <section>
+      <h3><code>Array.prototype.at(idx)</code></h3>
+      <p class="definition">
+        Returnează elementul de pe poziția <code>idx</code>. Aceasta poate fi și negativă,
+        caz în care se numără invers de la ultimul element.
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="[1, 2, 3, 5].at(-1)"></code>
+        va returna <code highlight="5"></code>.
+      </p>
+    </section>
+    <section>
+      <h3><code>Array.prototype.push(element)</code></h3>
+      <p class="definition">
+        Adaugă la finalul array-ului un element.
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="[1, 2, 3, 5].push(6)"></code>
+        va rezulta în <code highlight="[1, 2, 3, 5, 6]"></code>.
+      </p>
+    </section>
+    <section>
+      <h3><code>Array.prototype.pop()</code></h3>
+      <p class="definition">
+        Șterge ultimul element din array și îl returnează.
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="[1, 2, 3, 5].pop()"></code>
+        va returna <code highlight="5"></code>, iar array-ul va rămâne <code highlight="[1, 2, 3]"></code>.
+      </p>
+    </section>
+    <section>
+      <h3><code>Array.prototype.shift()</code></h3>
+      <p class="definition">
+        Șterge primul element din array și îl returnează.
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="[1, 2, 3, 5].shift()"></code>
+        va returna <code highlight="1"></code>, iar array-ul va rămâne <code highlight="[2, 3, 5]"></code>.
+      </p>
+    </section>
+    <section>
+      <h3><code>Array.prototype.reverse()</code></h3>
+      <p class="definition">
+        Inversează un array.
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="[1, 2, 3, 5].reverse()"></code>
+        va rezulta în <code highlight="[5, 3, 2, 1]"></code>.
+      </p>
+    </section>
+    <section>
+      <h3><code>Array.prototype.slice(start, end)</code></h3>
+      <p class="definition">
+        Returnează o copie a array-ului ce începe de la <code>start</code> și se termină la
+        <code>end</code> (exclusiv). În cazul în care <code>end</code> lipsește, se va merge până la finalul
+        array-ului.
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="[1, 2, 3, 5].slice(2)"></code>
+        va returna <code highlight="[3, 5]"></code>.
+      </p>
+    </section>
+    <section>
+      <h3><code>Array.prototype.splice(start, count, ...elements)</code></h3>
+      <p class="definition">
+        Șterge <code>count</code> elemente începând de la poziția <code>start</code> și
+        opțional adaugă un număr variabil de elemente începând cu poziția <code>start</code>.
+        Elementele șterse sunt returnate într-un nou array.
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="[1, 2, 3, 5, 10].splice(1, 2, 6)"></code>
+        va returna <code highlight="[2, 3]"></code> iar array-ul va fi <code highlight="[1, 6, 5, 10]"></code>.
+      </p>
+    </section>
+    <section>
+      <h3><code>Array.prototype.sort(compareFn)</code></h3>
+      <p class="definition">
+        Sortează un array după rezultatul funcției <code>compareFn</code>, care ia ca argumente două elemente.
+        Dacă rezultatul funcției este negativ, primul element trece înaintea celui de-al doilea; în caz de 0,
+        elementele rămân pe aceeași poziție; dacă rezulvatul este pozitiv, al doilea element trece înaintea primului.
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="[10, 4, 3, 5].sort((a, b) => b - a)"></code>
+        va rezulta în <code highlight="[10, 5, 4, 3]"></code> (sortare descrescătoare).
+      </p>
+    </section>
+    <section>
+      <h3><code>Array.prototype.find(callbackFn)</code></h3>
+      <p class="definition">
+        Returnează primul element care satisface condițiile impuse în funcția <code>callbackFn</code>.
+        În cazul în care niciun element nu satisface condiția, se va întoarce <code>null</code>.
+        Funcția are următorii parametri:
+      </p>
+      <ul>
+        <li><code>element</code> - elementul din array</li>
+        <li><code>index</code> - indexul elementului din array</li>
+        <li><code>arr</code> - tot array-ul în sine</li>
+      </ul>
+      <p>
+        <b>Exemplu: </b> <code highlight="[1, 2, 3, 5].find(element => element % 2 == 0)"></code>
+        va returna <code highlight="2"></code>.
+      </p>
+    </section>
+    <section>
+      <h3><code>Array.prototype.findIndex(callbackFn)</code></h3>
+      <p class="definition">
+        Returnează primul element care satisface condițiile impuse în funcția <code>callbackFn</code>.
+        În cazul în care niciun element nu satisface condiția, se va întoarce <code>-1</code>.
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="[1, 2, 3, 5].findIndex(element => element % 2 == 0)"></code>
+        va returna <code highlight="1"></code>.
+      </p>
+    </section>
+    <section>
+      <h3><code>Array.prototype.some(callbackFn)</code></h3>
+      <p class="definition">
+        Returnează <code>true</code> dacă cel puțin un element satisface condițiile impuse în funcția
+        <code>callbackFn</code> și <code>false</code> în caz contrar.
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="[1, 2, 3, 5].some(element => element + 2 == 15)"></code>
+        va returna <code highlight="false"></code> (nu există niciun element care adunat cu 2 să dea 15).
+      </p>
+    </section>
+    <section>
+      <h3><code>Array.prototype.every(callbackFn)</code></h3>
+      <p class="definition">
+        Returnează <code>true</code> dacă toate elementele satisfac condițiile impuse în funcția
+        <code>callbackFn</code> și <code>false</code> în caz contrar.
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="[1, 2, 3, 5].every(element => element < 6)"></code>
+        va returna <code highlight="true"></code> (toate elementele sunt mai mici decât 6).
+      </p>
+    </section>
+    <section>
+      <h3><code>Array.prototype.forEach(callbackFn)</code></h3>
+      <p class="definition">
+        Execută funcția <code>callbackFn</code> pentru fiecare element din array.
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="[1, 2, 3, 5].forEach(element => console.log(element))"></code>
+        va afișa în consolă <code highlight="1 2 3 5"></code> (pe linii diferite).
+      </p>
+    </section>
+    <section>
+      <h3><code>Array.prototype.flat(depth)</code></h3>
+      <p class="definition">
+        Returnează un array în elementele sub-array-urilor sunt concatenate în acesta până
+        la o adângime dată. În cazul în care adâncimea lipsește, aceasta va fi 1.
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="[[1, 2, 3], 2, [4, 6], 5].flat()"></code>
+        va returna <code highlight="[1, 2, 3, 2, 4, 6, 5]"></code>.
+      </p>
+    </section>
+    <section>
+      <h3><code>Array.prototype.map(callbackFn)</code></h3>
+      <p class="definition">
+        Returnează un array nou cu elemente ce sunt modelate după funcția <code>callbackFn</code>.
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="[1, 2, 3].map(element => element * 2)"></code>
+        va returna <code highlight="[2, 4, 6]"></code>.
+      </p>
+    </section>
+    <section>
+      <h3><code>Array.prototype.flatMap(callbackFn)</code></h3>
+      <p class="definition">
+        Același lucru ca <code>map()</code>, însă urmat de un <code>flat()</code> de adâncime 1.
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="[1, 2, 3].flatMap(element => [element, element * 2])"></code>
+        va returna <code highlight="[1, 2, 3, 4, 5, 6]"></code>.
+      </p>
+    </section>
+    <section>
+      <h3><code>Array.prototype.filter(callbackFn)</code></h3>
+      <p class="definition">
+        Returnează un array ale cărui elemente îndeplinesc condițiile din funcția <code>callbackFn</code>.
+      </p>
+      <p>
+        <b>Exemplu: </b> <code highlight="[1, 2, 3, 4].filter((element, index) => index % 2 == 1)"></code>
+        va returna <code highlight="[2, 4]"></code> (elementele de pe poziții impare).
+      </p>
+    </section>
+    <section>
+      <h3><code>Array.prototype.reduce(callbackFn, initialValue)</code></h3>
+      <p class="definition">
+        Returnează o valoare calculată folosind funcția <code>callbackFn</code> și <code>initialValue</code>, unde:
+      </p>
+      <ul>
+        <li>
+          <code>callbackFn</code>
+          <ul>
+            <li><code>accumulator</code> - valoarea curentă a acumulatorului</li>
+            <li><code>element</code> - elementul curent din array</li>
+            <li><code>index</code> - indexul elementului din array</li>
+            <li><code>arr</code> - tot array-ul în sine</li>
+          </ul>
+        </li>
+        <li>
+          <code>initialValue</code> - valoarea inițială a acumulatorului (implicit 0)
+        </li>
+      </ul>
+      <app-code-example gistId="lab4/reduce"></app-code-example>
+    </section>
+    <section>
+      <h3><code>Array.prototype.reduceRight(callbackFn, initialValue)</code></h3>
+      <p class="definition">
+        Același lucru ca <code>reduce</code>, doar că parcurgerea array-ului începe de la dreapta.
+      </p>
+    </section>
+  </section>
+</section>
+<section>
+  <h1>Variabile</h1>
+  <p>
+    Variabilele în JavaScript nu au tipuri. Astfel, putem păstra într-o variabilă o valoare de un tip anume
+    și apoi să setăm o valoare de alt tip fără nicio problemă. Există trei moduri prin care putem defini variabile:
+    <code>var</code>, <code>let</code> și <code>const</code>. Diferența între prima și ultimele două este legată
+    de <i>scoping</i>: Declararea folosind <code>var</code> va face ca variabila să intre în scope-ul funcției părinte,
+    în timp
+    ce declararea cu <code>let</code> sau <code>const</code> va determina ca variabilele să intre în scope-ul blocului
+    de
+    instrucțiuni părinte, precumn în majoritatea limbajelor de programare. De asemenea, <code>let</code> și
+    <code>const</code>
+    nu permit redeclararea variabilelor, în timp ce <code>var</code> permite acest lucru. <br>
+    Diferența între <code>let</code> și <code>const</code> constă în faptul că lui <code>let</code> i se pot atribui
+    alte valori, în timp ce <code>const</code> rămâne constantă, menținând valoarea de la inițializare. <b>Atenție!</b>
+    Având în vedere că JavaScript transmite obiectele prin referință, <code>const</code> nu înseamnă că, de exemplu,
+    proprietățile unui obiect ce a fost declarat cu <code>const</code> nu își pot schimba valorile, ci că referința
+    la acel obiect nu se poate schimba.
+  </p>
+  <app-tip>
+    Recomandare: Folosiți mereu <code>let</code> și <code>const</code>. Folosirea <code>var</code> poate
+    duce la bug-uri la care nu vă puteați aștepta!
+  </app-tip>
+  <app-code-example gistId="lab4/var-let"></app-code-example>
+</section>
+<ng-template #operatorTable let-operators="operators">
+  <div class="common-table">
+    <table>
+      <tr>
+        <th>Operator</th>
+        <th>Descriere</th>
+      </tr>
+      <tr *ngFor="let operator of operators">
+        <td>
+          <code [highlight]="operator.symbol" [languages]="['javascript']"></code>
+        </td>
+        <td>
+          <div>{{ operator.name }}</div>
+          <div *ngIf="operator.description">{{ operator.description }}</div>
+          <div *ngIf="operator.syntax">
+            Sintaxă:
+            <code [highlight]="operator.syntax" [languages]="['javascript']"></code>
+          </div>
+          <div *ngIf="operator.example">
+            Exemplu:
+            <code [highlight]="operator.example" [languages]="['javascript']"></code>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</ng-template>
+<section>
+  <h1>Operatori</h1>
+  <section>
+    <h2>Operatori aritmetici</h2>
+    <ng-container *ngTemplateOutlet="operatorTable;context:{ operators: arithmeticOperators }"></ng-container>
+  </section>
+  <section>
+    <h2>Operatori de atribuire</h2>
+    <ng-container *ngTemplateOutlet="operatorTable;context:{ operators: assignmentOperators }"></ng-container>
+  </section>
+  <section>
+    <h2>Operatori de comparare</h2>
+    <ng-container *ngTemplateOutlet="operatorTable;context:{ operators: comparisonOperators }"></ng-container>
+  </section>
+  <section>
+    <h2>Operatori logici</h2>
+    <ng-container *ngTemplateOutlet="operatorTable;context:{ operators: logicalOperators }"></ng-container>
+  </section>
+</section>
+<section>
+  <h1>Funcții</h1>
+  <p>
+    O funcție are 3 componente: numele funcției, parametrii acesteia și blocul de instrucțiuni
+    ce se va executa. În JavaScript, funcțiile nu au <i>return type,</i> însă ele pot returna valori folosind
+    keyword-ul <code>return</code>. <br>
+    Definim o funcție în felul următor: <code highlight="function fnName(param1, param2, ...) { /* cod */ }"></code>
+  </p>
+  <p>
+    Fiecare funcție are propriul ei <i>scope.</i> Varibilele globale declarate în afara funcției pot fi accesate de
+    către funcție, însă cele declarate în interiorul funcției nu pot fi accesate din afara acesteia.
+  </p>
+  <p>
+    Funcțiile își definesc propriul <code>this</code>. Totuși dacă nu dorim acest lucru, există un tip suplimentar
+    de funcții care preiau obiectul <code>this</code> al părintelui. Acestea se numesc <i>arrow functions</i> și au
+    următoarea sintaxă: <code highlight="(param1, param2, ...) => { /* cod */ }"></code>.
+  </p>
+  <app-code-example gistId="lab4/js-this"></app-code-example>
+  <p>
+    Funcțiile pot fi stocate și în variabile. Iată cum: <br>
+    Funcții normale: <code highlight="const fnName = function() { /* cod */ }"></code> <br>
+    Arrow functions: <code highlight="const fnName = () => { /* cod */ }"></code>
+  </p>
+</section>
+<section>
+  <h1>Statements</h1>
+  <section>
+    <h2>If Statement</h2>
+    <p class="definition">
+      Permite rularea unui bloc de instrucțiuni în cazul în care condiția este îndeplinită.
+    </p>
+    <app-code-example gistId="lab4/if-statement"></app-code-example>
+  </section>
+  <section>
+    <h2>For statement</h2>
+    <p class="definition">
+      Permite rularea repetarea unui bloc de instrucțiuni de n ori.
+    </p>
+    <p>Există trei tipuri de <code>for</code>:</p>
+    <ul>
+      <li>
+        <code>for</code> tradițional cu inițierea iteratorului, condiție de oprire
+        și modificarea valorii la fiecare iterație
+      </li>
+      <li>
+        <code>for</code> folosind keyword-ul <code>in</code> ce permite iterația prin cheile unui obiect
+      </li>
+      <li>
+        <code>for</code> folosind keyword-ul <code>of</code> ce permite iterația prin elementele unui obiect
+        enumerabil (de exemplu array)
+      </li>
+    </ul>
+    <app-code-example gistId="lab4/for-statement"></app-code-example>
+  </section>
+  <section>
+    <h2>While Statement</h2>
+    <p class="definition">
+      Permite rularea unui bloc de instrucțiuni cât timp condiția este adevărată.
+    </p>
+    <p>
+      Există două tipuri:
+    </p>
+    <ul>
+      <li><code>while</code> - condiția e verificată la început</li>
+      <li><code>do while</code> - condiția e verificată la sfârșit</li>
+    </ul>
+    <app-code-example gistId="lab4/while-statement"></app-code-example>
+  </section>
+</section>
+<section>
+  <h1>Syntactic sugar</h1>
+  <p>
+    Syntactic sugar într-un limbaj de programare reprezintă diferite sintaxe ce ne permit să facem mai
+    mult scriind mai puțin cod. Într-un final, codul nostru devine mai frumos și mai ușor de citit.
+  </p>
+  <section>
+    <h2>Destructurare</h2>
+    <p>
+      Destructurarea ne permite să creăm variabile prin atribuirea valorilor dintr-un obiect sau array.
+    </p>
+    <app-code-example gistId="lab4/destructuring"></app-code-example>
+  </section>
+  <section>
+    <h2>Object Spread</h2>
+    <p>
+      Folosind <code>...</code> urmat de un obiect, putem lua toate cheile și valorile unui obiect
+      și să le punem în alt obiect. Mecanismul este similar <code>Object.assign()</code>.
+    </p>
+    <app-code-example gistId="lab4/object-spread"></app-code-example>
+  </section>
+  <section>
+    <h2>Proprități cu nume dinamic în object literals</h2>
+    <p>
+      În crearea unui obiect folosind object literals, putem să definim numele proprietăților folosind
+      variabile.
+    </p>
+    <app-code-example gistId="lab4/object-literals-properties"></app-code-example>
+  </section>
+  <section>
+    <h2>Object Rest</h2>
+    <p>
+      Object Rest merge mână în mână cu destructurarea. Folosim <code>...</code> ceea ce îl poate
+      confunda cu Object Spread. Totuși, contextul folosirii este diferit, permitându-ne să
+      obținem cheile rămase în urma destructurării.
+    </p>
+    <app-code-example gistId="lab4/object-rest"></app-code-example>
+  </section>
+  <section>
+    <h2>Arrow functions ce returnează o expresie</h2>
+    <p>
+      În cadrul acestui laborator s-au putut observa exemple în care funcțiile returnează
+      o singură expresie, neavând body. Iată cum funcționează:
+    </p>
+    <app-code-example gistId="lab4/arrow-functions"></app-code-example>
+  </section>
+  <section>
+    <h2>String Interpolation</h2>
+    <p>
+      String Interpolation ne permite să interpolăm variabile sau expresii în string-uri definite
+      folosind <code>`</code> (backtick).
+    </p>
+    <app-code-example gistId="lab4/string-interpolation"></app-code-example>
+  </section>
+</section>
+<section>
+  <h1>Teme</h1>
+  <section>
+    <h2>Tema 4.1</h2>
+    <p>
+      Scrieți o funcție care primește ca parametru un array de numere întregi și afișează cu ajutorul
+      <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/write" target="_blank">document.write()</a>
+      două liste neordonate: prima va conține elementele pare, iar a doua elementele impare. Listele vor avea
+      titlul aferent.
+    </p>
+  </section>
+  <section>
+    <h2>Tema 4.2</h2>
+    <p>
+      Scrieți o funcție JavaScript care primește un array de tipuri primitive și returnează unul nou, cu duplicatele
+      eliminate. De exemplu, <code>['a', 'b', 'a', 1, 2, 2, 1]</code> va deveni <code>['a', 'b', 1, 2]</code>.
+    </p>
+  </section>
+  <section>
+    <h2>Tema 4.3</h2>
+    <p>
+      Scrieți o funcție care imită metoda <code>Array.prototype.flat()</code> (de adâncime 1).
+      Funcția va primi drept parametru un array de array-uri și va returna un array ce conține
+      toate elementele din interiorul array-urilor. Exemplu: <code>[[1, 2], [3], [4, 5, 6]]</code>
+      va deveni <code>[1, 2, 3, 4, 5, 6]</code>. Folosiți metoda <code>reduce()</code> în implementare.
+    </p>
+  </section>
+  <section>
+    <h2>Tema 4.4</h2>
+    <p>
+      Creați un array de obiecte care să conțină informații despre persoane. Fiecare persoană
+      va avea numele și vârsta stocate. Folosind
+      <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/prompt" target="_blank">prompt()</a>,
+      cereți utilizatorului să introducă un număr. Filtrați persoanele din array astfel încât vârsta acestora
+      să fie mai mică sau egală cu numărul introdus de utilizator. Folosiți apoi
+      <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/alert" target="_blank">alert()</a>,
+      pentru a afișa numărul și numele persoanelor în următorul format:
+      <code>[n] persoane: [numePersoană1], [numePersoană2], ...</code>.
+      În cazul în care nu există rezultate, afișați un mesaj sugestiv.
+    </p>
+  </section>
+  <section>
+    <h2>Tema 4.5</h2>
+    <p>Exersați metodele
+      <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/prompt" target="_blank">prompt()</a>,
+      <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/alert" target="_blank">alert()</a> și
+      <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/confirm" target="_blank">confirm()</a>
+      din JavaScript. Folosind object literals, creați un dicționar de cuvinte din română în engleză. Exemplu:
+      <code highlight='{ "acesta": "this", "este": "is", "un": "a", "dicționar": "dictionary" }'></code>.
+      Folosind prompt(), cereți utilizatorului să introducă o frază (fără semne de punctuație). Afișați
+      folosind alert() rezultatul traducerii mot-à-mot. În cazul în care cuvântul nu există în dicționar,
+      lasăți versiunea în română și adăugați un semn al întrebării după cuvânt.  Exemplu: folosind dicționarul
+      de mai sus, <code>Ce Dicționar frumos este acesta</code> se traduce în <code>Ce? dictionary frumos? is this</code>.
+      La final, utilizatorul va fi întrebat folosind prompt() dacă vrea să mai facă altă traducere, caz în care procesul
+      va fi reluat.
+    </p>
+  </section>
+</section>

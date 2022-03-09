@@ -1,0 +1,19 @@
+{
+  "title": null,
+  "showFileNames": true,
+  "result": false,
+  "files": [
+    {
+      "name": "literals.js",
+      "fileType": "js"
+    },
+    {
+      "name": "gereric.js",
+      "fileType": "js"
+    },
+    {
+      "name": "my-constructor.js",
+      "fileType": "js"
+    }
+  ]
+}

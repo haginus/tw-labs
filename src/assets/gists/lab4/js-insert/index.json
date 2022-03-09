@@ -1,0 +1,23 @@
+{
+  "title": null,
+  "showFileNames": true,
+  "result": true,
+  "files": [
+    {
+      "name": "inline.html",
+      "fileType": "html"
+    },
+    {
+      "name": "internal.html",
+      "fileType": "html"
+    },
+    {
+      "name": "external.html",
+      "fileType": "html"
+    },
+    {
+      "name": "js-insert.js",
+      "fileType": "js"
+    }
+  ]
+}

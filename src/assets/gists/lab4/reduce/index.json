@@ -1,0 +1,11 @@
+{
+  "title": "Indexarea unui array folosind reduce",
+  "showFileNames": false,
+  "result": true,
+  "files": [
+    {
+      "name": "reduce.js",
+      "fileType": "js"
+    }
+  ]
+}
