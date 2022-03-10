@@ -407,7 +407,7 @@
     <section>
       <h3><code>Array.prototype.findIndex(callbackFn)</code></h3>
       <p class="definition">
-        Returnează primul element care satisface condițiile impuse în funcția <code>callbackFn</code>.
+        Returnează indexul primului element care satisface condițiile impuse în funcția <code>callbackFn</code>.
         În cazul în care niciun element nu satisface condiția, se va întoarce <code>-1</code>.
       </p>
       <p>
@@ -450,7 +450,7 @@
     <section>
       <h3><code>Array.prototype.flat(depth)</code></h3>
       <p class="definition">
-        Returnează un array în elementele sub-array-urilor sunt concatenate în acesta până
+        Returnează un array în care elementele subarray-urilor sunt concatenate în acesta până
         la o adângime dată. În cazul în care adâncimea lipsește, aceasta va fi 1.
       </p>
       <p>
@@ -475,7 +475,7 @@
       </p>
       <p>
         <b>Exemplu: </b> <code highlight="[1, 2, 3].flatMap(element => [element, element * 2])"></code>
-        va returna <code highlight="[1, 2, 3, 4, 5, 6]"></code>.
+        va returna <code highlight="[1, 2, 2, 4, 3, 6]"></code>.
       </p>
     </section>
     <section>

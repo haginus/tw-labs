@@ -16,7 +16,7 @@ const options = { ...defaultOptions, ...userOptions };
 
 console.log(options);
 
-// Același rezultat, cu Object.assing()
+// Același rezultat, cu Object.assign()
 const options2 = {};
 Object.assign(options2, defaultOptions);
 Object.assign(options2, userOptions);
