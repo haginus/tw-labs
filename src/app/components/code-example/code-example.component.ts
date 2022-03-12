@@ -79,18 +79,13 @@ export class CodeExampleComponent implements OnInit, OnDestroy {
     `;
     const iframe = this.resultFrame.nativeElement;
     this.firstLoad = true;
-    iframe.src = '';
     this.onlyJs = jsCode && !htmlCode;
-    iframe.onload = () => {
+    iframe.src = '';
+    setTimeout(() => {
       iframe.contentWindow.document.open();
       iframe.contentWindow.document.write(content);
       iframe.contentWindow.document.close();
-      this.srcChanged = false;
-      const maxHeight = window.innerHeight / 2;
-      const scrollHeight = iframe.contentDocument.querySelector('body').scrollHeight;
-      iframe.parentElement.style.minHeight = Math.min(scrollHeight, maxHeight) + "px";
-      iframe.onload = () => {};
-    }
+    }, 100);
   }
 
   onSrcChange() {
@@ -124,6 +119,18 @@ export class CodeExampleComponent implements OnInit, OnDestroy {
 
   prepareJsCode(code: string) {
     let result = code.replace(/console.log/g, 'sendLog');
+    const sendLoadEvent = `
+      window.parent.postMessage({ message: 'onload', from: '${this.gistId}' }, window.origin);
+    `;
+    if(result.includes("window.onload")) {
+      const re = /window\.onload\s*=\s*(function)*\(\)\s*(=>)*\s*{(?<body>(.|\n)*)}/gm;
+      const match = re.exec(result);
+      const newBody = sendLoadEvent + match.groups['body'];
+      const newFn = `window.onload = () => { ${newBody}}`;
+      result = result.replace(re, newFn);
+    } else {
+      result += `<script>window.onload = () => {${sendLoadEvent}}<\/script>`;
+    }
     let sendLogFn = `
       <script>
         let from = '${this.gistId}';
@@ -139,15 +146,31 @@ export class CodeExampleComponent implements OnInit, OnDestroy {
     return (event: any) => {
       if(event.data?.from != this.gistId) return;
       if(event.origin != window.origin) return;
-      if(event.data?.message != 'consoleLog') return;
-      let values: any[] = (event.data?.value || []).map(value => {
-        if(typeof value == 'object') {
-          return JSON.stringify(value, null, 2);
-        }
-        return value;
-      });
-      this.consoleLogs.push(values);
+      const message = event.data?.message;
+      if(message == 'consoleLog') {
+        this.handleConsoleLog(event);
+      } else if(message == 'onload') {
+        this.handleOnload();
+      }
     }
+  }
+
+  handleConsoleLog(event: any) {
+    let values: any[] = (event.data?.value || []).map(value => {
+      if(typeof value == 'object') {
+        return JSON.stringify(value, null, 2);
+      }
+      return value;
+    });
+    this.consoleLogs.push(values);
+  }
+
+  handleOnload() {
+    const iframe = this.resultFrame.nativeElement;
+    this.srcChanged = false;
+    const maxHeight = window.innerHeight / 2;
+    const scrollHeight = iframe.contentDocument.querySelector('body').scrollHeight;
+    iframe.parentElement.style.minHeight = Math.min(scrollHeight, maxHeight) + "px";
   }
 }
 
