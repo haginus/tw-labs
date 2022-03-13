@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { combineLatest, Subscription, switchMap } from 'rxjs';
 import { Gist } from 'src/app/lib/models/Gist';
 import { GistFile } from 'src/app/lib/models/GistFile';
@@ -9,7 +9,7 @@ import { GistService } from 'src/app/services/gist.service';
   templateUrl: './code-example.component.html',
   styleUrls: ['./code-example.component.scss']
 })
-export class CodeExampleComponent implements OnInit, OnDestroy {
+export class CodeExampleComponent implements AfterViewInit, OnDestroy {
 
   constructor(private gistService: GistService) { }
 
@@ -30,7 +30,9 @@ export class CodeExampleComponent implements OnInit, OnDestroy {
   consoleLogs: ConsoleLog[] = [];
   onlyJs: boolean = false;
 
-  ngOnInit(): void {
+  private _listenFn: any;
+
+  ngAfterViewInit(): void {
     this.subscription = this.gistService.getGist(this.gistId)
       .pipe(
         switchMap(gist => {
@@ -143,7 +145,8 @@ export class CodeExampleComponent implements OnInit, OnDestroy {
   }
 
   getSetConsoleLogFunction() {
-    return (event: any) => {
+    if(this._listenFn) return this._listenFn;
+    this._listenFn = (event: any) => {
       if(event.data?.from != this.gistId) return;
       if(event.origin != window.origin) return;
       const message = event.data?.message;
@@ -153,6 +156,7 @@ export class CodeExampleComponent implements OnInit, OnDestroy {
         this.handleOnload();
       }
     }
+    return this._listenFn;
   }
 
   handleConsoleLog(event: any) {
