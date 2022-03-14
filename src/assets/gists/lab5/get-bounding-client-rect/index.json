@@ -1,0 +1,19 @@
+{
+  "title": null,
+  "showFileNames": false,
+  "result": true,
+  "files": [
+    {
+      "name": "get-bounding-client-rect.html",
+      "fileType": "html"
+    },
+    {
+      "name": "get-bounding-client-rect.css",
+      "fileType": "css"
+    },
+    {
+      "name": "get-bounding-client-rect.js",
+      "fileType": "js"
+    }
+  ]
+}

@@ -4,6 +4,7 @@ import { Lab1Component } from '../labs/lab1/lab1.component';
 import { Lab2Component } from '../labs/lab2/lab2.component';
 import { Lab3Component } from '../labs/lab3/lab3.component';
 import { Lab4Component } from '../labs/lab4/lab4.component';
+import { Lab5Component } from '../labs/lab5/lab5.component';
 import { Lab } from '../lib/models/Lab';
 
 @Injectable({
@@ -57,6 +58,17 @@ export class LabService {
           description: "Moduri de includere, tipuri de date, variabile, operatori, funcții, statements, etc.",
           homeworkLink: 'https://forms.gle/wEvQ9NuwS8ch42pR7',
           homeworkDue: "2022-03-24T12:00:00+02:00"
+        }
+      ),
+      new Lab(
+        Lab5Component,
+        {
+          id: 5,
+          title: "JavaScript: Manipularea DOM-ului",
+          subtitle: "Laboratorul 5",
+          description: "",
+          // homeworkLink: 'https://forms.gle/wEvQ9NuwS8ch42pR7',
+          // homeworkDue: "2022-03-24T12:00:00+02:00"
         }
       )
     ]);

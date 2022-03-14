@@ -1,0 +1,15 @@
+{
+  "title": null,
+  "showFileNames": false,
+  "result": true,
+  "files": [
+    {
+      "name": "get-element-by-id.html",
+      "fileType": "html"
+    },
+    {
+      "name": "get-element-by-id.js",
+      "fileType": "js"
+    }
+  ]
+}

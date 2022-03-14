@@ -1,0 +1,505 @@
+<section>
+  <h1>Corespondența între HTML și JavaScript</h1>
+  <p>
+    Când o pagină este încărcată, browser-ul crează un Document Object Model (DOM) a paginii. Folosind acest
+    obiect, JavaScript obține posibilitatea de a manipula codul HTML din pagină. Putem adăuga, modifica sau șterge
+    elemente, atribute, stiluri CSS, etc. Astfel, DOM-ul definește:
+  </p>
+  <ul>
+    <li>elementele HTML ca obiecte;</li>
+    <li>propietățile tuturor elementelor HTML;</li>
+    <li>metodele ce permit accesarea tuturor elementelor;</li>
+    <li>evenimentele pentru toate elementele HTML.</li>
+  </ul>
+</section>
+<section>
+  <h1>Selectarea elementelor din DOM</h1>
+  <p>
+    Pentru a manipula elementele din DOM, trebuie mai întâi să le găsim. Astfel, JavaScript ne oferă
+    mai multe metode de găsi elementele: după ID, după clasă, după tag sau chiar folosind selectori
+    CSS mai complecși.
+  </p>
+  <section>
+    <h2>După ID</h2>
+    <p class="definition">
+      Selectarea elementului HTML după ID-ul setat prin atribut. În cazul în care nu există un element
+      cu ID-ul dat, se va returna <code>null</code>. Poate fi aplicat doar pe obiectul <code>document</code>.
+    </p>
+    <p>
+      <b>Sintaxă:</b> <code highlight="document.getElementById(id)"></code>
+    </p>
+    <app-code-example gistId="lab5/get-element-by-id"></app-code-example>
+  </section>
+  <section>
+    <h2>După clasă</h2>
+    <p class="definition">
+      Selectarea elementelor HTML după o clasă CSS dată. Returnează un obiect de tip
+      <code>HTMLCollection</code> conținând toate elementele găsite.
+    </p>
+    <p>
+      <b>Sintaxă:</b> <code highlight="document.getElementsByClassName(className)"></code>
+    </p>
+    <p>
+      <b>Exemplu:</b> <code highlight='document.getElementsByClassName("circle")'></code> va selecta
+      toate elementele ce au clasa <code>circle</code>.
+    </p>
+    <app-tip>
+      Ce este <code>HTMLCollection</code>? Este un obiect enumerabil, precum Array-ul,
+      însă dispune de mai puține metode. Putem converti acest obiect la array prin
+      object spread, de exemplu, și să obținem funcționalitatea unui array:
+      <code>let arr = [...collection];</code>
+    </app-tip>
+  </section>
+  <section>
+    <h2>După tag</h2>
+    <p class="definition">
+      Selectarea elementelor HTML după un tag HTML dat. Returnează un obiect de tip
+      <code>HTMLCollection</code> conținând toate elementele găsite.
+    </p>
+    <p>
+      <b>Sintaxă:</b> <code highlight="document.getElementsByTagName(tag)"></code>
+    </p>
+    <p>
+      <b>Exemplu:</b> <code highlight='document.getElementsByTagName("div")'></code> va selecta
+      toate div-urile.
+    </p>
+  </section>
+  <section>
+    <h2>Folosind selectori CSS</h2>
+    <section>
+      <h3><code highlight="querySelector"></code></h3>
+      <p class="definition">
+        Selectarea elementului HTML folosind selectorul CSS. În cazul în care nu există un element,
+        se va returna <code>null</code>.
+      </p>
+      <p>
+        <b>Sintaxă:</b> <code highlight="document.querySelector(cssSelector)"></code>
+      </p>
+      <p>
+        <b>Exemplu:</b> <code highlight='document.querySelector("section > h1")'></code> va selecta
+        un element cu tag-ul <code>h1</code>, copil direct al unei secțiuni.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="querySelectorAll"></code></h3>
+      <p class="definition">
+        Selectarea elementelor HTML folosind selectorul CSS. Returnează un obiect de tip
+        <code>NodeList</code> conținând toate elementele găsite.
+      </p>
+      <p>
+        <b>Sintaxă:</b> <code highlight="document.querySelectorAll(cssSelector)"></code>
+      </p>
+      <p>
+        <b>Exemplu:</b> <code highlight='document.querySelectorAll("#navigation li")'></code> va selecta
+        toate elementele cu tag-ul <code>li</code>, copii ai elementului cu ID-ul <code>navigation</code>.
+      </p>
+      <p>
+        <code>NodeList</code> este, similar cu <code>HTMLCollection</code> un obiect enumerabil.
+      </p>
+    </section>
+  </section>
+</section>
+<section>
+  <h1>Noduri în DOM</h1>
+  <p>
+    Având în vedere că structura unui document HTML este arborescentă, interfața <code>Node</code>
+    este implementată drept o clasă abstractă ce permite navigarea prin arborele respectiv.
+    Având în vedere că <code>Node</code> este o clasă abstractă, nu vom vedea niciodată un
+    simplu obiect <code>Node</code>, obiectele ce se bazează pe funcționalitățile acestei
+    clase bazându-se pe subclase ale acesteia, precum: <code>Document</code>, <code>Element</code>,
+    <code>Text</code>, etc.   
+  </p>
+  <section class="following-defs">
+    <h2>Proprietăți</h2>
+    <section class="read-only">
+      <h3><code>Node.nodeName</code></h3>
+      <p class="definition">
+        Returnează un string conținând numele nodului. În cazul în care nodul este <code>HTMLElement</code>,
+        se va returna numele tag-ului; în cazul în care nodul este de tip <code>Text</code> se va returna
+        <code>#text</code>, etc.
+      </p>
+    </section>
+    <section class="read-only">
+      <h3><code>Node.childNodes</code></h3>
+      <p class="definition">
+        Returnează un <code>NodeList</code> ce conține nodurile copii. Dacă copii nodului se schimbă,
+        atunci și lista se va schimba.
+      </p>
+    </section>
+    <section class="read-only">
+      <h3><code>Node.firstChild</code></h3>
+      <p class="definition">
+        Returnează un <code>Node</code> reprezentând primul copil direct al nodului sau <code>null</code>
+        în cazul în care acesta nu există.
+      </p>
+    </section>
+    <section class="read-only">
+      <h3><code>Node.lastChild</code></h3>
+      <p class="definition">
+        Returnează un <code>Node</code> reprezentând ultimul copil direct al nodului sau <code>null</code>
+        în cazul în care acesta nu există.
+      </p>
+    </section>
+    <section class="read-only">
+      <h3><code>Node.previousSibling</code></h3>
+      <p class="definition">
+        Returnează un <code>Node</code> reprezentând fratele anterior al nodului sau <code>null</code>
+        în cazul în care nu există.
+      </p>
+    </section>
+    <section class="read-only">
+      <h3><code>Node.nextSibling</code></h3>
+      <p class="definition">
+        Returnează un <code>Node</code> reprezentând fratele următor al nodului sau <code>null</code>
+        în cazul în care nu există.
+      </p>
+    </section>
+    <section class="read-only">
+      <h3><code>Node.parentNode</code></h3>
+      <p class="definition">
+        Returnează un <code>Node</code> reprezentând părintele nodului. În cazul în care nu există
+        un asfel de nod, se returnează <code>null</code>.
+      </p>
+    </section>
+    <section class="read-only">
+      <h3><code>Node.parentElement</code></h3>
+      <p class="definition">
+        Returnează un <code>Element</code> reprezentând părintele nodului. În cazul în nodul nu are
+        un părinte sau acesta nu este un <code>Element</code>, se returnează <code>null</code>.
+      </p>
+    </section>
+  </section>
+  <section class="following-defs">
+    <h2>Metode</h2>
+    <section>
+      <h3><code>Node.contains(child)</code></h3>
+      <p class="definition">
+        Returnează <code>true</code> dacă nodul <code>child</code> aparține nodului pe care
+        se face apelarea și <code>false</code> în caz contrar.
+      </p>
+    </section>
+    <section>
+      <h3><code>Node.appendChild(node)</code></h3>
+      <p class="definition">
+        Adaugă nodul <code>node</code> la nodul pe care se apelează. În cazul în care <code>node</code>
+        se află deja în DOM, acesta va fi detașat din poziția sa curentă și introdus la noua poziție.
+      </p>
+    </section>
+    <section>
+      <h3><code>Node.insertBefore(node, reference)</code></h3>
+      <p class="definition">
+        Adaugă nodul <code>node</code> înaintea nodului <code>reference</code> drept copil
+        al nodului pe care se face apelarea.
+      </p>
+    </section>
+    <section>
+      <h3><code>Node.removeChild(node)</code></h3>
+      <p class="definition">
+        Șterge nodul <code>node</code> din lista de copii a nodului pe care se face apelarea.
+      </p>
+    </section>
+    <section>
+      <h3><code>Node.replaceChild(newChild, oldChild)</code></h3>
+      <p class="definition">
+        Înlocuiește nodul <code>newChild</code> cu <code>oldChild</code> în lista de copii a nodului
+        pe care se face apelarea.
+      </p>
+    </section>
+  </section>
+</section>
+<section>
+  <h1>Proprietăți și metode ale elementelor HTML</h1>
+  <p>
+    <code>Element</code> este clasa cea mai generală ce descrie un element dintr-un document HTML.
+    Aceasta conține subclase precum <code>HTMLElement</code>, care este clasa de bază pentru elementele
+    HTML sau <code>SVGElement</code>, clasa de bază pentru elementele SVG.
+  </p>
+  <section class="following-defs">
+    <h2>Proprietăți</h2>
+    <p>
+      Așa cum a fost prezentat și anterior, atributele unui element sunt mapate la proprietăți. Modificarea
+      proprietăților rezultă în modificarea atributelor și viceversa. Totuși, există unele atribute, precum
+      cele pentru clasă sau stil care se accesează diferit.
+    </p>
+    <section>
+      <h3><code>Element.className</code></h3>
+      <p class="definition">
+        Obține sau setează valoarea atributului <code>class</code> al unui element. În cazul în care
+        atributul nu este setat, va întoarce <code>""</code> (string gol).
+      </p>
+    </section>
+    <section class="read-only following-defs">
+      <h3><code>Element.classList</code></h3>
+      <p class="definition">
+        Returnează un <code>DOMTokenList</code> reprezentând conținul atributului <code>class</code>
+        al unui element. 
+      </p>
+      <section>
+        <h4><code>DOMTokenList.add(...tokens)</code></h4>
+        <p class="definition">
+          Adaugă un număr nedefinit de tokeni la listă.
+        </p>
+        <p>
+          <b>Exemplu:</b> <code>tokenList.add('token1', 'token2');</code>
+        </p>
+      </section>
+      <section>
+        <h4><code>DOMTokenList.remove(...tokens)</code></h4>
+        <p class="definition">
+          Șterge un număr nedefinit de tokeni din listă.
+        </p>
+        <p>
+          <b>Exemplu:</b> <code>tokenList.remove('token1');</code>
+        </p>
+      </section>
+      <section>
+        <h4><code>DOMTokenList.replace(oldToken, newToken)</code></h4>
+        <p class="definition">
+          Înlocuiește <code>oldToken</code> cu <code>newToken</code>.
+        </p>
+        <p>
+          <b>Exemplu:</b> <code>tokenList.replace('high', 'medium');</code>
+        </p>
+      </section>
+    </section>
+    <section>
+      <h3><code>HTMLElement.style</code></h3>
+      <p class="definition">
+        Returnează un <code>CSSStyleDeclaration</code> reprezentând conținul atributului <code>style</code>
+        al unui element.
+      </p>
+      <p>
+        Obiectul returat conține câte o proprietate pentru fiecare proprietate CSS existentă, însă numele
+        proprietăților sunt în format <i>camel case</i>. De exemplu, <code>padding-left</code> devine
+        <code>paddingLeft</code>. Este necesar ca atunci când setăm proprietățile să respectăm sintaxa
+        acestora, altfel JavaScript va ignora setarea acestora.
+      </p>
+      <p>
+        <b>Exemplu:</b> <code>element.style.margin = "20px 10px";</code>
+      </p>
+    </section>
+    <section>
+      <h3><code>HTMLElement.innerHTML</code></h3>
+      <p class="definition">
+        Obține sau setează codul HTML din interiorul elementului.
+      </p>
+      <p>
+        <b>Exemplu:</b> <code>element.innerHTML = "Hello!";</code>
+      </p>
+    </section>
+    <section>
+      <h3><code>HTMLElement.innerText</code></h3>
+      <p class="definition">
+        Obține sau setează textul din interiorul elementului. În cazul setării line break-urile devin
+        tag-uri <code highlight="<br>"></code>, iar în cazul obținerii viceversa.
+      </p>
+      <p>
+        <b>Exemplu:</b> <code>element.innerText = "Hello\nWorld!";</code>
+      </p>
+    </section>
+    <section class="read-only">
+      <h3><code>Element.clientWidth</code></h3>
+      <p class="definition">
+        Obține lungimea în pixeli a unui element, incluzând padding-ul. Este zero pentru elemente inline sau care
+        nu au proprietăți CSS.
+      </p>
+    </section>
+    <section class="read-only">
+      <h3><code>Element.clientHeight</code></h3>
+      <p class="definition">
+        Obține înălțimea în pixeli a unui element, incluzând padding-ul. Este zero pentru elemente inline sau care
+        nu au proprietăți CSS.
+      </p>
+    </section>
+    <section class="read-only">
+      <h3><code>HTMLElement.offsetWidth</code></h3>
+      <p class="definition">
+        Obține lungimea în pixeli a unui element, incluzând padding-ul și bordurile.
+      </p>
+    </section>
+    <section class="read-only">
+      <h3><code>HTMLElement.offsetHeight</code></h3>
+      <p class="definition">
+        Obține înălțimea în pixeli a unui element, incluzând padding-ul și bordurile.
+      </p>
+    </section>
+    <section class="read-only">
+      <h3><code>HTMLElement.offsetLeft</code></h3>
+      <p class="definition">
+        Obține distanța de la bordura din stânga a elementului până la bordura din stânga a părintelui acestuia.
+      </p>
+    </section>
+    <section class="read-only">
+      <h3><code>HTMLElement.offsetTop</code></h3>
+      <p class="definition">
+        Obține distanța de la bordura de sus a elementului până la bordura de sus a părintelui acestuia.
+      </p>
+    </section>
+    <section class="read-only">
+      <h3><code>Element.scrollWidth</code></h3>
+      <p class="definition">
+        Obține lungimea scroll-ului unui element.
+      </p>
+    </section>
+    <section class="read-only">
+      <h3><code>Element.scrollHeight</code></h3>
+      <p class="definition">
+        Obține înălțimea scroll-ului unui element.
+      </p>
+    </section>
+    <section>
+      <h3><code>Element.scrollLeft</code></h3>
+      <p class="definition">
+        Obține sau setează offset-ul scroll-ului pe orizontală (cât de mult este scrollat).
+      </p>
+    </section>
+    <section>
+      <h3><code>Element.scrollTop</code></h3>
+      <p class="definition">
+        Obține sau setează offset-ul scroll-ului pe verticală.
+      </p>
+    </section>
+    <section class="read-only">
+      <h3><code>Element.previousElementSibling</code></h3>
+      <p class="definition">
+        Returnează un <code>Element</code> reprezentând fratele anterior al elementului sau <code>null</code>
+        în cazul în care nu există.
+      </p>
+    </section>
+    <section class="read-only">
+      <h3><code>Element.nextElementSibling</code></h3>
+      <p class="definition">
+        Returnează un <code>Element</code> reprezentând fratele următor al elementului sau <code>null</code>
+        în cazul în care nu există.
+      </p>
+    </section>
+    <section class="read-only">
+      <h3><code>Element.children</code></h3>
+      <p class="definition">
+        Returnează un live <code>HTMLCollection</code> reprezentând elementele copii.
+      </p>
+    </section>
+    <section class="read-only">
+      <h3><code>Element.firstElementChild</code></h3>
+      <p class="definition">
+        Returnează primul copil de tip <code>Element</code>. În cazul în care nu există, se returnează 
+        <code>null</code>.
+      </p>
+    </section>
+    <section class="read-only">
+      <h3><code>Element.lastElementChild</code></h3>
+      <p class="definition">
+        Returnează ultimul copil de tip <code>Element</code>. În cazul în care nu există, se returnează 
+        <code>null</code>.
+      </p>
+    </section>
+    <section class="read-only">
+      <h3><code>HTMLElement.dataset</code></h3>
+      <p class="definition">
+        Returnează un obiect cu toate atributele <code>data-*</code> și valorile acestora.
+        Valorile proprietăților din obiect pot fi modificate, echivalând cu modificarea valorii
+        atributelor.
+      </p>
+      <p>
+        <b>Exemplu:</b>
+        <code>element.dataset.itemId</code> poate obține sau seta valoarea din atributul
+        <code>data-item-id</code>.
+      </p>
+    </section>
+  </section>
+  <section class="following-defs">
+    <h2>Metode</h2>
+    <section>
+      <h3><code>Element.append(...nodes)</code></h3>
+      <p class="definition">
+        Inserează un număr nedefinit de noduri <code>nodes</code> după ultimul copil al elementului
+        pe care se face apelul.
+      </p>
+    </section>
+    <section>
+      <h3><code>Element.prepend(...nodes)</code></h3>
+      <p class="definition">
+        Inserează un număr nedefinit de noduri <code>nodes</code> înainte de primul copil al elementului
+        pe care se face apelul.
+      </p>
+    </section>
+    <section>
+      <h3><code>Element.before(...nodes)</code></h3>
+      <p class="definition">
+        Inserează un număr nedefinit de noduri <code>nodes</code> înainte de elementul
+        pe care se face apelul.
+      </p>
+    </section>
+    <section>
+      <h3><code>Element.after(...nodes)</code></h3>
+      <p class="definition">
+        Inserează un număr nedefinit de noduri <code>nodes</code> după elementul
+        pe care se face apelul.
+      </p>
+    </section>
+    <section>
+      <h3><code>Element.remove()</code></h3>
+      <p class="definition">
+        Șterge elementul din lista de copii a părintelui acestuia.
+      </p>
+    </section>
+    <section>
+      <h3><code>Element.scrollTo(options)</code></h3>
+      <p class="definition">
+        Setează scroll-ul unui element la poziția definită în <code>options</code>.
+      </p>
+      <dl>
+        <dt><code>options</code></dt>
+        <dd>
+          Dicționar cu următorii termeni:
+          <dl>
+            <dt><code>top?</code></dt>
+            <dd>Numărul de pixeli pe axa verticală cu care să se scrolleze elementul.</dd>
+            <dt><code>left?</code></dt>
+            <dd>Numărul de pixeli pe axa orizontală cu care să se scrolleze elementul.</dd>
+            <dt><code>behavior?</code></dt>
+            <dd>
+              Modul în care se va face scroll-ul. Poate fi <code>smooth</code>, caz în care
+              scrollarea va fi animată; <code>instant</code>, scrollarea se face instant;
+              <code>auto</code>, browser-ul decide.
+            </dd>
+          </dl>
+        </dd>
+      </dl>
+    </section>
+    <section>
+      <h3><code>Element.scrollBy(options)</code></h3>
+      <p class="definition">
+        Scrollează un element cu cantitatea dată în <code>options</code>.
+      </p>
+    </section>
+    <section>
+      <h3><code>Element.getBoundingClientRect()</code></h3>
+      <p class="definition">
+        Returnează un <code>DOMRect</code> ce conține informații despre mărimea
+        și poziția acestuia raportată la viewport.
+      </p>
+      <dl>
+        <dt><code>DOMRect</code></dt>
+        <dd>
+          Obiect ce are următoarele proprietăți:
+          <dl>
+            <dt><code>width</code></dt>
+            <dd>Lungimea elementului (cu tot cu padding și borduri)</dd>
+            <dt><code>height</code></dt>
+            <dd>înălțimea elementului (cu tot cu padding și borduri)</dd>
+            <dt><code>top</code> și <code>y</code></dt>
+            <dd>distanța de la partea de sus a elementului la partea de sus a viewport-ului</dd>
+            <dt><code>bottom</code></dt>
+            <dd>distanța de la partea de jos a elementului la partea de sus a viewport-ului</dd>
+            <dt><code>left</code> și <code>x</code></dt>
+            <dd>distanța de la partea din stânga a elementului la partea din stânga a viewport-ului</dd>
+            <dt><code>right</code></dt>
+            <dd>distanța de la partea din dreapta a elementului la partea din stânga a viewport-ului</dd>
+          </dl>
+        </dd>
+      </dl>
+      <app-code-example gistId="lab5/get-bounding-client-rect"></app-code-example>
+    </section>
+  </section>
+</section>

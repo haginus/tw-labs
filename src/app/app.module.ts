@@ -22,6 +22,7 @@ import { Lab2Component } from './labs/lab2/lab2.component';
 import { Lab3Component } from './labs/lab3/lab3.component';
 import { HomeworkPackComponent } from './components/homework-pack/homework-pack.component';
 import { Lab4Component } from './labs/lab4/lab4.component';
+import { Lab5Component } from './labs/lab5/lab5.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { Lab4Component } from './labs/lab4/lab4.component';
     Lab3Component,
     HomeworkPackComponent,
     Lab4Component,
+    Lab5Component,
   ],
   imports: [
     BrowserModule,

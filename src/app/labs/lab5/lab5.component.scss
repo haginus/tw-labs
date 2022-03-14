@@ -1,0 +1,16 @@
+.read-only {
+  h3::after {
+    content: "Read only";
+    padding: 4px 6px;
+    margin-left: 6px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    color: #616161;
+    font-size: 12px;
+  }
+}
+
+code {
+  white-space: pre-line;
+  word-break: break-word;
+}

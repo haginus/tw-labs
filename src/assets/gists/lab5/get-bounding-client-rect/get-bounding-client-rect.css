@@ -1,0 +1,12 @@
+body {
+  padding-top: 50vh;
+  padding-bottom: 100vh;
+  padding-right: 200vw;
+  margin: 0;
+}
+
+.box {
+  background: lightblue;
+  width: 80vw;
+  margin-left: 10vw;
+}
