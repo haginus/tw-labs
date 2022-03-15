@@ -501,5 +501,84 @@
       </dl>
       <app-code-example gistId="lab5/get-bounding-client-rect"></app-code-example>
     </section>
+    <section>
+      <h3><code>HTMLElement.click()</code></h3>
+      <p class="definition">
+        Trimite un eveniment de click către elementul respectiv (simulează click-ul pe element).
+      </p>
+    </section>
+    <section>
+      <h3><code>HTMLElement.focus()</code></h3>
+      <p class="definition">
+        Focusează elementul.
+      </p>
+    </section>
+    <section>
+      <h3><code>HTMLElement.blur()</code></h3>
+      <p class="definition">
+        Defocusează elementul.
+      </p>
+    </section>
+  </section>
+</section>
+<section>
+  <h1>Crearea și ștergerea elementelor</h1>
+  <p>
+    În următorul exemplu, vom studia metodele <code>createElement()</code> și
+    <code>removeChild()</code> ce ne permit să adăugăm și respectiv ștergem elemente din DOM.
+    În plus, se poate urmări cum se adaugă clase, modifică stiluri, etc.
+  </p>
+  <app-code-example gistId="lab5/create-remove-elements"></app-code-example>
+</section>
+<section>
+  <h1>Teme</h1>
+  
+  <section>
+    <h2>Tema 5.1</h2>
+    <app-code-example gistId="lab5/homework-1"></app-code-example>
+    <p>
+      Scrieți o funcție care să parcurgă DOM-ul și să schimbe conținutul elementelor <code highlight="<li>"></code>
+      în <code>[emoji] Anotimpul [i] (urmat de [next])</code>, unde <code>emoji</code> este emoji-ul inițial,
+      <code>i</code> este numărul de ordine al elementului,
+      iar <code>next</code> este următorul anotimp în listă (numele original al acestuia).
+    </p>
+  </section>
+  <section>
+    <h2>Tema 5.2</h2>
+    <p>
+      Scrieți funcția <code>addInfo(info, class)</code> ce va adăuga la finalul fiecărui element
+      <code highlight="<article>"></code> ce este copil al unui element <code highlight="<article>"></code>
+      un paragraf cu textul <code>info</code> și clasa <code>class</code>. Testați funcția pe un document
+      HTML scris de voi.
+    </p>
+  </section>
+  <section>
+    <h2>Tema 5.3</h2>
+    <p>
+      Creați un document HTML cu două paragrafe și un buton. Scrieți cod HTML care asigură următoarele:
+    </p>
+    <ul>
+      <li>la hover pe unul din paragrafe să se schimbe stilul celuilalt</li>
+      <li>
+        la apăsarea butonului să se deschidă o singură fereastră <i>prompt</i> în care utilizatorul va
+        specifica numărul paragrafului și un cuvânt. Se va afișa apoi numărul de apariții ale cuvântului
+        respectiv în paragraful selectat printr-o fereastră <i>alert</i>.
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h2>Tema 5.4</h2>
+    <p>
+      Creați un un fișier HTML care să conțină un buton <i>Adaugă</i> și o secțiune
+      cu titlul <i>informații</i>. Adăugați apoi cod JavaScript care să stocheze informații
+      despre persoane: nume, CNP și data nașterii. Obțineți aceste informații despre fiecare
+      persoană în parte folosind <code>prompt()</code> pentru fiecare atribut. Verificați validitatea
+      CNP-ului și datei nașterii folosind 
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp" target="_blank">
+        expresii regex (RegExp)
+      </a>. Scrieți o funcție care primește un obiect de tip Persoană și returnează un String cu toate datele
+      despre aceasta. Folosiți această funcție pentru a afișa în DOM lista de persoane. Lista va fi una ordonată,
+      creată folosind JavaScript și va fi înglobată în secțiunea cu titlul <i>Informații</i>.
+    </p>
   </section>
 </section>

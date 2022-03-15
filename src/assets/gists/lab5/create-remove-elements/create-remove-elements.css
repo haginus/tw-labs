@@ -1,0 +1,45 @@
+html {
+  font-size: 12px;
+}
+
+.actions {
+  display: flex;
+}
+
+.actions button:not(:last-child) {
+  margin-right: 4px;
+}
+
+.actions .spacer {
+  flex: 1;
+}
+
+.news-article {
+  border: 2px solid;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  display: flex;
+}
+
+.news-article img {
+  height: 100%;
+  max-width: 7rem;
+}
+
+.news-article .content {
+  flex: 1;
+  margin-left: 1rem;
+}
+
+.news-article .content h1 {
+  font-size: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.news-article .content p {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+

@@ -1,0 +1,19 @@
+{
+  "title": null,
+  "showFileNames": false,
+  "result": true,
+  "files": [
+    {
+      "name": "create-remove-elements.html",
+      "fileType": "html"
+    },
+    {
+      "name": "create-remove-elements.css",
+      "fileType": "css"
+    },
+    {
+      "name": "create-remove-elements.js",
+      "fileType": "js"
+    }
+  ]
+}
