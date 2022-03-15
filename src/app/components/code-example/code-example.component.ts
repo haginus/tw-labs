@@ -123,6 +123,7 @@ export class CodeExampleComponent implements AfterViewInit, OnDestroy {
     let result = code.replace(/console.log/g, 'sendLog');
     const sendLoadEvent = `
       window.parent.postMessage({ message: 'onload', from: '${this.gistId}' }, window.origin);
+      observer.observe(document.body, observerConfig);
     `;
     if(result.includes("window.onload")) {
       const re = /window\.onload\s*=\s*(function)*\(\)\s*(=>)*\s*{(?<body>(.|\n)*)}/gm;
@@ -141,7 +142,16 @@ export class CodeExampleComponent implements AfterViewInit, OnDestroy {
         }
       <\/script>
     `;
-    return sendLogFn + result;
+    let mutationObserserFn = `
+      <script>
+        function observeCallback() {
+          window.parent.postMessage({ message: 'mutation', from }, window.origin);
+        }
+        const observer = new MutationObserver(observeCallback);
+        const observerConfig = { attributes: true, childList: true, subtree: true };
+      <\/script>
+    `;
+    return mutationObserserFn + sendLogFn + result;
   }
 
   getSetConsoleLogFunction() {
@@ -154,6 +164,8 @@ export class CodeExampleComponent implements AfterViewInit, OnDestroy {
         this.handleConsoleLog(event);
       } else if(message == 'onload') {
         this.handleOnload();
+      } else if(message == 'mutation') {
+        this.calculateHeight();
       }
     }
     return this._listenFn;
@@ -169,12 +181,16 @@ export class CodeExampleComponent implements AfterViewInit, OnDestroy {
     this.consoleLogs.push(values);
   }
 
-  handleOnload() {
+  calculateHeight() {
     const iframe = this.resultFrame.nativeElement;
-    this.srcChanged = false;
     const maxHeight = window.innerHeight / 2;
     const scrollHeight = iframe.contentDocument.querySelector('body').scrollHeight;
     iframe.parentElement.style.minHeight = Math.min(scrollHeight, maxHeight) + "px";
+  }
+
+  handleOnload() {
+    this.srcChanged = false;
+    this.calculateHeight();
   }
 }
 
