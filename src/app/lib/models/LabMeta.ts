@@ -5,4 +5,5 @@ export interface LabMeta {
   description: string;
   homeworkLink?: string;
   homeworkDue?: string;
+  availableOn?: string;
 }
