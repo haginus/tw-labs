@@ -66,9 +66,9 @@ export class LabService {
           id: 5,
           title: "JavaScript: Manipularea DOM-ului",
           subtitle: "Laboratorul 5",
-          description: "",
-          // homeworkLink: 'https://forms.gle/wEvQ9NuwS8ch42pR7',
-          // homeworkDue: "2022-03-24T12:00:00+02:00"
+          description: "Noduri și elemente. Găsirea elementelor în DOM. Manipularea DOM-ului prin adăugarea, modificarea sau ștergerea de elemente.",
+          homeworkLink: 'https://forms.gle/6NjX1m3Akr1oEy8v6',
+          homeworkDue: "2022-03-24T12:00:00+02:00"
         }
       )
     ]);
