@@ -23,7 +23,7 @@ export class LabService {
         subtitle: "Laboratorul 1",
         description: "Recapitulare a cunoștințelor de HTML din liceu și înțelegerea noțiunilor de bază.",
         homeworkLink: 'https://forms.gle/aJXtMSuu3YJpgGt27',
-        homeworkDue: "2022-02-24T12:00:00+02:00"
+        homeworkDue: "2022-02-24T23:59:59+02:00"
       }
     ),
     new Lab(
@@ -34,7 +34,7 @@ export class LabService {
         subtitle: "Laboratorul 2",
         description: "Sintaxă, moduri de includere, valori și unități de măsură, proprietăți CSS comune, selectori, etc.",
         homeworkLink: 'https://forms.gle/26SiZGVPdx644AjP6',
-        homeworkDue: "2022-03-17T12:00:00+02:00"
+        homeworkDue: "2022-03-17T23:59:59+02:00"
       }
     ),
     new Lab(
@@ -45,7 +45,7 @@ export class LabService {
         subtitle: "Laboratorul 3",
         description: "Metode de poziționare a elementelor, flex, grid, tranziții și animații și media queries.",
         homeworkLink: 'https://forms.gle/zW64tWiHUHNAR1RG7',
-        homeworkDue: "2022-03-17T12:00:00+02:00"
+        homeworkDue: "2022-03-17T23:59:59+02:00"
       }
     ),
     new Lab(
@@ -56,7 +56,7 @@ export class LabService {
         subtitle: "Laboratorul 4",
         description: "Moduri de includere, tipuri de date, variabile, operatori, funcții, statements, etc.",
         homeworkLink: 'https://forms.gle/wEvQ9NuwS8ch42pR7',
-        homeworkDue: "2022-03-24T12:00:00+02:00",
+        homeworkDue: "2022-03-24T23:59:59+02:00",
       }
     ),
     new Lab(
@@ -67,7 +67,7 @@ export class LabService {
         subtitle: "Laboratorul 5",
         description: "Noduri și elemente. Găsirea elementelor în DOM. Manipularea DOM-ului prin adăugarea, modificarea sau ștergerea de elemente.",
         homeworkLink: 'https://forms.gle/6NjX1m3Akr1oEy8v6',
-        homeworkDue: "2022-03-24T12:00:00+02:00",
+        homeworkDue: "2022-03-24T23:59:59+02:00",
         availableOn: "2022-03-17T12:00:00+02:00"
       }
     )
