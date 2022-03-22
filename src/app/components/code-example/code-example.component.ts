@@ -16,6 +16,7 @@ export class CodeExampleComponent implements AfterViewInit, OnDestroy {
   @Input('gistId') gistId: string;
 
   @ViewChild('resultFrame') resultFrame: ElementRef;
+  @ViewChild('consoleCt') consoleCt: ElementRef;
 
   gist!: Gist;
 
@@ -179,6 +180,10 @@ export class CodeExampleComponent implements AfterViewInit, OnDestroy {
       return value;
     });
     this.consoleLogs.push(values);
+    setTimeout(() => {
+      const el = this.consoleCt.nativeElement;
+      el.scrollTop = el.scrollHeight;
+    }, 1);
   }
 
   calculateHeight() {
