@@ -78,9 +78,10 @@ export class LabService {
         id: 6,
         title: "Formulare HTML și evenimente JavaScript",
         subtitle: "Laboratorul 6",
-        description: "",
+        description: "Formulare HTML. Diferite evenimente în JavaScript și proprietăți ale acestora. Moduri de atașare.",
         homeworkLink: 'https://forms.gle/mxsT1XjzvtpBwWD48',
-        homeworkDue: "2022-03-31T23:59:59+02:00"
+        homeworkDue: "2022-03-31T23:59:59+02:00",
+        availableOn: "2022-03-24T12:00:00+02:00"
       }
     )
   ]
