@@ -1,0 +1,19 @@
+{
+  "title": null,
+  "showFileNames": false,
+  "result": true,
+  "files": [
+    {
+      "name": "stop-propagation.html",
+      "fileType": "html"
+    },
+    {
+      "name": "stop-propagation.css",
+      "fileType": "css"
+    },
+    {
+      "name": "stop-propagation.js",
+      "fileType": "js"
+    }
+  ]
+}

@@ -136,6 +136,15 @@ code.break {
   word-break: break-word;
 }
 
+code.key {
+  border: 2px solid #e0e0e6;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  font-size: .825rem;
+  background: #fff!important;
+  box-shadow: inset 0 -1px 0 0 #e0e0e6;
+}
+
 dl {
   dd {
     margin: 8px 0;

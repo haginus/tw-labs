@@ -5,6 +5,7 @@ import { Lab2Component } from '../labs/lab2/lab2.component';
 import { Lab3Component } from '../labs/lab3/lab3.component';
 import { Lab4Component } from '../labs/lab4/lab4.component';
 import { Lab5Component } from '../labs/lab5/lab5.component';
+import { Lab6Component } from '../labs/lab6/lab6.component';
 import { Lab } from '../lib/models/Lab';
 
 @Injectable({
@@ -69,6 +70,17 @@ export class LabService {
         homeworkLink: 'https://forms.gle/6NjX1m3Akr1oEy8v6',
         homeworkDue: "2022-03-24T23:59:59+02:00",
         availableOn: "2022-03-17T12:00:00+02:00"
+      }
+    ),
+    new Lab(
+      Lab6Component,
+      {
+        id: 6,
+        title: "Formulare HTML și evenimente JavaScript",
+        subtitle: "Laboratorul 6",
+        description: "",
+        homeworkLink: 'https://forms.gle/mxsT1XjzvtpBwWD48',
+        homeworkDue: "2022-03-31T23:59:59+02:00"
       }
     )
   ]

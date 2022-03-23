@@ -1,0 +1,6 @@
+div, p, span {
+  padding: 8px;
+  border: 1px solid;
+  display: block;
+  margin: 12px;
+}

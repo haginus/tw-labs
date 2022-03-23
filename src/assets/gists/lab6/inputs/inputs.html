@@ -1,0 +1,38 @@
+<form>
+  <input type="text" value="Ceva text" name="text"/>
+  <input type="email" placeholder="Email..." name="email" required/>
+  <input type="password" value="secret"/>
+  <input type="number" value="42"/>
+  <input type="date" value="2022-03-19" />
+  <input type="datetime-local" value="2022-03-19T12:59" />
+  <input type="file"/>
+
+  <div>
+    <input type="radio" name="favoriteCar" id="golf"/>
+    <label for="golf">Golf</label>
+    <input type="radio" name="favoriteCar" id="a_class"/>
+    <label for="a_class">A Class</label>
+    <input type="radio" name="favoriteCar" id="logan"/>
+    <label for="logan">Logan</label>
+  </div>
+
+  <div>
+    <input type="checkbox" id="terms"/>
+    <label for="terms">Sunt de acord cu termenii</label>
+  </div>
+
+  <input type="reset"/>
+  <input type="submit"/>
+
+
+</form>
+
+<style>
+  input {
+    margin-bottom: 8px;
+  }
+
+  input:not([type="radio"]):not([type="checkbox"]) {
+    display: block;
+  }
+</style>

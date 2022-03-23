@@ -1,0 +1,663 @@
+<section>
+  <h1>Formulare HTML</h1>
+  <p>
+    Pentru a permite utilizatorilor să introducă input în paginile web, HTML dispune de
+    mai multe elemente.
+  </p>
+  <section>
+    <h2>Elementul <code>form</code></h2>
+    <p>
+      Definind un formular, acesta poate conține mai multe elemente HTML pentru input ale căror
+      valori pot fi transmise către un server. Acesta are următoarele atribute specifice:
+    </p>
+    <ul>
+      <li><code>action</code> - determină la ce adresă vor fi trimise datele</li>
+      <li><code>target</code> - determină în ce fereastră va fi afișat rezultatul (aceleași valori ca în hyperlink)</li>
+      <li><code>method</code> - determină prin ce metodă vor fi transmise datele</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Elementul <code>input</code></h2>
+    <p>
+      Permite introducerea de către utilizator a mai multor tipuri de date. Modul cum arată și ce date acceptă
+      acest element este determinat de atributul său <code>type</code>:
+    </p>
+    <ul>
+      <li>
+        <code highlight='<input type="text">'></code> - Permite introducerea de text
+      </li>
+      <li>
+        <code highlight='<input type="number">'></code> - Permite introducerea de numere
+      </li>
+      <li>
+        <code highlight='<input type="password">'></code> - Permite introducerea de parole.
+        Caracterele introduse în acesta sunt ascunse, având toate formă de disc.
+      </li>
+      <li>
+        <code highlight='<input type="email">'></code> - Permite introducerea de e-mailuri.
+        Textul introdus este validat de browser pentru a fi asigurată calitatea sa de e-mail.
+      </li>
+      <li>
+        <code highlight='<input type="date">'></code> - Permite introducerea de date.
+      </li>
+      <li>
+        <code highlight='<input type="datetime-local">'></code> - Permite introducerea de date și timpuri.
+      </li>
+      <li>
+        <code highlight='<input type="file">'></code> - Permite încărcarea de fișiere
+      </li>
+      <li>
+        <code highlight='<input type="checkbox">'></code> - Afișează un checkbox
+      </li>
+      <li>
+        <code highlight='<input type="radio">'></code> - Afișează un radio button
+      </li>
+      <li>
+        <code highlight='<input type="hidden">'></code> - Input ascuns ce poate avea orice valoare
+      </li>
+      <li>
+        <code highlight='<input type="reset">'></code> - Buton ce resetează formularul la valorile inițiale
+      </li>
+      <li>
+        <code highlight='<input type="submit">'></code> - Buton ce trimite formularul
+      </li>
+    </ul>
+    <app-code-example gistId="lab6/inputs"></app-code-example>
+  </section>
+  <section>
+    <h2>Elementul <code>textarea</code></h2>
+    <p>
+      În cazul în care se dorește introducerea unui text mai lung, elementul 
+      <code highlight="<textarea>"></code> poate fi de folos. Acesta permite scrierea textului
+      pe mai multe linii, spre deosebire de <code highlight='<input type="text">'></code> care
+      afișează textul pe o singură linie. <br>
+      Lungimea și înălțimea elementului pot fi setate folosind atributele <code>cols</code> și
+      <code>rows</code> (sau folosind CSS).
+    </p>
+    <app-code-example gistId="lab6/textarea"></app-code-example>
+  </section>
+  <section>
+    <h2>Elementul <code>select</code></h2>
+    <p>
+      Pentru a permite utilizatorului să aleagă dintr-un set de opțiuni prestabilite, putem
+      folosi elementul <code highlight="<select>"></code>. Opțiunile vor fi definite folosind elemente
+      <code highlight="<option>"></code> în care vom specifica prin atributul <code>value</code> valoarea
+      pe care elementul <code highlight="<select>"></code> o va lua la selectarea opțiunii respective.
+    </p>
+    <app-code-example gistId="lab6/select"></app-code-example>
+  </section>
+  <section>
+    <h2>Atribute elementele de input</h2>
+    <div class="common-table">
+      <table>
+        <tr>
+          <th>Atribut</th>
+          <th>Descriere</th>
+        </tr>
+        <tr *ngFor="let attribute of inputAttributes">
+          <td>
+            <code [highlight]="attribute.name"></code>
+          </td>
+          <td>
+            {{ attribute.description }}
+            <div *ngIf="attribute.availableFor?.length">
+              Disponibil pentru: {{ attribute.availableFor }}
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </section>
+</section>
+
+<section>
+  <h1>Tipuri de evenimente</h1>
+  <section class="following-defs">
+    <h2>Evenimente de user interface</h2>
+    <p>
+      Următoarele evenimente au mai degrabă legătură cu fereastra browser-ului decât
+      cu documentul HTML în sine. Astfel, vom atașa aceste evenimente obiectului <code>window</code>.
+    </p>
+    <section>
+      <h3><code highlight="load"></code></h3>
+      <p class="definition">
+        Se declanșează la momentul în care pagina s-a terminat de încărcat. Poate fi atașat și pe
+        elemente precum imagini, script-uri, etc.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="unload"></code></h3>
+      <p class="definition">
+        Se declanșează la descărcarea paginii. Acest lucru se întâmplă de exemplu când
+        utilizatorul navighează către o altă pagină web sau închide fereastra browser-ului.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="error"></code></h3>
+      <p class="definition">
+        Se declanșează în momentul în care browser-ul găsește o eroare JavaScript sau un fișier
+        care nu există (de exemplu sursa unei imagini).
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="resize"></code></h3>
+      <p class="definition">
+        Se declanșează în momentul în care fereastra este redimensionată.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="scroll"></code></h3>
+      <p class="definition">
+        Se declanșează în momentul în care utilizatorul scrollează în pagină. Poate fi atașat
+        și la alte elemente scrollabile.
+      </p>
+    </section>
+  </section>
+  <section class="following-defs">
+    <h2>Evenimente de focus și blur</h2>
+    <p>
+      Putem urmări elementele pe care utilizatorul le focusează/defocusează folosind următoarele evenimente.
+      Atașăm aceste evenimente pe elementele pe care vrem să monitorizăm focusul.
+    </p>
+    <section>
+      <h3><code highlight="focus"></code></h3>
+      <p class="definition">
+        Se declanșează la momentul în care elementul este focusat.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="blur"></code></h3>
+      <p class="definition">
+        Se declanșează la momentul în care elementul este defocusat.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="focusin"></code></h3>
+      <p class="definition">
+        La fel ca <code>focus</code>, doar că beneficiază de event bubbling.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="focusout"></code></h3>
+      <p class="definition">
+        La fel ca <code>blur</code>, doar că beneficiază de event bubbling.
+      </p>
+    </section>
+  </section>
+  <section class="following-defs">
+    <h2>Evenimente ale mouse-ului</h2>
+    <p>
+      Aceste evenimente se declanșează în momentul mișcării sau apăsării pe butoanele mouse-ului.
+      Toate evenimentele din această secțiune beneficiază de event bubbling.
+    </p>
+    <section>
+      <h3><code highlight="click"></code></h3>
+      <p class="definition">
+        Se declanșează când elementul este apăsat de către utilizator. Este declanșat
+        și la apăsarea tastei enter pe un element focusat.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="dblclick"></code></h3>
+      <p class="definition">
+        Se declanșează când utilizatorul face dublu click.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="contextmenu"></code></h3>
+      <p class="definition">
+        Se declanșează când utilizatorul apasă butonul secundar al mouse-ului (click dreapta).
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="mousedown"></code></h3>
+      <p class="definition">
+        Se declasează când utilizatorul apasă un buton al mouse-ului. Diferențierea între butoane
+        se face prin proprietatea <code>button</code> a evenimentului.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="mouseup"></code></h3>
+      <p class="definition">
+        Se declasează când utilizatorul eliberează un buton al mouse-ului.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="mouseover"></code></h3>
+      <p class="definition">
+        Se declasează când utilizatorul ajunge cu mouse-ul pe element.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="mouseout"></code></h3>
+      <p class="definition">
+        Se declasează când utilizatorul mișcă mouse-ul în afara elementului.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="mousemove"></code></h3>
+      <p class="definition">
+        Se declasează când utilizatorul mișcă mouse-ul în interiorul elementului.
+      </p>
+    </section>
+  </section>
+  <section class="following-defs">
+    <h2>Evenimente touch</h2>
+    <p>
+      În cazul dispozitivelor ce nu dispun de mouse și dispun de un touchscreen, există evenimente
+      echivalente cu cele ale mișcării mouse-ului.
+    </p>
+    <section>
+      <h3><code highlight="touchstart"></code></h3>
+      <p class="definition">
+        Se declanșează când este atins elementul pe ecran (se declanșează pentru fiecare apăsare).
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="touchend"></code></h3>
+      <p class="definition">
+        Se declanșează când apăsarea elementulului este eliberată (se declanșează pentru fiecare apăsare).
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="touchmove"></code></h3>
+      <p class="definition">
+        Se declanșează când apăsarea elementulului își schimbă poziția (se declanșează pentru fiecare apăsare).
+      </p>
+    </section>
+  </section>
+  <section class="following-defs">
+    <h2>Evenimente ale tastaturii</h2>
+    <p>
+      Aceste evenimente se declanșează la apăsarea de taste pe tastatură. De obicei acestea se
+      atașează pe elementele <code highlight="<input>"></code> și <code highlight="<textarea>"></code> sau
+      pe obiectul <code>window</code>.
+    </p>
+    <section>
+      <h3><code highlight="keydown"></code></h3>
+      <p class="definition">
+        Se declanșează când este apăsată o tastă pe tastatură.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="keyup"></code></h3>
+      <p class="definition">
+        Se declanșează când apăsarea unei taste este eliberată.
+      </p>
+    </section>
+  </section>
+  <section class="following-defs">
+    <h2>Evenimente ale formularelor</h2>
+    <p>
+      Aceste evenimente sunt comune formularelor HTML. Sunt folosite pentru validarea datelor din câmpurile
+      <code highlight="<input>"></code> și <code highlight="<textarea>"></code>.
+    </p>
+    <section>
+      <h3><code highlight="submit"></code></h3>
+      <p class="definition">
+        Se declanșează când formularul <code highlight="<form>"></code> este trimis.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="change"></code></h3>
+      <p class="definition">
+        Se declanșează când statusul elementelor se schimbă.
+      </p>
+    </section>
+    <section>
+      <h3><code>input</code></h3>
+      <p class="definition">
+        Se declanșează când valoarea <code highlight="<input>"></code> sau <code highlight="<textarea>"></code>
+        se schimbă.
+      </p>
+    </section>
+  </section>
+</section>
+<section>
+  <h1>Obiectul <code>Event</code></h1>
+  <p>
+    La declanșarea unui eventiment, este transmis un obiect ce conține detalii despre evenimentul respectiv.
+    Proprietățile obiectului diferă în funcție de tipul de eveniment.
+  </p>
+  <section class="following-defs">
+    <h2>Proprietăți și metode generale</h2>
+    <section>
+      <h3><code highlight="Event.bubbles"></code></h3>
+      <p class="definition">
+        Valoare booleană ce indică dacă evenimentul face bubbling în DOM.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="Event.cancelable"></code></h3>
+      <p class="definition">
+        Valoare booleană ce indică dacă evenimentul poate fi anulat.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="Event.currentTarget"></code></h3>
+      <p class="definition">
+        Referință la elementul pe care s-a înregistrat evenimentul.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="Event.target"></code></h3>
+      <p class="definition">
+        Referință la elementul pe care s-a întâmplat evenimentul. Poate fi, de exemplu, copil al
+        elementului pe care s-a înregistrat evenimentul.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="Event.isTrusted"></code></h3>
+      <p class="definition">
+        Specifică dacă evenimentul a fost creat în urma interacțiunii utilizatorului cu pagina (<code>true</code>) sau
+        a fost generat de un script (<code>false</code>).
+      </p>
+      <p>
+        De exemplu, la folosirea metodei <code>Element.click()</code> se generează un eveniment cu
+        <code>isTrusted == false</code>, deoarece nu ulizatorul a făcut click-ul, ci scriptul JavaScript.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="Event.timeStamp"></code></h3>
+      <p class="definition">
+        Timpul la care s-a întâmplat evenimentul (în milisecunde).
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="Event.type"></code></h3>
+      <p class="definition">
+        String reprezentând tipul evenimentului.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="Event.preventDefault()"></code></h3>
+      <p class="definition">
+        Anulează evenimentul. Acțiunile ce s-ar fi întâmplat în mod implicit nu se vor mai 
+        efectua.
+      </p>
+      <app-code-example gistId="lab6/prevent-default"></app-code-example>
+    </section>
+    <section>
+      <h3><code highlight="Event.stopPropagation()"></code></h3>
+      <p class="definition">
+        Oprește evenimentul să se propage mai departe în DOM.
+      </p>
+      <p>
+        În următorul exemplu, pe elementele <code highlight="<div>"></code> și copiii acestora
+        se înregistrează același eveniment, însă la primul fără <code>stopPropagation()</code>,
+        iar la al doilea cu. Apăsați întâi pe elementele <code highlight="<span>"></code>. Ce observați?
+      </p>
+      <app-code-example gistId="lab6/stop-propagation"></app-code-example>
+    </section>
+  </section>
+  <section class="following-defs">
+    <h2>Proprietăți ale <code>MouseEvent</code></h2>
+    <section>
+      <h3><code highlight="MouseEvent.altKey"></code></h3>
+      <p class="definition">
+        Returnează <code>true</code> dacă tasta <code class="key">alt</code>
+        (<code class="key">⌥ Option</code> pe MacOS) era apăsată la momentul declanșării evenimentului.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="MouseEvent.shiftKey"></code></h3>
+      <p class="definition">
+        Returnează <code>true</code> dacă tasta <code class="key">shift</code> era apăsată
+        la momentul declanșării evenimentului.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="MouseEvent.ctrlKey"></code></h3>
+      <p class="definition">
+        Returnează <code>true</code> dacă tasta <code class="key">control</code> era apăsată
+        la momentul declanșării evenimentului.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="MouseEvent.metaKey"></code></h3>
+      <p class="definition">
+        Returnează <code>true</code> dacă tasta <code class="key">meta</code> era apăsată
+        la momentul declanșării evenimentului.
+      </p>
+      <app-tip>
+        Tasta <code class="key">meta</code> este tasta <code class="key">⊞ Windows</code>, respectiv
+        <code class="key">⌘ Command</code> pe tastaturile Macintosh.
+      </app-tip>
+    </section>
+    <section>
+      <h3><code highlight="MouseEvent.button"></code></h3>
+      <p class="definition">
+        Numărul butonului care a fost apăsat (dacă se aplică) când a fost declanșat evenimentul.
+      </p>
+      <ul>
+        <li><code>0</code>: Butonul principal, de obicei cel din stânga</li>
+        <li><code>1</code>: Butonul auxiliar, de obicei roata mouse-ului sau butonul din mijloc</li>
+        <li><code>2</code>: Butonul secundar, de obicei cel din dreapta</li>
+        <li><code>3</code>: Al patrulea buton, de obicei cel de navigare înapoi</li>
+        <li><code>4</code>: Al cincilea buton, de obicei cel de navigare înainte</li>
+      </ul>
+    </section>
+    <section>
+      <h3><code highlight="MouseEvent.clientX"></code></h3>
+      <p class="definition">
+        Coordonata X a cursorului relativă la viewport.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="MouseEvent.clientY"></code></h3>
+      <p class="definition">
+        Coordonata Y a cursorului relativă la viewport.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="MouseEvent.pageX"></code></h3>
+      <p class="definition">
+        Coordonata X a cursorului relativă la tot documentul.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="MouseEvent.pageY"></code></h3>
+      <p class="definition">
+        Coordonata Y a cursorului relativă la tot documentul.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="MouseEvent.offsetX"></code></h3>
+      <p class="definition">
+        Coordonata X a cursorului relativă marginea de padding a elementului țintit.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="MouseEvent.offsetY"></code></h3>
+      <p class="definition">
+        Coordonata Y a cursorului relativă marginea de padding a elementului țintit.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="MouseEvent.relatedTarget"></code></h3>
+      <p class="definition">
+        Ținta secundară a evenimentului, dacă există.
+      </p>
+      <p>
+        De exemplu, ținta secundară pentru evenimentul <code>mouseenter</code> este
+        elementul părăsit în momentul declanșării elementului.
+      </p>
+    </section>
+  </section>
+  <section class="following-defs">
+    <h2>Proprietăți ale <code>FocusEvent</code></h2>
+    <section>
+      <h3><code highlight="FocusEvent.relatedTarget"></code></h3>
+      <p class="definition">
+        Ținta secundară a evenimentului, dacă există.
+      </p>
+    </section>
+  </section>
+  <section class="following-defs">
+    <h2>Proprietăți ale <code>KeyboardEvent</code></h2>
+    <section>
+      <h3><code highlight="KeyboardEvent.altKey"></code></h3>
+      <p class="definition">
+        Returnează <code>true</code> dacă tasta <code class="key">alt</code>
+        (<code class="key">⌥ Option</code> pe MacOS) era apăsată la momentul declanșării evenimentului.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="KeyboardEvent.shiftKey"></code></h3>
+      <p class="definition">
+        Returnează <code>true</code> dacă tasta <code class="key">shift</code> era apăsată
+        la momentul declanșării evenimentului.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="KeyboardEvent.ctrlKey"></code></h3>
+      <p class="definition">
+        Returnează <code>true</code> dacă tasta <code class="key">control</code> era apăsată
+        la momentul declanșării evenimentului.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="KeyboardEvent.metaKey"></code></h3>
+      <p class="definition">
+        Returnează <code>true</code> dacă tasta <code class="key">meta</code> era apăsată
+        la momentul declanșării evenimentului.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="KeyboardEvent.code"></code></h3>
+      <p class="definition">
+        Returnează codul tastei apăsate. Folosiți
+        <a href="http://keycode.info/" target="_blank">acest site</a> pentru a afla codurile.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="KeyboardEvent.key"></code></h3>
+      <p class="definition">
+        Returnează valoarea tastei apăsate.
+      </p>
+      <p>
+        De exemplu, la apăsarea tastei <code class="key">Space</code> se va returna <code>' '</code> (spațiu).
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="KeyboardEvent.code"></code></h3>
+      <p class="definition">
+        Returnează codul tastei apăsate.
+      </p>
+    </section>
+    <section>
+      <h3><code highlight="KeyboardEvent.repeat"></code></h3>
+      <p class="definition">
+        Returnează <code>true</code> dacă tasta este ținută apăsată astfel încât se repetă automat.
+      </p>
+    </section>
+  </section>
+</section>
+<section>
+  <h1>Atașarea evenimentelor</h1>
+  <p>
+    Există două moduri în care putem atașa evenimente la elementele din pagina noastră HTML.
+  </p>
+  <section>
+    <h2>
+      Setând atributele legate de evenimente ale elementor
+    </h2>
+    <p>
+      Toate obiectele din DOM au atribute de tipul <code>on*</code>, unde <code>*</code> reprezintă
+      numele evenimentului pe care vrem să-l atașăm. De exemplu, pentru a atașa un eveniment de click,
+      vom scrie <code highlight="element.click = (event) => { /* cod funcție */ }"></code>.
+    </p>
+  </section>
+  <section>
+    <h2>
+      Folosind <code>addEventListener()</code>
+    </h2>
+    <p>
+      Spre deosebire de prima metodă, care ne permite adăugarea unui singur <i>event listerer</i>,
+      metoda <code>addEventListener()</code> permite adăugarea de event listeners multiple pe același
+      tip de eveniment. În plus, ne permite să modificăm comportamentul implicit cu care JavaScript
+      tratează evenimentele. Datorită acestor avantaje, folosirea acestei metode este recomandată. <br>
+      Putem folosi această metodă pe elemente sau pe obiectele <code>document</code> sau <code>window</code>.
+    </p>
+    <p>
+      <b>Sintaxă:</b> <code highlight="element.addEventListener(event, listener, useCapture)"></code>
+    </p>
+    <ul>
+      <li><code>event</code> - String ce reprezintă numele evenimentului</li>
+      <li><code>listener</code> - Funcție care să fie executată la declanșarea evenimentului</li>
+      <li><code>useCapture</code> - (opțional) Valoare booleană ce specifică dacă se va folosi <i>event capturing</i></li>
+    </ul>
+    <p>
+      Pentru a înțelege conceptul de <i>event capturing</i>, este necesar să înțelegem <i>event bubbling</i>,
+      modul implicit prin care funcționează evenimentele în JavaScript. În momentul în care un eveniment se 
+      întâmplă pe un anume element, acesta se va propaga mai departe către părinții acestuia, până va ajunge
+      la rădăcina DOM-ului. În schimb, în cazul <i>event capturing</i>, evenimentul se va propaga invers,
+      de la elementul pe care s-a atașat până la ținta efectivă a evenimentului
+      (de la <code>currentTarget</code> la <code>target</code>). Ne putem folosi de acest comportament la 
+      evenimentele care nu suportă event bubbling, precum <code>focus</code>.
+    </p>
+    <app-code-example gistId="lab6/use-capture"></app-code-example>
+    <p class="observation">
+      Observați că pentru elementul ce nu are <code>useCapture</code>, focusarea pe un copil al acestuia
+      nu determină apelarea funcției de logare.
+    </p>
+    <section>
+      <h3>Înlăturarea event listeners</h3>
+      <p>
+        Pentru evenimentele înregistrate cu <code>addEventListener()</code> se poate aplica metoda
+        <code>removeEventListener()</code> pentru a înlătura listener-ul respectiv. Sintaxa acestei
+        metode este exact la fel ca a celei pentru adăugare. Este esențial să păstrăm exact aceiași
+        parametri la ambele, altfel listener-ul nu va fi înlăturat. De exemplu, dacă am folosit
+        <code>element.addEventListener('click', doSomething, true)</code> vom înlătura cu
+        <code>element.removeEventListener('click', doSomething, true)</code>.
+      </p>
+    </section>
+  </section>
+</section>
+<section>
+  <h1>Teme</h1>
+  <section>
+    <h2>Tema 6.1</h2>
+    <p>
+      Creați folosind JavaScript zece elemente <code highlight="<div>"></code> în formă de pătrat
+      care să conțină cifre de la 0 la 9. La apăsarea unei taste numerice pe tastatură, schimbați
+      culoarea elementului corespunzător. La ridicarea degetului de pe tastă, culoarea elementului
+      se va întoarce la culoarea inițială.
+    </p>
+  </section>
+  <section>
+    <h2>Tema 6.2</h2>
+    <p>
+      Creați un fișier HTML care să conțină un pătrat. Folosind evenimente ale tastaturii,
+      faceți în așa fel încât pătratul să poată fi mișcat cu săgețile de pe tastatură. Posibilitatea
+      de a mișca pătratul poate fi oprită și repornită apăsând cu mouse-ul pe acesta.
+    </p>
+  </section>
+  <section>
+    <h2>Tema 6.3</h2>
+    <p>
+      La fiecare click dreapta pe ecran va fi afișat într-un element numărul de ordine al click-ului.
+      Elemenul va fi poziționat la coordonatele click-ului și va avea o culoare aleatorie. Acesta va
+      dispărea la următorul click. Meniul obișnuit de context ce se deschide la click dreapta va fi suprimat.
+    </p>
+  </section>
+  <section>
+    <h2>Tema 6.4</h2>
+    <p>
+      Creați un fișier HTML cu un formular HTML. Acesta va conține un formular HTML cu două input-uri de tip
+      număr, un select și un buton de trimitere a formularului. Valorile selectului vor fi operațiile aritmetice
+      obișnuite (adunare, scădere, înmulțire, împărțire, ridicare la putere). La trimiterea forumularului, 
+      va fi adăugat în DOM un element ce afișează operația și rezultatul acesteia.
+    </p>
+  </section>
+  <section>
+    <h2>Tema 6.5</h2>
+    <p>
+      Creați un formular și un buton "Adaugă". La apăsarea butonului se va adăuga în formular un element
+      input de tip text de fiecare dată când e apăsat. La scrierea de valori de culoare 
+      (de exemplu coduri hex, rgba, etc.) în inputuri, cutia inputului se va colora după codul de culoare
+      respectiv (în cazul în care acesta este valid). Colorarea se va face de îndată ce utilizatorul ridică
+      degetul de pe taste.
+    </p>
+  </section>
+</section>

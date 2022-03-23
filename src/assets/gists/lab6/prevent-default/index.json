@@ -1,0 +1,15 @@
+{
+  "title": null,
+  "showFileNames": false,
+  "result": true,
+  "files": [
+    {
+      "name": "prevent-default.html",
+      "fileType": "html"
+    },
+    {
+      "name": "prevent-default.js",
+      "fileType": "js"
+    }
+  ]
+}

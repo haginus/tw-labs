@@ -1,0 +1,16 @@
+div {
+  padding: 10px;
+  border: 1px solid;
+  margin-bottom: 16px;
+}
+
+body {
+  padding-bottom: 100%;
+}
+
+.press-here {
+  padding: 20px;
+  max-width: max-content;
+  margin: 0 auto;
+  margin-bottom: 32px;
+}

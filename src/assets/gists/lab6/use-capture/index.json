@@ -1,0 +1,19 @@
+{
+  "title": null,
+  "showFileNames": false,
+  "result": true,
+  "files": [
+    {
+      "name": "use-capture.html",
+      "fileType": "html"
+    },
+    {
+      "name": "use-capture.css",
+      "fileType": "css"
+    },
+    {
+      "name": "use-capture.js",
+      "fileType": "js"
+    }
+  ]
+}
