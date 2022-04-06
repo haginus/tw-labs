@@ -91,10 +91,10 @@ export class LabService {
         id: 7,
         title: "Programare asincronică în Javascript. Stocare.",
         subtitle: "Laboratorul 7",
-        description: "",
-        // homeworkLink: 'https://forms.gle/mxsT1XjzvtpBwWD48',
-        // homeworkDue: "2022-03-31T23:59:59+03:00",
-        // availableOn: "2022-03-24T12:00:00+02:00"
+        description: "Promise-uri, callbacks, async/await, fetch, setTimeout, setInterval. Stocare în localStorage.",
+        homeworkLink: 'https://forms.gle/5b8AousENuttXzLY7',
+        homeworkDue: "2022-04-14T23:59:59+03:00",
+        availableOn: "2022-04-07T12:00:00+03:00"
       }
     )
   ]
