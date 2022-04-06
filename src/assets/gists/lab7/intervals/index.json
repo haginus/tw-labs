@@ -1,0 +1,15 @@
+{
+  "title": null,
+  "showFileNames": false,
+  "result": true,
+  "files": [
+    {
+      "name": "intervals.html",
+      "fileType": "html"
+    },
+    {
+      "name": "intervals.js",
+      "fileType": "js"
+    }
+  ]
+}

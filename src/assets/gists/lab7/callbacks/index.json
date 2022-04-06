@@ -1,0 +1,15 @@
+{
+  "title": null,
+  "showFileNames": false,
+  "result": true,
+  "files": [
+    {
+      "name": "callbacks.html",
+      "fileType": "html"
+    },
+    {
+      "name": "callbacks.js",
+      "fileType": "js"
+    }
+  ]
+}

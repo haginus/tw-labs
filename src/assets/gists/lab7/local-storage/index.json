@@ -1,0 +1,15 @@
+{
+  "title": null,
+  "showFileNames": false,
+  "result": true,
+  "files": [
+    {
+      "name": "local-storage.html",
+      "fileType": "html"
+    },
+    {
+      "name": "local-storage.js",
+      "fileType": "js"
+    }
+  ]
+}

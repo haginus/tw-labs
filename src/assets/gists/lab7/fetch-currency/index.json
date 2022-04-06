@@ -1,0 +1,15 @@
+{
+  "title": "Convertor de valută",
+  "showFileNames": false,
+  "result": true,
+  "files": [
+    {
+      "name": "fetch-currency.html",
+      "fileType": "html"
+    },
+    {
+      "name": "fetch-currency.js",
+      "fileType": "js"
+    }
+  ]
+}

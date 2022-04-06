@@ -1,0 +1,373 @@
+<section>
+  <h1>Metode de programare asincronică</h1>
+  <p>
+    JavaScript ne oferă două metode prin care putem gestiona operațiile asincronice: callbacks și
+    promises.
+  </p>
+  <section>
+    <h2>Callbacks</h2>
+    <p>
+      Înainte de introducerea promise-urilor în JavaScript, singurul mod de realiza programare asincronică
+      în JavaScript era folosind callbacks. Ideea este simplă: oferim în parametrii funcției ce va realiza
+      o operație asincronică. Astfel, aceasta va apela funcția pe care i-am dat-o în momentul în care va termina
+      operația. De obicei se oferă drept parametru două funcții - una în caz de succes și una în caz de eroare.
+    </p>
+    <p>
+      În exemplul de mai jos se prezintă o funcție ce simulează un apel către un API de vreme.
+      Este important de reținut că la apelarea acesteia într-un bloc de cod nu se va aștepta
+      terminarea execuției acesteia, codul statement-urile sincronice desfășurându-se în paralel
+      cu aceasta.
+    </p>
+    <app-code-example gistId="lab7/callbacks"></app-code-example>
+  </section>
+  <section>
+    <h2>Promises</h2>
+    <p>
+      Adăugate în ES6 (2015), promise-urile sunt capabile să gestioneze mai ușor decât callback-urile
+      programarea asincronă în JavaScript. Un promise ne "promite" că vom primi un rezultat sau o eroare
+      la un moment dat. Acest obiect se poate găsi în trei faze:
+    </p>
+    <ul>
+      <li><i>pending</i> - starea inițială, nici îndeplinit nici rejectat;</li>
+      <li><i>fullfilled</i> - operația a fost executată cu succes;</li>
+      <li><i>rejected</i> - operația a suferit o eroare.</li>
+    </ul>
+    <section>
+      <h3>Crearea de Promises</h3>
+      <p>
+        Fosind constructorul <code>Promise()</code> putem crea un nou obiect Promise. Modul de creare
+        a promise-urilor este similar metodei callback-urilor:
+      </p>
+      <p>
+        <b>Sintaxă: </b> <code highlight="new Promise(executor)"></code>
+      </p>
+      <ul>
+        <li>
+          <code>executor</code> - funcție cu 2 parametri
+          <ul>
+            <li><code>resolve</code> - funcție ce se apelează în cazul succesului, rezultatul fiind dat ca parametru
+            </li>
+            <li><code>reject</code> - funcție ce se apelează în cazul erorii, eroarea fiind dată ca parametru</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h3>Așteptarea rezultatului unui Promise</h3>
+      <p>
+        Folosim metodele <code highlight="Promise.prototype.then()"></code> și
+        <code highlight="Promise.prototype.catch()"></code> pentru a aștepa după îndeplinirea, respectiv
+        rejectarea unui promise. Unul dintre avantajele promise-urilor este sintaxa mai simplă în modul de
+        operare: metodele menționate mai sus returnează tot un promise, ceea ce ne permite să facem
+        <i>chaining</i>. Ambele metode iau drept parametri funcții care vor fi executate la îndeplinirea/
+        rejectarea promise-ului.
+      </p>
+      <app-code-example gistId="lab7/promises"></app-code-example>
+    </section>
+    <section class="following-defs">
+      <h3>Metode statice</h3>
+      <section>
+        <h4><code highlight="Promise.all(arr)"></code></h4>
+        <p class="definition">
+          Așteaptă după rezolvarea tututor promise-urilor din <code>arr</code>, sau până când una este rejectată.
+          În caz de succes, va returna promise ce are ca valoare un array cu valorile rezolvate. În caz de eșec,
+          va returna un promise rejectat cu motivul primului promise unde a apărut eroarea.
+        </p>
+      </section>
+      <section>
+        <h4><code highlight="Promise.allSettled(arr)"></code></h4>
+        <p class="definition">
+          Așteaptă după finalizarea (fie prin succes sau eșec) tututor promise-urilor din <code>arr</code>.
+          Va returna un promise ce are ca valoare un array de forma
+          <code highlight="{ status: 'fullfilled', value: any } | { status: 'rejected', reason: any }"></code>.
+        </p>
+        <app-code-example gistId="lab7/promise-all-settled"></app-code-example>
+      </section>
+      <section>
+        <h4><code highlight="Promise.any(arr)"></code></h4>
+        <p class="definition">
+          Așteaptă după rezolvarea a uneia dintre promise-urile din <code>arr</code> și returnează
+          un promise reprezentând promise-ul rezolvat primul.
+        </p>
+      </section>
+      <section>
+        <h4><code highlight="Promise.reject(reason)"></code></h4>
+        <p class="definition">
+          Returnează un promise care este rejectat cu <code>reason</code>.
+        </p>
+      </section>
+      <section>
+        <h4><code highlight="Promise.resolve(value)"></code></h4>
+        <p class="definition">
+          Returnează un promise care este rezolvat cu valoarea <code>value</code>.
+        </p>
+      </section>
+    </section>
+    <section class="following-defs">
+      <h3>Metode pe instanță</h3>
+      <section>
+        <h4><code highlight="Promise.then(onFulfilled[, onRejected])"></code></h4>
+        <p class="definition">
+          Adaugă funcții callback pentru momentul în care promise-ul este finalizat: una
+          pentru rezolvare și una opțională în caz de eroare. Poate fi îmlănțuit de mai multe ori.
+        </p>
+      </section>
+      <section>
+        <h4><code highlight="Promise.catch(onRejected)"></code></h4>
+        <p class="definition">
+          Setează o funcție callback pentru momentul în care promise-ul este rejectat.
+        </p>
+      </section>
+      <section>
+        <h4><code highlight="Promise.finally(onFinally)"></code></h4>
+        <p class="definition">
+          Adaugă o funcție callback pentru momentul în care promise-ul este finalizat. Rulează
+          după cazurile de succes și eroare.
+        </p>
+      </section>
+    </section>
+  </section>
+  <section>
+    <h2>Funcții async/await</h2>
+    <p>
+      Putem marca o funcție ca fiind <code>async</code> adăugând acest keyword înaintea declarării acesteia.
+      Astfel vom putea avea acces la folosirea keyword-ului <code>await</code> în corpul acesteia. <code>await</code>
+      ne permite să blocăm execuția codului în așteptarea rezolvării unui promise. Eventualele erori pot fi prinse
+      folosind un bloc <code>try/catch</code>.
+    </p>
+    <app-tip>
+      Funcțiile asincronice nu returnează un rezultat, ci un promise ce are ca valoare rezultatul respectiv!
+    </app-tip>
+    <p>
+      Avantajul folosirii funcțiilor asincronice este că lucrul cu promise-uri devine mult mai ușor, scăpându-ne de
+      așa-numitul <i>callback hell</i>. Presupunem în exemplul de mai jos că avem nevoie să obținem de la un server
+      date despre utilizatorul autentificat, apoi pe baza acelor date vom face imediat un alt request către server.
+    </p>
+    <app-code-example gistId="lab7/async-await"></app-code-example>
+  </section>
+</section>
+<section>
+  <h1>Funcții de timeout și interval</h1>
+  <p>
+    În cazul în care dorim să executăm cod după un anume timp sau la un interval anume, JavaScript
+    ne oferă funcții utilitare pentru acest lucru.
+  </p>
+  <section>
+    <h2><code>setTimeout()</code></h2>
+    <p>
+      <b>Sintaxă: </b> <code highlight="setTimeout(handler[,delay, ...args])"></code>
+    </p>
+    <p>
+      Rulează funcția <code>handler</code> cu argumentele <code>...args</code> după <code>delay</code>
+      milisecunde și returnează un ID al timeout-ului.
+    </p>
+  </section>
+  <section>
+    <h2><code>setInterval()</code></h2>
+    <p>
+      <b>Sintaxă: </b> <code highlight="setInterval(handler[,delay, ...args])"></code>
+    </p>
+    <p>
+      Rulează funcția <code>handler</code> cu argumentele <code>...args</code> o dată la
+      <code>delay</code> milisecunde și returnează un ID al intervalului.
+    </p>
+  </section>
+  <section>
+    <h2><code>clearTimeout()</code></h2>
+    <p>
+      <b>Sintaxă: </b> <code highlight="clearTimeout(timeoutId)"></code>
+    </p>
+    <p>
+      Anulează timeout-ul cu ID-ul <code>timeoutId</code> (dacă nu s-a terminat deja).
+    </p>
+  </section>
+  <section>
+    <h2><code>clearInterval()</code></h2>
+    <p>
+      <b>Sintaxă: </b> <code highlight="clearInterval(intervalId)"></code>
+    </p>
+    <p>
+      Anulează intervalul cu ID-ul <code>intervalId</code>.
+    </p>
+  </section>
+  <app-code-example gistId="lab7/intervals"></app-code-example>
+</section>
+<section>
+  <h1>Fetch API</h1>
+  <p>
+    Pentru face cereri către un server și primi răspunsuri, JavaScript ne pune la dispoziție
+    Fetch API.
+  </p>
+  <section>
+    <h2>Metoda <code>fetch()</code></h2>
+    <p>
+      Metoda <code>fetch()</code> ne permite să cerem resurse de la server. Aceasta returnează un
+      Promise care este rezolvat tot timpul, în afara cazurilor în care există o problemă de rețea.
+      Astfel, un promise <code>fetch()</code> nu rejectează erorile HTTP
+      (<code>404</code>, <code>403</code>, <code>500</code>, etc.). În schimb va trebui să verificăm
+      în interiorul <code>then</code>-ului dacă request-ul a fost finalizat cu succes.
+    </p>
+    <p>
+      <b>Sintaxă: </b> <code>fetch(resource, [, init])</code>
+    </p>
+    <dl>
+      <dt><code>resource</code></dt>
+      <dd>URL-ul către resursa dorită.</dd>
+      <dt><code>init</code></dt>
+      <dd>
+        Obiect ce conține diferite setări pe care dorim să le personalizăm. Acestea sunt:
+        <dl>
+          <dt><code>method</code></dt>
+          <dd>
+            Metoda HTTP a request-ului, de exemplu <code>GET</code> sau <code>POST</code>.
+          </dd>
+          <dt><code>headers</code></dt>
+          <dd>
+            Headere HTTP pe care dorim să le adăugăm la request. Valoarea poate fi de tip <code>Headers</code>
+            sau un object literal cu valori String.
+          </dd>
+          <dt><code>body</code></dt>
+          <dd>
+            Body-ul request-ului. Poate fi un <code>Blob</code>, <code>FormData</code>, <code>String</code> etc.
+          </dd>
+          <dt><code>credentials</code></dt>
+          <dd>
+            Controlează ce face browser-ul cu datele credențiale (precum cookie-urile). Trebuie să fie unul dintre
+            următoarele:
+            <dl>
+              <dt><code>omit</code></dt>
+              <dd>
+                Browser-ul va exclude credențialele din request și va ignora credențialele trimise înapoi în răspuns
+                (de exemplu header-ul <code>Set-Cookie</code>).
+              </dd>
+              <dt><code>same-origin</code></dt>
+              <dd>
+                Browser-ul va trimite credențiale ce își au originea la același URL și va folosi credențialele
+                trimise înapoi doar dacă au aceeași origine.
+              </dd>
+              <dt><code>include</code></dt>
+              <dd>
+                Browser-ul va trimite credențialele atât în request-uri same-origin cât și în cele cross-origin.
+                Va folosi tot timpul credențialele trimise înapoi.
+              </dd>
+            </dl>
+          </dd>
+        </dl>
+      </dd>
+    </dl>
+  </section>
+  <section>
+    <h2>Interfața <code>Response</code></h2>
+    <p>
+      <code>Response</code> este un obiect care conține informații despre răspunsul serverului.
+    </p>
+    <section class="following-defs">
+      <h3>Proprietăți</h3>
+      <section>
+        <h4><code>body</code></h4>
+        <p>Returnează body-ul răspunsului.</p>
+      </section>
+      <section>
+        <h4>
+          <code>ok</code>
+        </h4>
+        <p>
+          Returnează <code>true</code> dacă răspunsul a fost finalizat cu succes (coduri <code>2xx</code>).
+        </p>
+      </section>
+      <section>
+        <h4>
+          <code>status</code>
+        </h4>
+        <p>
+          Returnează codul răspunsului.
+        </p>
+      </section>
+      <section>
+        <h4><code>url</code></h4>
+        <p>
+          Returnează URL-ul răspunsului.
+        </p>
+      </section>
+    </section>
+    <section class="following-defs">
+      <h3>Metode</h3>
+      <section>
+        <h4><code>arrayBuffer()</code></h4>
+        <p>
+          Returnează un promise ce se rezolvă într-un <code>ArrayBuffer</code> care conține datele răspunsului.
+        </p>
+      </section>
+      <section>
+        <h4><code>blob()</code></h4>
+        <p>
+          Returnează un promise ce se rezolvă într-un <code>Blob</code> care conține datele răspunsului.
+        </p>
+      </section>
+      <section>
+        <h4><code>json()</code></h4>
+        <p>
+          Returnează un promise ce se rezolvă cu rezultatul parcurgerii body-ului răspunsului ca JSON.
+        </p>
+      </section>
+      <section>
+        <h4><code>text()</code></h4>
+        <p>
+          Returnează un promise ce se rezolvă cu o reprezentare text a body-ului răspunsului.
+        </p>
+      </section>
+    </section>
+  </section>
+  <section>
+    <h2>Exemple</h2>
+    <app-code-example gistId="lab7/fetch-currency"></app-code-example>
+  </section>
+</section>
+<section>
+  <h1>Stocare</h1>
+  <p>
+    JavaScript dispune de mai multe API-uri ce permit stocarea persistentă a datelor. Printre acestea se
+    numără <code>localStorage</code>, <code>sessionStorage</code> și <code>indexedDB</code>.
+  </p>
+  <section>
+    <h2>LocalStorage</h2>
+    <p>
+      <code>localStorage</code> permite stocarea datelor în browser-ul utilizatorului. 
+      Stocarea este locală, fiind accesibilă doar în browser-ul respectiv. Itemele sunt
+      stocate sub forma unui tuplu cheie-valoare, ambele fiind de tip String. Astfel,
+      în cazul în care dorim să obținem/setăm valoarea unui item ca obiect, trebuie să
+      folosim metodele <code>JSON.parse()</code> și respectiv <code>JSON.stringify()</code>.
+    </p>
+    <section class="following-defs">
+      <h3>Metode ale obiectului Storage</h3>
+      <p>
+        Folosind următoarele metode putem manipula datele stocate în <code>localStorage</code>.
+      </p>
+      <section>
+        <h4><code>Storage.getItem(key)</code></h4>
+        <p>
+          Returnează valoarea unui item cu cheia specificată.
+        </p>
+      </section>
+      <section>
+        <h4><code>Storage.setItem(key, value)</code></h4>
+        <p>
+          Setează valoarea <code>value</code> la cheia <code>key</code> în spațiul de stocare.
+        </p>
+      </section>
+      <section>
+        <h4><code>Storage.removeItem(key)</code></h4>
+        <p>
+          Elimină un item cu cheia specificată.
+        </p>
+      </section>
+      <section>
+        <h4><code>Storage.clear()</code></h4>
+        <p>
+          Elimină toate datele stocate în spațiul de stocare.
+        </p>
+      </section>
+    </section>
+    <app-code-example gistId="lab7/local-storage"></app-code-example>
+  </section>
+</section>
