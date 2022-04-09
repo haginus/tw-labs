@@ -93,7 +93,7 @@ export class LabService {
         subtitle: "Laboratorul 7",
         description: "Promise-uri, callbacks, async/await, fetch, setTimeout, setInterval. Stocare în localStorage.",
         homeworkLink: 'https://forms.gle/5b8AousENuttXzLY7',
-        homeworkDue: "2022-04-14T23:59:59+03:00",
+        homeworkDue: "2022-04-21T23:59:59+03:00",
         availableOn: "2022-04-07T12:00:00+03:00"
       }
     )
