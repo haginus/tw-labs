@@ -13,8 +13,15 @@ function getServerInContext(code, gistPath) {
         const fn = matchRoute(request, method, handlers);
         if(!fn) return {};
         const response = {
-          sendFile: sinon.spy((filePath) => filePath),
           send: sinon.spy((data) => data),
+          sendFile: (filePath) => {
+            let safePath = filePath;
+            if(!safePath.startsWith(gistPath)) {
+              safePath = path.join(gistPath, safePath);
+            }
+            const file = fs.readFileSync(safePath, 'utf8');
+            return response.send(file);
+          },
         };
         const next = sinon.spy(() => ({}));
         fn(request, response, next);
@@ -91,8 +98,7 @@ function getGist(gistId) {
     const gistPath = path.join(__dirname, `../gists/${gistId}`);
     const folder = fs.readdirSync(gistPath, { withFileTypes: true });
     const index = folder.find(file => {
-      const name = file.name;
-      return name.startsWith('index') || name.startsWith('server')
+      return ['index.js', 'server.js'].includes(file.name);
     });
     const files = getFiles(gistPath);
     const meta = {
@@ -104,6 +110,7 @@ function getGist(gistId) {
     const { listeners } = getServerInContext(code, gistPath);
     return { listeners, meta };
   } catch (error) {
+    console.log(error)
     return {};
   }
 }
