@@ -40,6 +40,7 @@ function getServerInContext(code, gistPath) {
   const express = () => ({
     ...expressOverrides,
     listen: listeners.listen,
+    use: () => {}
   });
 
   const sandbox = {
@@ -54,6 +55,10 @@ function getServerInContext(code, gistPath) {
         express,
         path,
         fs,
+        'body-parser': {
+          json: () => ({}),
+          urlencoded: () => ({}),
+        }
       };
       return packages[target];
     },
