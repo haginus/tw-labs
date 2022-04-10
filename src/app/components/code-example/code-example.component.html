@@ -1,5 +1,5 @@
-<mat-toolbar color="primary" class="code-example-title" *ngIf="gist?.title">
-  {{ gist.title }}
+<mat-toolbar color="primary" class="code-example-title" *ngIf="gist?.title || defaultTitle">
+  {{ gist?.title || defaultTitle }}
 </mat-toolbar>
 <div class="code-example-wrapper">
   <div class="code-example-column" *ngIf="gist?.files && filesLoaded">

@@ -15,6 +15,7 @@ export class CodeExampleComponent implements AfterViewInit, OnDestroy {
 
   @Input('gistId') gistId: string;
   @Input('external') external: boolean = false;
+  @Input('defaultTitle') defaultTitle: string = null;
 
   @ViewChild('resultFrame') resultFrame: ElementRef;
   @ViewChild('consoleCt') consoleCt: ElementRef;
