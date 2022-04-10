@@ -87,21 +87,25 @@ function matchRoute(request, method, handlers) {
 }
 
 function getGist(gistId) {
-  const gistPath = path.join(__dirname, `../gists/${gistId}`);
-  const folder = fs.readdirSync(gistPath, { withFileTypes: true });
-  const index = folder.find(file => {
-    const name = file.name;
-    return name.startsWith('index') || name.startsWith('server')
-  });
-  const files = getFiles(gistPath);
-  const meta = {
-    files,
-    showFileNames: true,
-    result: true
-  };
-  const code = fs.readFileSync(`${gistPath}/${index.name}`, 'utf8');
-  const { listeners } = getServerInContext(code, gistPath);
-  return { listeners, meta };
+  try {
+    const gistPath = path.join(__dirname, `../gists/${gistId}`);
+    const folder = fs.readdirSync(gistPath, { withFileTypes: true });
+    const index = folder.find(file => {
+      const name = file.name;
+      return name.startsWith('index') || name.startsWith('server')
+    });
+    const files = getFiles(gistPath);
+    const meta = {
+      files,
+      showFileNames: true,
+      result: true
+    };
+    const code = fs.readFileSync(`${gistPath}/${index.name}`, 'utf8');
+    const { listeners } = getServerInContext(code, gistPath);
+    return { listeners, meta };
+  } catch (error) {
+    return {};
+  }
 }
 
 function getFiles(dir, call = 0) {
