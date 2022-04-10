@@ -30,6 +30,10 @@
     display: flex;
     flex-direction: column;
 
+    &[hidden] {
+      display: none;
+    }
+
     iframe {
       width: 100%;
       flex: 1;

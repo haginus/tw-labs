@@ -14,6 +14,7 @@ export class CodeExampleComponent implements AfterViewInit, OnDestroy {
   constructor(private gistService: GistService) { }
 
   @Input('gistId') gistId: string;
+  @Input('external') external: boolean = false;
 
   @ViewChild('resultFrame') resultFrame: ElementRef;
   @ViewChild('consoleCt') consoleCt: ElementRef;
@@ -34,11 +35,11 @@ export class CodeExampleComponent implements AfterViewInit, OnDestroy {
   private _listenFn: any;
 
   ngAfterViewInit(): void {
-    this.subscription = this.gistService.getGist(this.gistId)
+    this.subscription = this.gistService.getGist(this.gistId, this.external)
       .pipe(
         switchMap(gist => {
           this.gist = gist;
-          return combineLatest(gist.files.map(file => this.gistService.getGistFile(this.gistId, file)));
+          return combineLatest(gist.files.map(file => this.gistService.getGistFile(this.gistId, file, this.external)));
         })
       ).subscribe(files => {
         this.gistFiles = files.map(file => ({
@@ -47,7 +48,7 @@ export class CodeExampleComponent implements AfterViewInit, OnDestroy {
           language: this.getFileLanguage(file)
         }));
         this.filesLoaded = true;
-        if(this.gist.result) {
+        if(this.gist.result && !this.external) {
           window.addEventListener("message", this.getSetConsoleLogFunction());
         }
         this.setIframe();
@@ -56,6 +57,11 @@ export class CodeExampleComponent implements AfterViewInit, OnDestroy {
 
   setIframe() {
     if (!this.gist.result) return;
+    if(this.external) {
+      const location = window.location;
+      this.resultFrame.nativeElement.src = this.gistService.getExternalGistUrl(this.gistId);
+      return;
+    }
     this.consoleLogs = [];
     const htmlCode = this.gistFiles.find(file => file.fileType == 'html')?.content;
 
