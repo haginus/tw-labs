@@ -1,10 +1,16 @@
-//Install express server
 const express = require('express');
+const cors = require('cors');
 const path = require('path');
 
 const app = express();
 
-// Serve only the static files form the dist directory
+app.use(cors());
+
+const gistRoutes = require('./backend/src/gist.route.js');
+
+app.use('/api/gists', gistRoutes);
+
+//Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist/tw-labs'));
 
 app.get('/*', function (req, res) {
@@ -12,4 +18,4 @@ app.get('/*', function (req, res) {
 });
 
 // Start the app by listening on the default Heroku port
-app.listen(process.env.PORT || 8080);
+app.listen(process.env.PORT || 3000);
