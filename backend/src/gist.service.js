@@ -3,88 +3,125 @@ const fs = require('fs');
 const path = require('path');
 const sinon = require('sinon');
 
-function getServerInContext(code, gistPath) {
-  const methods = ['get', 'post', 'patch', 'put', 'delete', 'all'];
+function getServerInContext(code, gistPath, request) {
+  return new Promise((resolve, reject) => {
+    const methods = ['get', 'post', 'patch', 'put', 'delete', 'all'];
 
-  const handlers = methods.reduce((acc, method) => ({ ...acc, [method]: {} }), {});
-  const listeners = methods.reduce(
-    (acc, method) => {
-      acc[method] = (request) => {
-        const fn = matchRoute(request, method, handlers);
-        if(!fn) return {};
-        const response = {
-          send: sinon.spy((data) => data),
-          sendFile: (filePath) => {
-            let safePath = filePath;
-            if(!safePath.startsWith(gistPath)) {
-              safePath = path.join(gistPath, safePath);
-            }
-            const file = fs.readFileSync(safePath, 'utf8');
-            return response.send(file);
-          },
-        };
-        const next = sinon.spy(() => ({}));
-        fn(request, response, next);
-        return { response, next };
+    let declarationIndex = 0;
+    const routes = [];
+    const middlewares = [];
+
+    const listeners = { };
+    methods.forEach(method => {
+      listeners[method] = (path, ...handlers) => {
+        const newHandlers = [
+          ...middlewares
+            .filter(m => m.declarationIndex < declarationIndex)
+            .map(m => m.handler),
+          ...handlers
+        ];
+        routes.push({ declarationIndex, method, path, handlers: newHandlers });
+        declarationIndex++;
       }
-      return acc;
-    },
-    { listen: sinon.spy(() => ({})) }
-  );
+    });
 
-  const expressOverrides = methods.reduce((acc, method) => {
-    acc[method] = (path, fn) => { handlers[method][path] = fn };
-    return acc;
-  }, {});
+    listeners.use = handler => {
+      middlewares.push({ declarationIndex, handler });
+      declarationIndex++;
+    }
 
-  const express = () => ({
-    ...expressOverrides,
-    listen: listeners.listen,
-    use: () => {}
-  });
+    listeners.listen = () => {
+      let handlers = [];
+      const route = matchRoute(request, routes);
+      if(!route) {
+        const lastRouteIndex = routes.slice(-1)[0]?.declarationIndex || 0;
+        handlers = middlewares
+          .filter(m => m.declarationIndex > lastRouteIndex)
+          .map(m => m.handler);
+      } else {
+        handlers = route.handlers;
+      }
 
-  const sandbox = {
-    express,
-    console,
-    __dirname: gistPath,
-    require: (target) => {
-      if(target.startsWith('.')) 
-        return require(path.join(gistPath, target));
-      
-      const packages = {
-        express,
-        path,
-        fs,
-        'body-parser': {
-          json: () => ({}),
-          urlencoded: () => ({}),
-        }
+      if(handlers.length == 0) {
+        reject('Not found.');
+      }
+
+      let response = { 
+        send: (data) => resolve(data),
+        sendFile: (filePath) => {
+          let safePath = filePath;
+          if(!safePath.startsWith(gistPath)) {
+            safePath = path.join(gistPath, safePath);
+          }
+          const file = fs.readFileSync(safePath, 'utf8');
+          return response.send(file);
+        },
       };
-      return packages[target];
-    },
-    process: {
-      env: {
-        PORT: 3000,
-        PWD: gistPath
-      },
-      cwd() {
-        return gistPath;
+
+      console.log(handlers)
+
+      function getCallbackTree(handlers) {
+        const functions = [ handlers.slice(-1)[0].bind(null, request, response) ];
+        let j = 0;
+
+        for(let i = handlers.length - 2; i >= 0; i--) {
+          const newFn = function() {
+            handlers[i](request, response, functions[j++].bind(null, request, response, functions[j++])) 
+          };
+          functions.push(newFn);
+        }
+        return functions.slice(-1)[0];
       }
-    },
-  }
-  vm.runInContext(code, vm.createContext(sandbox));
-  return { listeners };
+
+      const tree = getCallbackTree(handlers);
+      tree();
+    }
+
+    const express = () => listeners;
+    const sandbox = {
+      express,
+      console,
+      setTimeout,
+      __dirname: gistPath,
+      require: (target) => {
+        if(target.startsWith('.')) {
+          return require(path.join(gistPath, target));
+        }
+        
+        const packages = {
+          express,
+          path,
+          fs,
+          'body-parser': {
+            json: () => (req, res, next) => { next() },
+            urlencoded: () => (req, res, next) => { next() },
+          }
+        };
+        return packages[target];
+      },
+      process: {
+        env: {
+          PORT: 3000,
+          PWD: gistPath
+        },
+        cwd() {
+          return gistPath;
+        }
+      },
+    }
+    vm.runInContext(code, vm.createContext(sandbox));
+  });
 }
 
-function matchRoute(request, method, handlers) {
-  const { path } = request;
+function matchRoute(request, routes) {
+  let { path, method } = request;
+  method = method.toLowerCase();
   request.params = {};
   const pathSegments = path.split('/');
-  const handlersArr = Object.entries(handlers[method]).map(([path, fn]) => ({
-    segments: path.split('/'),
-    fn
-  }));
-  const matchingHandler = handlersArr.find(({ segments }) => {
+
+  return routes.find((route) => {
+    if(method != route.method) return false;
+    const segments = route.path.split('/');
     if (segments.length !== pathSegments.length) return false;
     return segments.every((segment, index) => {
       if (segment.startsWith('*')) return true;
@@ -95,10 +132,9 @@ function matchRoute(request, method, handlers) {
       return segment === pathSegments[index];
     });
   });
-  return matchingHandler?.fn;
 }
 
-function getGist(gistId) {
+async function getGist(gistId, request = null) {
   try {
     const gistPath = path.join(__dirname, `../gists/${gistId}`);
     const folder = fs.readdirSync(gistPath, { withFileTypes: true });
@@ -112,8 +148,11 @@ function getGist(gistId) {
       result: true
     };
     const code = fs.readFileSync(`${gistPath}/${index.name}`, 'utf8');
-    const { listeners } = getServerInContext(code, gistPath);
-    return { listeners, meta };
+    if(!request) {
+      return { meta };
+    }
+    const response = await getServerInContext(code, gistPath, request);
+    return { response, meta };
   } catch (error) {
     console.log(error)
     return {};

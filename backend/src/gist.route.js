@@ -2,29 +2,24 @@ const express = require('express');
 const { getGist, getNormalPath } = require('./gist.service');
 const router = express.Router()
 
-router.get('/:gistFolder/:gistName/_', (req, res) => {
+router.get('/:gistFolder/:gistName/_', async (req, res) => {
   const { gistFolder, gistName } = req.params;
   const gistId = `${gistFolder}/${gistName}`;
-  const { meta } = getGist(gistId);
+  const { meta } = await getGist(gistId);
   if(!meta) return res.status(404).send('Not found');
   res.send(meta);
 });
 
-router.all('/:gistFolder/:gistName/**', (req, res) => {
+router.all('/:gistFolder/:gistName/**', async (req, res) => {
   const { gistFolder, gistName } = req.params;
   const gistId = `${gistFolder}/${gistName}`;
-  const { listeners } = getGist(gistId);
-  if(!listeners) return res.status(404).send('Not found');
   const request = {
     ...req,
     path: getNormalPath(req.path),
   }
-  const handler = listeners[request.method.toLowerCase()];
-  const { response } = handler(request);
-  if(!response) return res.status(404).send('Not Found');
-  res.send(response.send.getCall(0).args[0]);
+  const { response } = await getGist(gistId, request);
+  res.send(response);
 });
-
 
 
 module.exports = router;
