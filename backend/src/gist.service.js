@@ -58,23 +58,12 @@ function getServerInContext(code, gistPath, request) {
         },
       };
 
-      console.log(handlers)
-
-      function getCallbackTree(handlers) {
-        const functions = [ handlers.slice(-1)[0].bind(null, request, response) ];
-        let j = 0;
-
-        for(let i = handlers.length - 2; i >= 0; i--) {
-          const newFn = function() {
-            handlers[i](request, response, functions[j++].bind(null, request, response, functions[j++])) 
-          };
-          functions.push(newFn);
+      const runHandlers = async () => {
+        for(const x of handlers) {
+          await new Promise((resolve, reject) => x(request, response, resolve ));
         }
-        return functions.slice(-1)[0];
-      }
-
-      const tree = getCallbackTree(handlers);
-      tree();
+      };
+      runHandlers();
     }
 
     const express = () => listeners;
