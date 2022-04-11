@@ -1,0 +1,17 @@
+<form method="post">
+  <label>Nume: </label>
+  <input name="name" placeholder="Numele tău..." required/>
+  <br>
+  <label>Data nașterii:</label>
+  <input type="date" name="birthDate" required/>
+  
+  <input type="submit" value="Află vârsta">
+</form>
+
+<script>
+  window.onload = () => {
+    const dateInput = document.querySelector('input[name="birthDate"]');
+    const today = new Date();
+    dateInput.max = today.toISOString().split('T')[0];
+  };
+</script>

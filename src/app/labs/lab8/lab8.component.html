@@ -1,0 +1,518 @@
+<section>
+  <h1>Despre Node.js</h1>
+  <p>
+    Node.js este mediu de rulare open-source, cross-platform ce permite dezvoltatorilor să 
+    creeze aplicații server-side în JavaScript. Acest mediu de rulare este conceput să
+    ruleze în afara contextului de browser (rulând direct pe sistemul de operare al serverului).
+    Astfel, se omit API-urile JavaScript ce sunt specifice browser-ului și este adăugat suport
+    pentru API-urile de sistem de operare trandiționale, cum ar fi librării de gestiune a fișierelor
+    sau librării HTTP.
+  </p>
+  <section>
+    <h2>Crearea unui proiect node</h2>
+    <p>
+      Pentru a crea un proiect node, se folosește comanda <code>npm init</code>.
+      Aceasta va crea un fișier <code>package.json</code> care conține informații despre proiect, 
+      precum numele proiectului, versiunea, descrierea, autorul, dependințe etc.
+    </p>
+  </section>
+  <section>
+    <h2>Gestionarea dependințelor</h2>
+    <p>
+      Într-un proiect Node.js există două tipuri de dependințe: dependințe normale și dependințele
+      de dezvoltare. Acestea reprezintă pachetele de care aplicația are nevoie pentru a rula și
+      respectiv pentru a putea fi dezvoltată. Pentru a instala o dependență, se folosește comanda
+      <code>npm install [nume_dependință]</code>. În cazul în care se dorește instalarea unei dependențe
+      de dezvoltare, se folosește comanda <code>npm install -D [nume_dependință]</code>. Dependințele 
+      instalate sunt adăugate în fișierul <code>package.json</code> iar codul acestora se regăsește
+      într-un director special <code>node_modules</code>.
+    </p>
+    <app-tip>
+      Comanda <code>npm install</code> va determina instalarea tuturor dependențelor din fișierul
+      <code>package.json</code> și va crea un fișier <code>package-lock.json</code> care va conține
+      informații despre dependențele instalate. Acest lucru se face de obicei atunci când descărcăm
+      codul sursă al unui proiect și vrem să îl rulăm.
+    </app-tip>
+    <section>
+      <h3>Conținutul fișierului <code>package.json</code></h3>
+      <div class="common-table">
+        <table>
+          <tr>
+            <th>Atribut</th>
+            <th>Descriere</th>
+          </tr>
+          <tr>
+            <td><code>name</code></td>
+            <td>Numele proiectului</td>
+          </tr>
+          <tr>
+            <td><code>version</code></td>
+            <td>Versiunea proiectului</td>
+          </tr>
+          <tr>
+            <td><code>description</code></td>
+            <td>Descrierea proiectului</td>
+          </tr>
+          <tr>
+            <td><code>author</code></td>
+            <td>Numele autorului</td>
+          </tr>
+          <tr>
+            <td><code>scripts</code></td>
+            <td>
+              Listă de comenzi executabile într-un obiect în care cheia este aliasul comenzii și
+              valoarea este comanda în sine.
+              <ul>
+                <li><code>start</code> - Rulare proiect</li>
+                <li><code>build</code> - Compilare proiect</li>
+                <li><code>test</code> - Testare proiect</li>
+                <li><code>lint</code> - Lintare proiect</li>
+              </ul>
+              Această listă poate fi completată și cu alte comenzi. Pentru a rula o comandă, folosim
+              <code>npm run [alias_comandă]</code>.
+            </td>
+          </tr>
+          <tr>
+            <td><code>license</code></td>
+            <td>Licența proiectului</td>
+          </tr>
+          <tr>
+            <td><code>dependencies</code></td>
+            <td>
+              Lista de dependențe sub forma unui obiect, unde cheile sunt numele pachetelor
+              și valorile versiunile acestora.
+            </td>
+          </tr>
+          <tr>
+            <td><code>devDependencies</code></td>
+            <td>
+              Lista de dependențe de dezvoltare sub forma unui obiect, unde cheile sunt numele pachetelor
+              și valorile versiunile acestora.
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </section>
+  <section>
+    <h2>Rularea fișierelor JavaScript folosind Node</h2>
+    <p>
+      Pentru a rula un fișier JavaScript, se folosește comanda <code>node [nume_fișier]</code>.
+      Aceasta va rula fișierul JavaScript în contextul proiectului.
+    </p>
+  </section>
+</section>
+<section>
+  <h1>Express.js</h1>
+  <p>
+    Express.js este un server-side framework care permite crearea de aplicații web.
+    Acest framework este folosit pentru a crea aplicații web care sunt accesibile prin intermediul
+    unui server HTTP. Înainte de a folosi Express, trebuie să îl adăugăm ca dependință în
+    proiectul nostru: <code>npm install express</code>.
+  </p>
+  <app-code-example gistId="lab8/express-demo" [external]="true" defaultTitle="Server basic în Express"></app-code-example>
+  <section>
+    <h2>Gestionarea rutelor în Express</h2>
+    <p>
+      Express permite adăugarea rutelor prin apelarea metodelor din obiectul Express. Aceste metode
+      corespund cu metodele HTTP. Cele mai folosite metode HTTP sunt:
+    </p>
+    <dl>
+      <dt><code>GET</code></dt>
+      <dd>Obține o resursă.</dd>
+
+      <dt><code>POST</code></dt>
+      <dd>Adaugă o resursă.</dd>
+
+      <dt><code>PUT</code></dt>
+      <dd>Modifică o resursă.</dd>
+
+      <dt><code>PATCH</code></dt>
+      <dd>Modifică doar câmpurile specificate dintr-o resursă.</dd>
+
+      <dt><code>DELETE</code></dt>
+      <dd>Șterge o resursă.</dd>
+    </dl>
+    <p>
+      Astfel, pentru a înregista o rută în Express, folosim următoarea sintaxă:
+    </p>
+    <p>
+      <b>Sintaxă:</b> <code highlight="app.method(path, handler)"></code>
+    </p>
+    <dl>
+      <dt><code>[method]</code></dt>
+      <dd>
+        Metoda HTTP: <code>get</code>, <code>post</code>, <code>put</code>, <code>patch</code>, <code>delete</code>
+        <dl>
+          <dt><code>path</code></dt>
+          <dd>Calea rutei</dd>
+
+          <dt><code>handler</code></dt>
+          <dd>
+            Funcție ce va fi apelată la accesarea rutei. Conține trei parametri:
+            <dl>
+              <dt><code>req</code></dt>
+              <dd>
+                Obiect de tipul <code>Request</code> ce conține informații despre cererea făcută către server.
+              </dd>
+              <dt><code>res</code></dt>
+              <dd>
+                Obiect de tipul <code>Response</code> folosit pentru a compune răspunsul dat de server.
+              </dd>
+              <dt><code>next</code> (opțional)</dt>
+              <dd>Funcție ce va fi apelată pentru a continua execuția rutei.</dd>
+            </dl>
+          </dd>
+        </dl>
+      </dd>
+    </dl>
+  </section>
+  <section>
+    <h2>Căi ale rutelor</h2>
+    <p>
+      Căile rutelor, în combinație cu metodele HTTP definesc endpoint-urile unde se pot face cereri.
+      Căile pot fi string-uri, modele de string-uri sau expresii regulate. Caracterele <code>?</code>,
+      <code>+</code>, <code>*</code> și <code>()</code> sunt interpretate exact la fel ca în expresiile
+      regex, în timp ce caracterele <code>-</code> (linie) și <code>.</code> (punct) sunt interpretate drept
+      caractere obișnuite. Iată câteva exemple:
+    </p>
+    <ul>
+      <li><code>/foo/*</code> va face match pentru tot ce începe cu <code>/foo/</code></li>
+      <li><code>/ba+r</code> va face match pentru <code>bar</code>, <code>baar</code>, <code>baaar</code> etc</li>
+      <li><code>bu(na)?</code> va face match pentru <code>bu</code> și <code>buna</code></li>
+      <li><code>a*-b.</code> va face match pentru <code>a-b.</code>, <code>aFOO-b.</code>, <code>a123-b.</code> etc</li>
+    </ul>
+    <app-tip>
+      Rutele înregistrate vor fi încercate de Express în ordinea declarării, prima rută găsită fiind cea executată.
+    </app-tip>
+    <section>
+      <h3>Parametri de căi</h3>
+      <p>
+        Parametrii de căi sunt segmente cu nume ale rutelor ce sunt folosite să captureze valori la
+        poziția lor în URL. Valorile capturate sunt stocate în obiectul <code>req.params</code>, cu numele
+        parametrului ca cheie. Un parametru se specifică în calea rutei cu <code>:</code> (două puncte)
+        în față, iar numele acestuia poate fi compus doar din litere, cifre și caracterul <code>_</code> (underscore).
+        Din moment ce sunt caractere obișnuite, <code>.</code> și <code>-</code> pot despărți parametrii.
+      </p>
+      <pre class="example">
+        Calea rutei:<code>/flights/:from-:to</code>
+        URL-ul cerererii:<code>/flights/OTP-MAD</code>
+        Obiectul<code>req.params:</code><code>&#123; from: 'OTP', to: 'MAD' &#125;</code>
+      </pre>
+    </section>
+    <section>
+      <h3>Query parameters</h3>
+      <p>
+        În cazul în care dorim să avem parametri ce nu au o poziție fixă în URL, putem folosi 
+        parametry de query. Lista acestor parametri începe cu <code>?</code> (semnul întrebării),
+        iar delimitarea în listă se face prin <code>&amp;</code> (ampersand). Parametrii sunt
+        stocați în obiectul <code>req.query</code>, cu numele parametrului ca cheie.
+      </p>
+      <pre class="example">
+        Calea rutei:<code>/flights</code>
+        URL-ul cerererii:<code>/flights?maxPrice=100&currency=EUR&airlines=Ryanair,WizzAir</code>
+        Obiectul<code>req.query:</code><code>&#123; maxPrice: '100', currency: 'EUR', airlines: 'Ryanair,WizzAir' &#125;</code>
+      </pre>
+    </section>
+  </section>
+  <section>
+    <h2>Route handlers</h2>
+    <p>
+      Express ne permite să definim multiple funcții ce vor fi apelate la accesarea unei rute. Acestea
+      se vor rula în ordine și trebuie să apeleze funcția <code>next</code> pentru ca următorul handler
+      să își înceapă execuția. Acest mecanism poate fi folosit pentru a impune pre-condiții pentru accesarea
+      unei rute, cum ar fi ca utilizatorul să fie autentificat.
+    </p>
+    <app-code-example gistId="lab8/route-handlers"></app-code-example>
+  </section>
+  <section>
+    <h2>Middlewares</h2>
+    <p>
+      Funcțiile middleware sunt funcții ce au acces la obiectele <code>req</code> și <code>res</code> și
+      următorul (<code>next</code>) middleware în ciclul de request-response al aplicației. Acestea pot
+      executa orice cod, pot face schimbări în obiectele <code>req</code> și <code>res</code>, pot sfârși
+      execuția ciclului de request-response, sau pot face apeluri la alte funcții middleware. Middleware-urile
+      pot exista la nivel de aplicație, la nivel de router sau la nivel de rută.
+    </p>
+    <p>
+      Middleware-urile la nivel de aplicație sau la nivel de router pot fi definite folosind <code>app.use()</code>.
+    </p>
+    <app-code-example gistId="lab8/middlewares"></app-code-example>
+    <p>
+      Astfel, în exemplul de mai sus, middleware-ul va rula de fiecare dată când serverul Express
+      va primi o cerere și va loga timpul curent. Observați faptul că se apelează funcția <code>next</code>,
+      care va permite trecerea la următorul middleware.
+    </p>
+    <p>
+      În cazul care dorim să avem middleware pe rute, acestea se adaugă în lista de funcții handler a rutei.
+    </p>
+    <section>
+      <h3>Middleware de tratare a erorilor</h3>
+      <p>
+        Definirea funcțiilor middleware de tratare a erorilor este similară cu cea de declararea a celorlaltor
+        middleware-uri, cu excepția că acestea au patru argumente în loc de trei, având următoarea signatură:
+        <code>(err, req, res, next)</code>. Pentru ca aceste funcții să se declanșeze, este necesar să pasați
+        erorile folosind funcția <code>next()</code> în cazul în care funcția handler rulează cod asincron. În
+        cazul în care codul rulat este sincron, Express va prelua eroarea automat, apelarea funcției <code>next()</code>
+        fiind opțională.
+      </p>
+      <app-code-example gistId="lab8/middlewares-error"></app-code-example>
+      <app-tip>
+        Funcțiile middleware de tratare a erorilor trebuie să aibă exact patru argumente. Chiar dacă
+        nu urmează să folosiți funcția <code>next()</code>, este necesar să o includeți în lista de
+        parametri pentru păstra signatura!
+      </app-tip>
+    </section>
+  </section>
+  <section>
+    <h2>Tratarea erorilor 404</h2>
+    <p>
+      Express nu consideră erorile 404 ca erori, ci ca rute care nu au fost găsite. În cazul în care
+      se încearcă accesarea unei rute inexistente, Express va trimite automat un răspuns de tipul 404.
+      În cazul în care dorim să personalizăm acest răspuns, ne putem folosi de principiul enunțat la începutul
+      acestui capitol: rutele și middleware-urile sunt căutate în ordinea în care au fost definite. 
+      Deci, pentru a modifica răspunsul implicit, putem adăuga un nou middleware la finalul rutelor.
+      Astfel, acesta se va executa doar dacă nu a fost găsită nicio rută care să închidă ciclul de
+      request-response.
+    </p>
+    <app-code-example gistId="lab8/404"></app-code-example>
+  </section>
+  <section>
+    <h2>Obiectul <code>Request</code></h2>
+    <p>
+      <code>req</code> este un obiect ce conține informații despre cererea făcută către server.
+    </p>
+    <section class="following-defs">
+      <h3>Proprietăți</h3>
+      <section>
+        <h4><code>req.path</code></h4>
+        <p class="definition">
+          Conține calea către ruta care a fost accesată, excluzând parametrii query.
+        </p>
+      </section>
+      <section>
+        <h4><code>req.params</code></h4>
+        <p class="definition">
+          Obiect ce conține parametrii din calea către rută.
+        </p>
+      </section>
+      <section>
+        <h4><code>req.query</code></h4>
+        <p class="definition">
+          Obiect ce conține parametrii query.
+        </p>
+      </section>
+      <section>
+        <h4><code>req.body</code></h4>
+        <p class="definition">
+          Obiect ce conține datele trimise în body-ul cererii HTTP. Pentru ca această proprietate
+          să fie populată, va trebui să folosim librăria <code>body-parser</code>.
+        </p>
+      </section>
+      <section>
+        <h4><code>req.cookies</code></h4>
+        <p class="definition">
+          Obiect ce conține cookie-urile trimise în cererea HTTP.
+        </p>
+      </section>
+      <section>
+        <h4><code>req.headers</code></h4>
+        <p class="definition">
+          Obiect ce conține header-urile trimise în cererea HTTP.
+        </p>
+      </section>
+      <section>
+        <h4><code>req.method</code></h4>
+        <p class="definition">
+          Metoda HTTP folosită pentru a accesa ruta.
+        </p>
+      </section>
+      <section>
+        <h4><code>req.originalUrl</code></h4>
+        <p class="definition">
+          Calea către ruta care a fost accesată, inclusiv parametrii query.
+        </p>
+      </section>
+    </section>
+  </section>
+  <section>
+    <h2>Obiectul <code>Response</code></h2>
+    <p>
+      <code>res</code> este un obiect ce ne permite să trimitem răspunsul clientului.
+    </p>
+    <section class="following-defs">
+      <h3>Metode</h3>
+      <section>
+        <h4><code>res.status(status)</code></h4>
+        <p class="definition">
+          Setează codul de răspuns HTTP.
+        </p>
+        <p>
+          O listă cu toate codurile de răspuns HTTP poate fi consultată
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" target="_blank">aici</a>.
+        </p>
+      </section>
+      <section>
+        <h4><code>res.cookie(name, value [, options])</code></h4>
+        <p class="definition">
+          Setează cookie-ul cu numele <code>name</code> și valoarea <code>value</code>. Obiectul
+          <code>op</code> poate conține următoarele proprietăți:
+        </p>
+        <ul>
+          <li><code>expires</code> - data la care cookie-ul va expira.</li>
+          <li><code>maxAge</code> - mod mai ușor de a seta data expirării prin precizarea unui număr de milisecunde relativ la timpul curent.</li>
+          <li><code>domain</code> - domeniu al cookie-ului.</li>
+          <li><code>path</code> - calea către ruta la care cookie-ul va fi valid (implicit <code>/</code>).</li>
+          <li><code>httpOnly</code> - cookie-ul va fi accesibil doar pentru server și nu va putea fi obținut/modificat prin JavaScript.</li>
+          <li><code>secure</code> - cookie-ul va fi accesibil doar prin HTTPS.</li>
+      </ul>
+      </section>
+      <section>
+        <h4><code>res.clearCookie(name, [, options])</code></h4>
+        <p class="definition">
+          Șterge cookie-ul cu numele <code>name</code>. Obiectul <code>options</code> trebuie să
+          fie identic cu cel utilizat la metoda <code>res.cookie()</code>, excluzând <code>expires</code> și 
+          <code>maxAge</code>. În caz contrar, este posibil ca browser-ul să refuze să șteargă cookie-ul.
+        </p>
+      </section>
+      <section>
+        <h4><code>res.set(field, value)</code></h4>
+        <p class="definition">
+          Setează un header-ul cu numele <code>field</code> și valoarea <code>value</code>. În cazul
+          în care dorim să setăm mai multe headere dintr-un singur apel, putem da ca parametru
+          obiect ce conține headerele dorite.
+        </p>
+        <p>
+          <b>Exemplu: </b> <code>res.set('Content-Type', 'text/html')</code> <br>
+          <code>res.set(&#123; 'Content-Type': 'text/html', 'Content-Length': '123' &#125;);</code>
+        </p>
+      </section>
+      <section>
+        <h4><code>res.redirect([status,] path)</code></h4>
+        <p class="definition">
+          Redirecționează către o altă rută. În cazul în care sunt două argumente, primul va reprezenta
+          codul de răspuns HTTP și al doilea va reprezenta calea către rută.
+        </p>
+      </section>
+      <section>
+        <h4><code>res.send(body)</code></h4>
+        <p class="definition">
+          Trimite răspunsul HTTP. <code>body</code> poate fi un <code>Buffer</code>, <code>string</code>,
+          <code>Object</code>, <code>Boolean</code> sau <code>Array</code>. În toate cazurile în afară
+          de trimiterea unui <code>Buffer</code>, tipul conținutului va fi setat ca <code>text/html</code>
+          în cazul în care acesta lipsește.
+        </p>
+      </section>
+      <section>
+        <h4><code>res.json(body)</code></h4>
+        <p class="definition">
+          Trimite răspunsul HTTP în format JSON.
+        </p>
+      </section>
+      <section>
+        <h4><code>res.render(view, [, locals])</code></h4>
+        <p class="definition">
+          Transimite un <code>view</code> ce este randat folosind variabilele din obiectul <code>locals</code>.
+        </p>
+      </section>
+    </section>
+  </section>
+</section>
+<section>
+  <h1>Prelucrarea de date dintr-un formular</h1>
+  <p>
+    Pentru a transmite date către un server Express putem folosi mecanismul implicit
+    al formularelor HTML, unde setăm atributele <code>target</code> și <code>method</code>.
+    Totuși această metodă nu ne permite să facem decât cereri <code>GET</code> și <code>POST</code>.
+    În cazul în care dorim să folosim alte metode HTTP, ne putem folosi de JavaScript, făcând cererea
+    prin Fetch API.
+  </p>
+  <p>
+    În cazul serverului, datele transmise în cererile cu body trebuie să fie parsate înainte de
+    a putea fi accesate în obiectul <code>req.body</code>. Acest lucru se poate face cu ajutorul
+    librăriei <code>body-parser</code>. Aceasta oferă o serie de middleware-uri ce ne permit să
+    parsăm diferitele tipuri de conținut trimise de client.
+  </p>
+  <div class="common-table">
+    <table>
+      <tr>
+        <th>Tip de date</th>
+        <th>Middleware</th>
+      </tr>
+      <tr>
+        <td><code>application/json</code></td>
+        <td>
+          <code>bodyParser.json()</code> <br>
+          Parsează cererile cu body în format JSON.
+        </td>
+      </tr>
+      <tr>
+        <td><code>application/x-www-form-urlencoded</code></td>
+        <td>
+          <code>bodyParser.urlencoded()</code> <br>
+          Parsează cererile cu body în formatul de formular HTML. <br>
+          Este necesar să specificăm în obiectul de opțiuni valoarea atributului <code>extended</code>.
+          Acesta specifică de fapt ce librărie se va folosi pentru a parsa datele. Îl vom lăsa cu
+          valoarea <code>false</code>. <br>
+          <code>bodyParser.urlencoded(&#123; extended: false &#125;)</code>
+        </td>
+      </tr>
+      <tr>
+        <td><code>text</code></td>
+        <td>
+          <code>bodyParser.text()</code> <br>
+          Parsează cererile cu body în format text.
+        </td>
+      </tr>
+      <tr>
+        <td><code>application/octet-stream</code></td>
+        <td>
+          <code>bodyParser.raw()</code> <br>
+          Parsează cererile cu body în format brut, populând obiectul <code>body</code> cu un <code>Buffer</code>.
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <app-tip>
+    Toate metodele din tabelul de mai sus vor ignora body-urile de tipuri diferite.
+    Prin urmare, le putem institui ca middleware la nivel de aplicație fără să ne așteptăm la erori.
+  </app-tip>
+  <p>
+    De asemenea, <code>body-parser</code> ne permite să modificăm tipurile de date care sunt parsate
+    prin oferirea unui obiect de opțiuni ca parametru. Atributul <code>type</code> permite setarea
+    de tipuri accepta și poate lua ca valoare un string, un array de string-uri sau o funcție ce
+    calculează lista.
+  </p>
+  <p>
+    În următorul exemplu vom trimite datele dintr-un formular HTML, deci vom folosi 
+    <code>bodyParser.urlencoded</code> pentru a parsa datele. Serverul express are înregistrate
+    două rute la calea <code>/</code>, prima folosește metoda <code>GET</code> și trimite
+    formularul HTML, iar a doua folosește metoda <code>POST</code>, interpretând datele trimise și
+    oferind un răspuns.
+  </p>
+
+  <app-code-example gistId="lab8/forms" [external]="true"></app-code-example>
+</section>
+<section>
+  <h1>Teme</h1>
+  <section>
+    <h2>Tema 8.1</h2>
+    <p>
+      Fie obiectul Persoană ce conține următoarele proprietăți: nume, prenume, vârstă și oraș.
+      Scrieți un server Express ce stochează un array de obiecte de tip Persoană. La accesarea
+      rutei <code>/persoane</code> se vor returna toate persoanele din array. Ruta permite
+      filtrarea persoanelor după vârstă, aceasta fiind dată ca query parameter și după oraș,
+      acesta fiind dat ca parametru de rută. Serverul va permite adăugarea unei persoane
+      printr-o rută cu metoda <code>POST</code> care acceptă conținut de tip JSON (folosiți Fetch API).
+    </p>
+  </section>
+  <section>
+    <h2>Tema 8.2</h2>
+    <p>
+      Scrieți o funcție middleware care loghează activitatea pe server. Aceasta va afișa în
+      consolă un mesaj cu data și timpul, metoda HTTP, URL-ul accesat și body-ul request-ului (dacă există).
+      Faceți ca acest middleware să ruleze înainte de fiecare rută din aplicație.
+    </p>
+  </section>
+</section>

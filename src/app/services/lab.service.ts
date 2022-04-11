@@ -7,6 +7,7 @@ import { Lab4Component } from '../labs/lab4/lab4.component';
 import { Lab5Component } from '../labs/lab5/lab5.component';
 import { Lab6Component } from '../labs/lab6/lab6.component';
 import { Lab7Component } from '../labs/lab7/lab7.component';
+import { Lab8Component } from '../labs/lab8/lab8.component';
 import { Lab } from '../lib/models/Lab';
 
 @Injectable({
@@ -95,6 +96,18 @@ export class LabService {
         homeworkLink: 'https://forms.gle/5b8AousENuttXzLY7',
         homeworkDue: "2022-04-21T23:59:59+03:00",
         availableOn: "2022-04-07T12:00:00+03:00"
+      }
+    ),
+    new Lab(
+      Lab8Component,
+      {
+        id: 8,
+        title: "Introducere în Node.js și Express",
+        subtitle: "Laboratorul 8",
+        description: "Crearea unui proiect Node, instalarea pachetelor. Gestionarea rutelor și erorilor. Transmiterea de date către server.",
+        // homeworkLink: 'https://forms.gle/5b8AousENuttXzLY7',
+        // homeworkDue: "2022-04-28T23:59:59+03:00",
+        // availableOn: "2022-04-07T12:00:00+03:00"
       }
     )
   ]

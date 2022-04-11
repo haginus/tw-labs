@@ -151,3 +151,20 @@ dl {
     margin-left: 16px;
   }
 }
+
+pre.example {
+  margin: 16px 0;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: auto;
+  background: #f7f7f7;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-line;
+  code {
+    background: transparent!important;
+    padding: 8px;
+  }
+}
