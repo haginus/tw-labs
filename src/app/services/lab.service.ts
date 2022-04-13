@@ -105,9 +105,9 @@ export class LabService {
         title: "Introducere în Node.js și Express",
         subtitle: "Laboratorul 8",
         description: "Crearea unui proiect Node, instalarea pachetelor. Gestionarea rutelor și erorilor. Transmiterea de date către server.",
-        // homeworkLink: 'https://forms.gle/5b8AousENuttXzLY7',
-        // homeworkDue: "2022-04-28T23:59:59+03:00",
-        // availableOn: "2022-04-07T12:00:00+03:00"
+        homeworkLink: 'https://forms.gle/AtSHBqbF8zLpGrAQ7',
+        homeworkDue: "2022-04-28T23:59:59+03:00",
+        availableOn: "2022-04-14T12:00:00+03:00"
       }
     )
   ]
