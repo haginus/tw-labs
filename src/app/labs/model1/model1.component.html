@@ -1,0 +1,98 @@
+<section>
+  <h1>Exercițiul 1</h1>
+  <p>
+    Creați un element <code highlight="<div>"></code> cu ID-ul <code>container</code> care să
+    conțină drept copii direcți alte 5 elemente <code highlight="<div>"></code> cu clasa
+    <code>square</code>. Scrieți cod CSS care să rezolve următoarele cerințe:
+  </p>
+  <ul>
+    <li>
+      la lățimea ferestrei de peste <code>800px</code>:
+      <ul>
+        <li>
+          elementul cu ID-ul <code>container</code> să
+          aibă lățimea și înălțimea de <code>500px</code>, să fie centrat pe orizontală în pagină, să
+          aibă un fundal verde și o bordură neagră de un pixel.
+        </li>
+        <li>
+          elementele cu clasa <code>square</code> de pe pozițiile impare să fie poziționate pe
+          cinci coloane egale, având înălțimea egală cu cea a părintelui și o bordură albastră.
+        </li>
+      </ul>
+    </li>
+    <li>
+      la lățimea ferestrei de sub <code>800px</code>:
+      <ul>
+        <li>
+          elementul cu ID-ul <code>container</code> va avea lățimea egală cu jumătate din cea a paginii,
+          iar elementele cu clasa <code>square</code> vor fi poziționate unul sub altul, având lățimea
+          egală cu cea a părintelui.
+        </li>
+        <li>
+          culoarea fundalului paginii se va schimba lent, timp de o secundă de la alb la galbel și
+          repetându-se la infinit.
+        </li>
+      </ul>
+    </li>
+  </ul>
+</section>
+<section>
+  <h1>Exercițiul 2</h1>
+  <p>
+    Creați un document HTML și scrieți cod JavaScript care rezolvă următoarele:
+  </p>
+  <ul>
+    <li>
+      la încărcarea paginii, se vor genera <code>N</code> paragrafe ce conțin prenumele vostru, unde
+      <code>N = max(10, K)</code>, unde <code>K</code> este numărul de minute al timpului curent.
+    </li>
+    <li>
+      Fiecare paragraf va primi aleatoriu o clasă din lista <code highlight="['c1', 'c2', 'c3', 'c4', 'c5']"></code>,
+      clase pe care le veți defini ca setând fiecare o culoare diferită a textului.
+    </li>
+    <li>
+      La click oriunde pe fereastră <b>în afara paragrafelor</b>, se va afișa într-o fereatră de tip alert
+      coordonata orizontală a click-ului.
+    </li>
+    <li>
+      La click pe oricare paragraf, vor fi șterse toate paragrafele ce au aceeași clasă cu acesta.
+    </li>
+  </ul>
+</section>
+<section>
+  <h1>Exercițiul 3</h1>
+  <p>
+    Scrieți un document HTML care să conțină un input de tip text cu ID-ul <code>date</code> și un
+    element de tip <code highlight="<select>"></code> cu opțiunile "red", "green" și "blue", având
+    selectată inițial prima opțiune. Scrieți cod JavaScript care să realizeze următoarele:
+  </p>
+  <ul>
+    <li>
+      La încărcarea paginii, se va afișa în input data curentă, textul din input fiind colorat
+      cu culoarea opțiunii selectate. O dată la 3 secunde, se va selecta următoarea opțiune din select,
+      textul opținând noua culoare. După ultima opțiune se va selecta prima din listă.
+    </li>
+    <li>
+      La apăsarea tastei <code>s</code>, selecția automată se va opri.
+    </li>
+    <li>
+      La reîncărcarea paginii textul va râmâne colorat cu ultima culoare selectată înaintea reîncărcării.
+    </li>
+  </ul>
+</section>
+<section>
+  <h1>Exercițiul 4</h1>
+  <p>
+    Scrieți un document HTML care să conțină un formular cu un element input de tip text și un
+    buton de tip submit. Fie următorul array de obiecte stocat într-o variabilă pe serverul Node.js:
+  </p>
+  <app-code-example gistId="model1/ex4"></app-code-example>
+  <p>
+    Scrieți codul necesar astfel încât la trimiterea formularului cu un anume nume, să se
+    afișeze în pagină dacă persoana căutată este băiat sau fată și dacă este minor sau major. În cazul
+    în care numele respectiv nu există în listă, se va afișa mesajul "Numele căutat nu există".
+  </p>
+  <p>
+    <b>Exemplu:</b> Pentru <code>Gabriel</code>, se va afișa <code>băiat, nu este minor</code>.
+  </p>
+</section>

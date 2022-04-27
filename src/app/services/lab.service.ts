@@ -8,6 +8,7 @@ import { Lab5Component } from '../labs/lab5/lab5.component';
 import { Lab6Component } from '../labs/lab6/lab6.component';
 import { Lab7Component } from '../labs/lab7/lab7.component';
 import { Lab8Component } from '../labs/lab8/lab8.component';
+import { Model1Component } from '../labs/model1/model1.component';
 import { Lab } from '../lib/models/Lab';
 
 @Injectable({
@@ -108,6 +109,15 @@ export class LabService {
         homeworkLink: 'https://forms.gle/AtSHBqbF8zLpGrAQ7',
         homeworkDue: "2022-04-28T23:59:59+03:00",
         availableOn: "2022-04-14T12:00:00+03:00"
+      }
+    ),
+    new Lab(
+      Model1Component,
+      {
+        id: 10,
+        title: "Model de examen 1",
+        subtitle: "Model de examen",
+        description: "Subiect dat la un examen anterior.",
       }
     )
   ]
