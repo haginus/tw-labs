@@ -1,0 +1,250 @@
+<section>
+  <h1>Template rendering</h1>
+  <p>
+    Pentru a genera conținut folosind un șablon, avem nevoie de un <i>template rendering engine.</i>
+    Unul dintre cele mai cunoscute dintre acestea (pentru Node.js) este <i>EJS (Embedded JavaScript)</i>.
+    EJS ne permite să creăm șabloane care să fie completate apoi cu datele pe care le dăm ca parametru
+    în funcția de randare. Procesul este similar interpolării de string-uri (cu backtick) în JavaScript,
+    însă EJS este mult mai robust. Pentru a folosi EJS, trebuie să îl instalăm în proiectul nostru node
+    folosind comanda <code>npm install ejs</code>.
+  </p>
+  <section>
+    <h2>Crearea de șabloane</h2>
+    <p>
+      În compunerea șabloanelor EJS se folosesc diferite tag-uri. Iată o listă cu acestea:
+    </p>
+    <div class="common-table">
+      <table>
+        <tr>
+          <th>Tag</th>
+          <th>Descriere</th>
+        </tr>
+        <tr>
+          <td><code>&lt;%</code></td>
+          <td>
+            <b>Tag Scriptlet</b>
+            <p>
+              Execută cod JavaScript în interiorul șabloanelor în timpul randării. Nu are output.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>&lt;%_</code></td>
+          <td>
+            <b>Whitespace Splurping</b>
+            <p>
+              Șterge toate spațiile albe de dinaintea tag-ului.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>&lt;%=</code></td>
+          <td>
+            <b>Escaped output</b>
+            <p>
+              Scrie valoarea în șablon, folosind HTML escaping.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>&lt;%-</code></td>
+          <td>
+            <b>Raw output</b>
+            <p>
+              Scrie valoarea în șablon (fără escaping).
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>&lt;%#</code></td>
+          <td>
+            <b>Tag de comentariu</b>
+            <p>
+              Comentează șablonul. Nu se va executa și nu va avea output.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>&lt;%%</code></td>
+          <td>
+            <p>
+              Are ca output caracterul <code>%</code>.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>%&gt;</code></td>
+          <td>
+            <b>Plain ending tag</b>
+            <p>
+              Închide tag-ul deschis.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>-%&gt;</code></td>
+          <td>
+            <b>Newline slurp tag</b>
+            <p>
+              Închide tag-ul deschis și șterge line-break-ul de după acesta.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>_%&gt;</code></td>
+          <td>
+            <b>Whitespace Slurping ending tag</b>
+            <p>
+              Închide tag-ul deschis și șterge toate spațiile albe de după acesta.
+            </p>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <app-code-example gistId="lab9/ejs-template"></app-code-example>
+    <app-tip>
+      Observați că în exemplul de mai sus, variabila <code>user</code> nu este declarată
+      nicăieri, aceasta va fi dată ca parametru în funcția de randare.
+    </app-tip>
+  </section>
+  <section>
+    <h2>Includerea de șabloane (parțiale)</h2>
+    <p>
+      EJS ne permite să includem șabloane în șabloane. Astfel ne pune dispoziție funcția
+      <code highlight="include(path, data)"></code>, unde <code>path</code> este calea către
+      fișierul șablon, iar <code>data</code> este un obiect cu datele care vor fi folosite în
+      randarea șablonului. Calea este relativă la directorul în care se află șablonul din care
+      s-a făcut apelul funcției. Cel mai probabil se va dori folosirea tag-ului <code>&lt;%-</code>,
+      pentru a se evita dublul escaping al HTML-ului.
+    </p>
+    <app-code-example gistId="lab9/ejs-include"></app-code-example>
+  </section>
+  <section>
+    <h2>Funcția de rendering</h2>
+    <p>
+      Pentru a randa un șablon, ne folosim de funcțiile <code>render</code> și <code>renderFile</code>.
+    </p>
+    <section>
+      <h3><code highlight="ejs.render(str, data)" [languages]="['js']"></code></h3>
+      <p class="definition">
+        Returnează un string cu rezultatul randării șablonului.
+      </p>
+      <dl>
+        <dt><code>str</code></dt>
+        <dd>String reprezentând textul șablonului.</dd>
+        <dt><code>data</code></dt>
+        <dd>Obiect reprezentând datele folosite la randare.</dd>
+      </dl>
+    </section>
+    <section>
+      <h3><code highlight="async ejs.renderFile(path, data)" [languages]="['js']"></code></h3>
+      <p class="definition">
+        Returnează un <b>Promise</b> de string cu rezultatul randării șablonului.
+      </p>
+      <dl>
+        <dt><code>path</code></dt>
+        <dd>String reprezentând calea către șablon.</dd>
+        <dt><code>data</code></dt>
+        <dd>Obiect reprezentând datele folosite la randare.</dd>
+      </dl>
+    </section>
+  </section>
+  <section>
+    <h2>Folosirea EJS cu Express</h2>
+    <p>
+      Express ne permite să lucrăm mai ușor cu template-uri, punându-ne la dispoziție setarea
+      <code highlight="app.set('view engine', 'ejs')"></code>. Astfel, odată ce ne-am setat
+      view engine-ul, putem folosi metoda <code highlight="res.render(templateName, data)"></code> pentru a trimite
+      un șablon. Express va căuta implicit în directorul <code>views</code> șablonul cu numele <code>templateName</code> și
+      extensia <code>.ejs</code>. În cazul în care dorim să modificăm folderul în care vor fi căutate șabloanele,
+      o putem face apelând <code highlight="app.set('views', path)"></code>. Un exemplu complet poate fi urmărit mai jos:
+    </p>
+    <app-code-example gistId="lab9/ejs-views" [external]="true"></app-code-example>
+    <app-tip>
+      Obsevați că șablonul este stocat în <code>pages/index.ejs</code>. Este recomandat să
+      să separăm șabloanele pentru pagini de șabloanele parțiale, pentru o mai bună structură a codului.
+    </app-tip>
+  </section>
+</section>
+<section>
+  <h1>Încărcarea de fișiere folosind <code>formidable</code></h1>
+  <p>
+    Există mai multe moduri de a încărca fișiere pe un server Node.js. Unul dintre acestea
+    este folosind librăria <code>formidable</code>. Putem instala această librărie
+    folosind <code>npm install formidable</code>.
+  </p>
+  <section>
+    <section>
+      <h2>Constructorul <code>formidable(options)</code></h2>
+      <p class="definition">
+        Returnează un obiect care poate fi folosit pentru a încărca fișiere.
+      </p>
+      <dl>
+        <dt><code>options</code></dt>
+        <dd>
+          <dl>
+            <dt><code>minFileSize</code></dt>
+            <dd>număr în bytes ce definește mărimea minimă a fișierului (implicit <code>1</code>)</dd>
+            <dt><code>maxFileSize</code></dt>
+            <dd>număr în bytes ce definește mărimea maximă a fișierului (implicit <code>200 * 1024 * 1024</code> - 200MB)</dd>
+            <dt><code>multiples</code></dt>
+            <dd>valoare booleană ce specifică dacă se pot încărca fișiere multiple</dd>
+            <dt><code highlight="filter({name, originalFilename, mimetype})"></code></dt>
+            <dd>Funcție ce dermină dacă încărcarea fișierului respectiv va fi acceptată</dd>
+          </dl>
+        </dd>
+      </dl>
+    </section>
+  </section>
+  <section>
+    <h2><code>.parse(request, callback)</code></h2>
+    <p class="definition">
+      Metodă a obiectului returnat de constructorul de mai sus ce parsează cererea de upload.
+    </p>
+    <dl>
+      <dt><code>request</code></dt>
+      <dd>Obiectul de request din Express</dd>
+      <dt><code>callback</code></dt>
+      <dd>
+        Funcție cu trei parametri:
+        <dl>
+          <dt><code>err</code></dt>
+          <dd>Obiect de eroare</dd>
+          <dt><code>fields</code></dt>
+          <dd>Obiect ce conține toate câmpurile din formular</dd>
+          <dt><code>files</code></dt>
+          <dd>Obiect ce conține toate fișierele încărcate</dd>
+        </dl>
+      </dd>
+    </dl>
+  </section>
+  <p>
+    Din păcate, formidable nu dispune de un middleware Express, însă îl putem scrie noi
+    înșine.
+  </p>
+  <app-code-example gistId="lab9/formidable" [external]="true"></app-code-example>
+  <p>
+    În vederea salvării fișierelor într-o anumită locație, putem folosi metode
+    din librăria <a href="https://nodejs.org/api/fs.html" target="_blank"><code>fs</code></a>,
+    precum <code>fs.writeFile()</code>.
+  </p>
+  <app-tip>
+    <b>Atenție!</b> Librăria <code>formidable</code> dispune și de capabilități de
+    parsare a celorlaltor câmpuri din body. Astfel, dacă folosim <code>formidable</code>
+    nu trebuie să folosim <code>body-parser</code>! În caz contrar, <code>formidable</code>
+    nu va funcționa cum trebuie.
+  </app-tip>
+</section>
+<section>
+  <h1>Teme</h1>
+  <section>
+    <h2>Tema 9.1</h2>
+    <p>
+      Creați o aplicație web în care utilizatorii pot posta poze. Aceasta va conține o
+      pagină în care vor fi afișate toate pozele postate și o pagină în care se poate adăuga o poză nouă.
+      Pentru randarea acestor pagini se va folosi EJS, iar pentru generarea listei de poze se va folosi un
+      șablon parțial. Fiecare postare are un titlu, o poză și o descriere opțională. Postările vor fi
+      salvate în fișiere JSON, câte unul pentru fiecare postare. 
+    </p>
+  </section>
+</section>

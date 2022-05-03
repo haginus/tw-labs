@@ -1,0 +1,12 @@
+<% const today = new Date(); %>
+<div class="navbar">
+  <% if (user) { %>
+    <span><%= user.name %></span>
+    <a href="/logout">Logout</a>
+  <% } else { %>
+    <a href="/login">Login</a>
+  <% } %>
+  <span class="current-date">
+    <%= today.toLocaleDateString() %>
+  </span>
+</div>

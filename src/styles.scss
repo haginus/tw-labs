@@ -73,6 +73,10 @@ code {
       border: 1px solid rgba(0, 0, 0, 0.2);
       padding: 8px;
     }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 
