@@ -121,7 +121,7 @@ export class LabService {
         description: "Folosirea EJS pentru randarea de șabloane. Încărcare de fișiere.",
         homeworkLink: 'https://forms.gle/XQArQWf6kUU4GeDX8',
         homeworkDue: "2022-05-12T23:59:59+03:00",
-        // availableOn: "2022-05-05T12:00:00+03:00"
+        availableOn: "2022-05-05T12:00:00+03:00"
       }
     ),
     new Lab(
