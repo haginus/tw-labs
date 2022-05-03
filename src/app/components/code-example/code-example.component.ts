@@ -118,7 +118,8 @@ export class CodeExampleComponent implements AfterViewInit, OnDestroy {
       'html': 'xml',
       'css': 'css',
       'js': 'javascript',
-      'ts': 'typescript'
+      'ts': 'typescript',
+      'ejs': 'xml'
     };
     return [langs[gistFile.fileType]];
   }

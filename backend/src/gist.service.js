@@ -1,17 +1,26 @@
 const vm = require('vm');
 const fs = require('fs');
 const path = require('path');
-const sinon = require('sinon');
+const ejs = require('ejs');
 
 function getServerInContext(code, gistPath, request) {
   return new Promise((resolve, reject) => {
     const methods = ['get', 'post', 'patch', 'put', 'delete', 'all'];
 
+    let viewsPath = path.join(gistPath, 'views');
     let declarationIndex = 0;
     const routes = [];
     const middlewares = [];
 
     const listeners = { };
+
+    listeners.set = (firstArg, ...args) => {
+      if(firstArg == 'views') {
+        viewsPath = path.join(gistPath, args[0]);
+      }
+      return;
+    };
+
     methods.forEach(method => {
       listeners[method] = (path, ...handlers) => {
         const newHandlers = [
@@ -56,11 +65,17 @@ function getServerInContext(code, gistPath, request) {
           const file = fs.readFileSync(safePath, 'utf8');
           return response.send(file);
         },
+        render: (relativePath, data) => {
+          const filePath = path.join(viewsPath, relativePath) + '.ejs';
+          const file = fs.readFileSync(filePath, 'utf8');
+          const result = ejs.render(file, data);
+          return response.send(result);
+        } 
       };
 
       const runHandlers = async () => {
-        for(const x of handlers) {
-          await new Promise((resolve, reject) => x(request, response, resolve ));
+        for(const handler of handlers) {
+          await new Promise((resolve, reject) => handler(request, response, resolve ));
         }
       };
       runHandlers();
@@ -84,7 +99,8 @@ function getServerInContext(code, gistPath, request) {
           'body-parser': {
             json: () => (req, res, next) => { next() },
             urlencoded: () => (req, res, next) => { next() },
-          }
+          },
+          ejs,
         };
         return packages[target];
       },
