@@ -13,10 +13,12 @@ router.get('/:gistFolder/:gistName/_', async (req, res) => {
 router.all('/:gistFolder/:gistName/**', async (req, res) => {
   const { gistFolder, gistName } = req.params;
   const gistId = `${gistFolder}/${gistName}`;
-  const request = {
-    ...req,
-    path: getNormalPath(req.path),
+  const request = {};
+  for(let prop in req) {
+    if(prop == 'host') continue;
+    request[prop] = req[prop];
   }
+  request.path = getNormalPath(req.path);
   const { response } = await getGist(gistId, request);
   res.send(response);
 });

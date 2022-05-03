@@ -24,6 +24,7 @@
     "cors": "^2.8.5",
     "ejs": "^3.1.7",
     "express": "^4.17.2",
+    "formidable": "^2.0.1",
     "highlight.js": "^11.4.0",
     "ngx-highlightjs": "^6.1.1",
     "path": "^0.12.7",

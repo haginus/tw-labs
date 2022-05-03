@@ -2,6 +2,8 @@ const vm = require('vm');
 const fs = require('fs');
 const path = require('path');
 const ejs = require('ejs');
+const bodyParser = require('body-parser');
+const formidable = require('formidable');
 
 function getServerInContext(code, gistPath, request) {
   return new Promise((resolve, reject) => {
@@ -96,11 +98,9 @@ function getServerInContext(code, gistPath, request) {
           express,
           path,
           fs,
-          'body-parser': {
-            json: () => (req, res, next) => { next() },
-            urlencoded: () => (req, res, next) => { next() },
-          },
+          'body-parser': bodyParser,
           ejs,
+          formidable,
         };
         return packages[target];
       },

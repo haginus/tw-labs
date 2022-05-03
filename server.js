@@ -6,8 +6,6 @@ const path = require('path');
 const app = express();
 
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
 
 const gistRoutes = require('./backend/src/gist.route.js');
 
