@@ -34,6 +34,10 @@ export class GradeListComponent implements OnInit {
     });
   }
 
+  printGrade(grade) {
+    window.open(`/grading/grade/${grade.id}/print`, "_blank");
+  }
+
   viewCode(grade: Grade) {
     window.open("//" + grade.gitLink, "_blank");
   }

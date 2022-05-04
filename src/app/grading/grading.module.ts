@@ -11,6 +11,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatSliderModule } from '@angular/material/slider';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatMenuModule } from '@angular/material/menu';
+import { PrintGradeComponent } from './pages/print-grade/print-grade.component';
 
 
 const dbConfig: DBConfig  = {
@@ -38,7 +39,8 @@ const mapDeps = [
 @NgModule({
   declarations: [
     GradeListComponent,
-    GradeComponent
+    GradeComponent,
+    PrintGradeComponent
   ],
   imports: [
     CommonModule,
