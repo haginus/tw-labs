@@ -19,7 +19,7 @@ export class PromptUpdateService {
     let snackbarRef: MatSnackBarRef<TextOnlySnackBar>;
     if(versionUpdate.type == 'VERSION_DETECTED') {
       this.detectedVersionTimeout = window.setTimeout(() => {
-        this.snackbar.open('O nouă versiune a fost detectată. Se instalează...');
+        this.snackbar.open('O nouă versiune a fost detectată. Se instalează...', null, { duration: null });
       }, 500);
     } else {
       if(this.detectedVersionTimeout != null) {
@@ -31,7 +31,7 @@ export class PromptUpdateService {
           duration: 5000
         });
       } else if(versionUpdate.type == 'VERSION_READY') {
-        snackbarRef = this.snackbar.open('O nouă versiune a fost instalată.', 'Reîncărcați');
+        snackbarRef = this.snackbar.open('O nouă versiune a fost instalată.', 'Reîncărcați', { duration: null });
       }
     }
 

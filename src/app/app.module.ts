@@ -28,6 +28,7 @@ import { Lab7Component } from './labs/lab7/lab7.component';
 import { Lab8Component } from './labs/lab8/lab8.component';
 import { Model1Component } from './labs/model1/model1.component';
 import { Lab9Component } from './labs/lab9/lab9.component';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,12 @@ import { Lab9Component } from './labs/lab9/lab9.component';
           css: () => import('highlight.js/lib/languages/css'),
           xml: () => import('highlight.js/lib/languages/xml')
         }
+      }
+    },
+    {
+      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+      useValue: {
+        duration: 3000
       }
     }
   ],
