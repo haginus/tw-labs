@@ -1,0 +1,36 @@
+.grade-list {
+  padding: 16px;
+
+  .grade-card {
+    max-width: 600px;
+    margin: 0 auto;
+    margin-bottom: 24px;
+    display: flex;
+    height: 100px;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+
+    .grade-hero {
+      width: 100px;
+      height: 100px;
+      background: #eee;
+      font-size: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 300;
+    }
+
+    .grade-content {
+      padding: 16px;
+      flex: 1;
+    }
+    
+    .grade-actions {
+      position: absolute;
+      right: 8px;
+      top: 8px;
+    }
+  }
+}

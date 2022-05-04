@@ -1,0 +1,51 @@
+
+<div class="standard-view">
+  <mat-toolbar>
+    <button mat-icon-button [routerLink]="['/']">
+      <mat-icon>home</mat-icon>
+    </button>
+    <span class="toolbar-title">Note</span>
+    <span class="spacer"></span>
+    <button mat-button [routerLink]="['/grading', 'grade']">
+      <mat-icon>add</mat-icon>
+      <span>Adăugare</span>
+    </button>
+  </mat-toolbar>
+  <div class="main-container">
+    <div class="grade-list">
+      <div class="grade-card mat-elevation-z2" *ngFor="let grade of grades$ | async">
+        <div class="grade-hero">
+          {{ getTotalGrade(grade).toFixed(0) }}p
+        </div>
+        <div class="grade-content">
+          <h1>{{ grade.person }}</h1>
+          <div class="muted">
+            Notă laborant: <b>{{grade.labGrade}}p</b> | Notă proiect: <b>{{ getTotalProjectGrade(grade) }}p</b>
+          </div>
+        </div>
+        <div class="grade-actions">
+          <button mat-icon-button [matMenuTriggerFor]="gradeMenu" [matMenuTriggerData]="{ grade }">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<mat-menu #gradeMenu="matMenu">
+  <ng-template matMenuContent let-grade="grade">
+    <button mat-menu-item [routerLink]="['grade', grade.id]">
+        <mat-icon>mode</mat-icon>
+        <span>Editare notă</span>
+    </button>
+    <button mat-menu-item (click)="deleteGrade(grade)">
+      <mat-icon>delete</mat-icon>
+      <span>Ștergere notă</span>
+    </button>
+    <button mat-menu-item (click)="viewCode(grade)">
+      <mat-icon>code</mat-icon>
+      <span>Vizualizare cod</span>
+    </button>
+  </ng-template>
+</mat-menu>

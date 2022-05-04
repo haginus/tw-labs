@@ -18,7 +18,10 @@ const routes: Routes = [
   {
     path: "labs/:id",
     component: LabViewerComponent
-  }
+  },
+  { path: 'grading',
+    loadChildren: () => import('./grading/grading.module').then(m => m.GradingModule),
+  },
 ];
 
 @NgModule({
