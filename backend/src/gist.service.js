@@ -156,6 +156,7 @@ async function getGist(gistId, request = null) {
     if(!request) {
       return { meta };
     }
+    console.log(`Running gist ${gistId}...`);
     const response = await getServerInContext(code, gistPath, request);
     return { response, meta };
   } catch (error) {

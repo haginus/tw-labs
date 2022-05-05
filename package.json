@@ -1,6 +1,10 @@
 {
   "name": "tw-labs",
   "version": "0.0.0",
+  "engines": {
+    "node": "14.x",
+    "npm": "6.x"
+  },
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
