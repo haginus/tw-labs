@@ -55,8 +55,9 @@
             
             <mat-form-field appearance="standard" class="observation-input" fxFlex="50" fxFlex.gt-xs="25"
               *ngIf="
-                getRequirementFormGroup(requirement).dirty &&
-                getRequirementFormGroup(requirement).get('grade').value < getRequirement(requirement).maxGrade
+                (getRequirementFormGroup(requirement).touched &&
+                getRequirementFormGroup(requirement).get('grade').value < getRequirement(requirement).maxGrade) ||
+                getRequirementFormGroup(requirement).get('observation').value
               "
             >
               <mat-label>Observații</mat-label>

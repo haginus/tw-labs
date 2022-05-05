@@ -79,7 +79,7 @@ export class GradeComponent implements OnInit {
     const grade = this.gradeForm.value;
     grade.projectGrade = grade.projectGrade.map(group => {
       const requirement = this.requirements.find(req => req.requirement === group.requirement);
-      return { grade: group.grade, requirement };
+      return { grade: group.grade, observation: group.observation, requirement };
     });
 
     if(this.initialGrade) {
