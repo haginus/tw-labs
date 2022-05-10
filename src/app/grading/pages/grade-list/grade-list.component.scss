@@ -1,6 +1,12 @@
 .grade-list {
   padding: 16px;
 
+  .grade-list-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
   .grade-card {
     max-width: 600px;
     margin: 0 auto;

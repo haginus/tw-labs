@@ -13,10 +13,13 @@ export class GradeListComponent implements OnInit {
 
   performedActions: BehaviorSubject<string> = new BehaviorSubject('');
 
+  showGrades: boolean = false;
+
   grades$ = this.performedActions.pipe(switchMap(_ => this.gradeService.getGrades()));
 
   ngOnInit(): void {
-
+    const item = localStorage.getItem("showGrades");
+    this.showGrades = (item || "true") === "true";
   }
 
   getTotalGrade(grade: Grade) {
@@ -40,6 +43,11 @@ export class GradeListComponent implements OnInit {
 
   viewCode(grade: Grade) {
     window.open("//" + grade.gitLink, "_blank");
+  }
+
+  toggleShowGrades() {
+    this.showGrades = !this.showGrades;
+    localStorage.setItem("showGrades", this.showGrades.toString());
   }
 
 }

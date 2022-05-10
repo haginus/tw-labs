@@ -6,23 +6,31 @@
     </button>
     <span class="toolbar-title">Note</span>
     <span class="spacer"></span>
-    <button mat-button [routerLink]="['/grading', 'grade']">
-      <mat-icon>add</mat-icon>
-      <span>Adăugare</span>
+    <button mat-icon-button [color]="showGrades ? 'black' : 'primary'" (click)="toggleShowGrades()">
+      <mat-icon *ngIf="showGrades">visibility</mat-icon>
+      <mat-icon *ngIf="!showGrades">visibility_off</mat-icon>
     </button>
   </mat-toolbar>
   <div class="main-container">
     <div class="grade-list">
+      <div class="grade-list-header">
+        <button mat-raised-button color="accent" [routerLink]="['/grading', 'grade']">
+          Adăugare notă
+        </button>
+      </div>
       <div class="grade-card mat-elevation-z2" *ngFor="let grade of grades$ | async">
         <div class="grade-hero">
-          {{ getTotalGrade(grade).toFixed(0) }}p
+          <span *ngIf="showGrades">{{ getTotalGrade(grade).toFixed(0) }}p</span>
+          <span *ngIf="!showGrades">
+            <mat-icon>visibility_off</mat-icon>
+          </span>
         </div>
         <div class="grade-content">
           <h1>
             <span>{{ grade.person }}</span>
             <span class="muted"> ({{ grade.group }})</span>
             </h1>
-          <div>
+          <div *ngIf="showGrades">
             Notă laborant: <b>{{grade.labGrade}}p</b> | Notă proiect: <b>{{ getTotalProjectGrade(grade) }}p</b>
           </div>
         </div>
