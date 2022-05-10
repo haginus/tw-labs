@@ -48,6 +48,7 @@ export class GradeComponent implements OnInit {
     this.gradeForm = new FormGroup({
       person: new FormControl(grade?.person, [Validators.required]),
       email: new FormControl(grade?.email, [Validators.required]),
+      group: new FormControl(grade?.group, [Validators.required]),
       labGrade: new FormControl(grade?.labGrade, [Validators.required, Validators.min(0), Validators.max(10)]),
       gitLink: new FormControl(grade?.gitLink, [Validators.required]),
       projectGrade: new FormArray([])

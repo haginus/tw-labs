@@ -64,6 +64,7 @@ export interface Grade {
   id: number;
   person: string;
   email: string;
+  group: string;
   gitLink: string;
   labGrade: number;
   projectGrade: ProjectGrade[];

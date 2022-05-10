@@ -12,6 +12,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatMenuModule } from '@angular/material/menu';
 import { PrintGradeComponent } from './pages/print-grade/print-grade.component';
+import { MatSelectModule } from '@angular/material/select';
 
 
 const dbConfig: DBConfig  = {
@@ -33,6 +34,7 @@ const mapDeps = [
   MatInputModule,
   MatSliderModule,
   MatMenuModule,
+  MatSelectModule
 ];
 
 

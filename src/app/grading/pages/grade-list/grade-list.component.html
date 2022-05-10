@@ -18,8 +18,11 @@
           {{ getTotalGrade(grade).toFixed(0) }}p
         </div>
         <div class="grade-content">
-          <h1>{{ grade.person }}</h1>
-          <div class="muted">
+          <h1>
+            <span>{{ grade.person }}</span>
+            <span class="muted"> ({{ grade.group }})</span>
+            </h1>
+          <div>
             Notă laborant: <b>{{grade.labGrade}}p</b> | Notă proiect: <b>{{ getTotalProjectGrade(grade) }}p</b>
           </div>
         </div>
