@@ -50,4 +50,8 @@ export class GradeListComponent implements OnInit {
     localStorage.setItem("showGrades", this.showGrades.toString());
   }
 
+  exportGrades() {
+    this.gradeService.exportGrades();
+  }
+
 }

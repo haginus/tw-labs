@@ -58,6 +58,36 @@ export class GradeService {
       new Requirement('Node: Pagina pentru erori 404', 1),
     ];
   }
+
+  exportGrades() {
+    this.getGrades().subscribe(grades => {
+      const mappedGrades = grades.map(grade => {
+        let projectGrade = 0;
+        const requirements = grade.projectGrade.reduce((acc, curr) => {
+          acc[curr.requirement.requirement] = curr.grade;
+          projectGrade += curr.grade;
+          return acc;
+        }, {});
+        return {
+          id: grade.id,
+          name: grade.person,
+          email: grade.email,
+          group: grade.group,
+          labGrade: grade.labGrade,
+          projectGrade: projectGrade,
+          totalGrade: Math.ceil(grade.labGrade + projectGrade),
+          ...requirements
+        };
+      });
+      const json = JSON.stringify(mappedGrades);
+      const blob = new Blob([json], { type: 'application/json' });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'grades.json';
+      link.click();
+    });
+  }
 }
 
 export interface Grade {

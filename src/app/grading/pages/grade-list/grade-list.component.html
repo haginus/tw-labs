@@ -10,6 +10,9 @@
       <mat-icon *ngIf="showGrades">visibility</mat-icon>
       <mat-icon *ngIf="!showGrades">visibility_off</mat-icon>
     </button>
+    <button mat-icon-button (click)="exportGrades()">
+      <mat-icon>file_download</mat-icon>
+    </button>
   </mat-toolbar>
   <div class="main-container">
     <div class="grade-list">
