@@ -10,6 +10,7 @@ import { Lab7Component } from '../labs/lab7/lab7.component';
 import { Lab8Component } from '../labs/lab8/lab8.component';
 import { Lab9Component } from '../labs/lab9/lab9.component';
 import { Model1Component } from '../labs/model1/model1.component';
+import { Model2Component } from '../labs/model2/model2.component';
 import { Lab } from '../lib/models/Lab';
 
 @Injectable({
@@ -131,6 +132,15 @@ export class LabService {
         title: "Model de examen 1",
         subtitle: "Model de examen",
         description: "Subiect dat la un examen anterior.",
+      }
+    ),
+    new Lab(
+      Model2Component,
+      {
+        id: 11,
+        title: "Model de examen 2",
+        subtitle: "Model de examen",
+        description: "(oare ce o fi?)",
       }
     )
   ]

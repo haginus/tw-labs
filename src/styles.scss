@@ -38,6 +38,10 @@ mat-toolbar {
   .toolbar-title {
     margin-left: 8px;
   }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
 }
 
 a {
@@ -171,4 +175,8 @@ pre.example {
     background: transparent!important;
     padding: 8px;
   }
+}
+
+.muted {
+  color: #777;
 }

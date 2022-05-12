@@ -1,0 +1,83 @@
+
+<div class="standard-view">
+  <mat-toolbar>
+    <button mat-icon-button [routerLink]="['/grading']">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <span class="toolbar-title">
+      <span *ngIf="!initialGrade">Notă nouă</span>
+      <span *ngIf="initialGrade">Editare notă</span>
+    </span>
+    <span class="spacer"></span>
+    <button mat-raised-button color="accent" (click)="saveGrade()" [disabled]="gradeForm?.invalid">Salvare</button>
+  </mat-toolbar>
+  <div class="main-container">
+    <mat-card class="grade-card">
+      <form [formGroup]="gradeForm" fxLayout="row grid">
+        <mat-form-field appearance="outline" fxFlex="100">
+          <mat-label>Nume student</mat-label>
+          <input matInput type="text" formControlName="person" name="personName">
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="100">
+          <mat-label>E-mail student</mat-label>
+          <input matInput type="email" formControlName="email" name="personEmail">
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="100">
+          <mat-label>Grupă</mat-label>
+          <mat-select formControlName="group">
+            <mat-option value="142">142</mat-option>
+            <mat-option value="211">211</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="100">
+          <mat-label>Notă laborant</mat-label>
+          <input matInput type="number" formControlName="labGrade" name="labGrade">
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="100">
+          <mat-label>Link git</mat-label>
+          <input matInput type="text" formControlName="gitLink" name="gitLink">
+          <mat-hint *ngIf="gradeGitLink.value">
+            <a [href]="'//' + gradeGitLink.value" target="_blank">Deschidere link</a>
+          </mat-hint>
+        </mat-form-field>
+        <div fxFlex="100" formArrayName="projectGrade">
+          <h3>Cerințe proiect</h3>
+          <div class="project-requirement"
+            *ngFor="let requirement of projectGrade.controls; let i = index"
+            [formGroupName]="i" fxLayout="row grid" fxLayoutGap="0px"
+          >
+            <h4 fxFlex="100" fxFlex.gt-xs="50">
+              <b>{{getRequirement(requirement).maxGrade}}p.</b>
+              {{ getRequirement(requirement).requirement }}</h4>
+            <mat-slider
+              [max]="getRequirement(requirement).maxGrade"
+              [min]="0"
+              [step]="0.25 * getRequirement(requirement).maxGrade"
+              [thumbLabel]="true"
+              [tickInterval]="1"
+              formControlName="grade"
+              fxFlex="50" fxFlex.gt-xs="25"
+            >
+            </mat-slider>
+            
+            <mat-form-field appearance="standard" class="observation-input" fxFlex="50" fxFlex.gt-xs="25"
+              *ngIf="
+                (getRequirementFormGroup(requirement).touched &&
+                getRequirementFormGroup(requirement).get('grade').value < getRequirement(requirement).maxGrade) ||
+                getRequirementFormGroup(requirement).get('observation').value
+              "
+            >
+              <mat-label>Observații</mat-label>
+              <input matInput type="text" formControlName="observation" name="observation">
+            </mat-form-field>
+    
+          </div>
+        </div>
+        <div class="total-rows">
+          <div class="total-row">Total proiect: {{ totalProjectGrade }}p</div>
+          <div class="total-row">Total cumulat: {{ totalGrade }}p</div>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>

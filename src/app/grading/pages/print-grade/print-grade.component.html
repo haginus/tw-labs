@@ -1,0 +1,30 @@
+<div class="print-container" *ngIf="grade">
+  <div class="header">
+    <h1>{{ grade.person }}</h1>
+    <div class="grade-hero">
+      {{ getTotalGrade(grade).toFixed(0) }}p
+    </div>
+    <div class="muted">
+      Notă laborant: <b>{{grade.labGrade}}p</b> | Notă proiect: <b>{{ getTotalProjectGrade(grade) }}p</b>
+    </div>
+  </div>
+  <div class="common-table">
+    <table>
+      <tr>
+        <th>Cerință</th>
+        <th>Punctaj</th>
+        <th>Observații</th>
+      </tr>
+      <tr *ngFor="let projectGrade of grade.projectGrade">
+        <td><b>{{projectGrade.requirement.maxGrade}}p.</b> {{ projectGrade.requirement.requirement }}</td>
+        <td>{{ projectGrade.grade }}p</td>
+        <td>{{ projectGrade.observation || '-' }}</td>
+      </tr>
+      <tr>
+        <th>Total</th>
+        <th>{{ getTotalProjectGrade(grade) }}p</th>
+        <th></th>
+      </tr>
+    </table>
+  </div>
+</div>

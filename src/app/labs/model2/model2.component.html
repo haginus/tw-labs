@@ -1,0 +1,62 @@
+<article>
+  <h1>Exerciuțiul 1</h1>
+  <ul>
+    <li>creați un div cu clasa <code>container</code> ce conține alte 5 div-uri</li>
+    <li>
+      definiți clasa <code>container</code> în următorul mod: înălțimea să fie jumătate din cea a ecranului,
+      lățimea de <code>250px</code> iar bordura să fie punctată, de culoare albastru
+    </li>
+    <li>
+      folosind un grid CSS, obțineți layout-ul din imaginea de mai jos. Copiii elementului cu clasa
+      <code>container</code> vor avea o bordură dublă de culoare neagră și mărime a fontului de <code>15px</code><br>
+      <img src="/assets/homework/model2/layout.png"/>
+    </li>
+    <li>
+      scrieți un media query pentru lățimea ferestrei sub <code>600px</code> și înălțimea sub <code>500px</code> îm care:
+      <ul>
+        <li>
+          copiii să nu se mai afișeze în grid, ci în format implicit, unul sub altul, întinse pe toată lățimea container-ului.
+        </li>
+        <li>
+          la aducerea cursorului pe oricare copil, va crește treptat dimensiunea fontului, timp de 3 secunde, la <code>30px</code>.
+        </li>
+      </ul>
+    </li>
+  </ul>
+</article>
+<article>
+  <h1>Exerciuțiul 2</h1>
+  <p>
+    La încărcarea paginii, se crează 10 div-uri ce au clasa <code>dreptunghi</code>. Aceasta atribuie 
+    o bordură, o lățime, o înălțime, o culoare de fundal și face ca div-urile să fie poziționate pe
+    același rând, cu o distanță de <code>10px</code> între ele. La click pe oricare div, acesta va crește
+    în înălțime cu <code>10px</code>. La click în document oriunde în afara div-urilor, toate revin la
+    dimensiunea inițială.
+  </p>
+</article>
+<article>
+  <h1>Exerciuțiul 3</h1>
+  <p>
+    Fie un document HTML în care există un input de tip text cu ID-ul <code>numar</code> și 10 paragrafe
+    ale căror conținuturi sunt cuvinte separate prin spații (ex: <code highlight="<p>examen la tehnici web </p>"></code>).
+    În inputul de text se va scrie un număr întreg. La prima apăsare a tastei <code>s</code>, se vor șterge
+    pe rând, din secundă în secundă paragrafele ce conțin un număr de cuvinte strict mai mare decât numărul
+    din input. La sfârșitul ștergerii de paragrafe, numărul de paragrafe șterse va fi salvat în localStorage și
+    va fi valoarea implicită a inputului la reîncărcarea paginii.
+  </p>
+</article>
+<article>
+  <h1>Exerciuțiul 4</h1>
+  <p>
+    Scrieți un document HTML care să conțină un formular cu un select având opțiunile <code>mic</code> și
+    <code>mare</code>, un grup de două butoane radio având etichetele <code>e capitală</code> și
+    <code>nu e capitală</code> și un buton de tip submit.
+    În serverul Node.js se va defini următoarea listă:
+  </p>
+  <app-code-example gistId="model2/ex4"></app-code-example>
+  <p>
+    Scrieți o aplicație Express astfel încât la trimiterea formularului să se afișeze o listă de orașe
+    în funcție de valorile selectate în formular. Se consideră un oraș mic unul cu o populație de sub
+    10000 de locuitori, în schimb ce cele mari au peste acest număr.
+  </p>
+</article>

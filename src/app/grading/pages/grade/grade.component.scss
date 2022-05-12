@@ -1,0 +1,31 @@
+.main-container {
+  padding: 8px;
+}
+
+.grade-card {
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 16px;
+}
+
+.project-requirement {
+  display: flex;
+  align-items: center;
+  h4 {
+    margin-bottom: 0px;
+    // margin-right: 12px;
+  }
+
+  mat-form-field {
+    margin-top: -32px;
+    // margin-left: 8px;
+    height: 48px;
+  }
+}
+
+.total-rows {
+  .total-row {
+    margin-top: 12px;
+    font-weight: 600;
+  }
+}

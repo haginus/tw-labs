@@ -1,0 +1,69 @@
+
+<div class="standard-view">
+  <mat-toolbar>
+    <button mat-icon-button [routerLink]="['/']">
+      <mat-icon>home</mat-icon>
+    </button>
+    <span class="toolbar-title">Note</span>
+    <span class="spacer"></span>
+    <button mat-icon-button [color]="showGrades ? 'black' : 'primary'" (click)="toggleShowGrades()">
+      <mat-icon *ngIf="showGrades">visibility</mat-icon>
+      <mat-icon *ngIf="!showGrades">visibility_off</mat-icon>
+    </button>
+    <button mat-icon-button (click)="exportGrades()">
+      <mat-icon>file_download</mat-icon>
+    </button>
+  </mat-toolbar>
+  <div class="main-container">
+    <div class="grade-list">
+      <div class="grade-list-header">
+        <button mat-raised-button color="accent" [routerLink]="['/grading', 'grade']">
+          Adăugare notă
+        </button>
+      </div>
+      <div class="grade-card mat-elevation-z2" *ngFor="let grade of grades$ | async">
+        <div class="grade-hero">
+          <span *ngIf="showGrades">{{ getTotalGrade(grade).toFixed(0) }}p</span>
+          <span *ngIf="!showGrades">
+            <mat-icon>visibility_off</mat-icon>
+          </span>
+        </div>
+        <div class="grade-content">
+          <h1>
+            <span>{{ grade.person }}</span>
+            <span class="muted"> ({{ grade.group }})</span>
+            </h1>
+          <div *ngIf="showGrades">
+            Notă laborant: <b>{{grade.labGrade}}p</b> | Notă proiect: <b>{{ getTotalProjectGrade(grade) }}p</b>
+          </div>
+        </div>
+        <div class="grade-actions">
+          <button mat-icon-button [matMenuTriggerFor]="gradeMenu" [matMenuTriggerData]="{ grade }">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<mat-menu #gradeMenu="matMenu">
+  <ng-template matMenuContent let-grade="grade">
+    <button mat-menu-item [routerLink]="['grade', grade.id]">
+        <mat-icon>mode</mat-icon>
+        <span>Editare notă</span>
+    </button>
+    <button mat-menu-item (click)="deleteGrade(grade)">
+      <mat-icon>delete</mat-icon>
+      <span>Ștergere notă</span>
+    </button>
+    <button mat-menu-item (click)="viewCode(grade)">
+      <mat-icon>code</mat-icon>
+      <span>Vizualizare cod</span>
+    </button>
+    <button mat-menu-item (click)="printGrade(grade)">
+      <mat-icon>print</mat-icon>
+      <span>Imprimare fișă</span>
+    </button>
+  </ng-template>
+</mat-menu>
