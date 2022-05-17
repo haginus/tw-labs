@@ -34,7 +34,7 @@ export class GradeService {
       new Requirement('HTML: Elemente semantice', 1),
       new Requirement('CSS: Site responsive (media queries, unități relative)', 1),
       new Requirement('CSS: Folosirea majorității selectorilor CSS', 1),
-      new Requirement('CSS: Folosirea majorității proprităților CSS', 1),
+      new Requirement('CSS: Folosirea majorității proprietăților CSS', 1),
       new Requirement('CSS: Folosirea flex și grid layouts', 1),
       new Requirement('CSS: Meniu drop-down', 2),
       new Requirement('CSS: Tranziții', 1),
