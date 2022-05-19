@@ -9,7 +9,9 @@ export class GradeService {
   constructor(private db: NgxIndexedDBService) { }
 
   getGrades(): Observable<Grade[]> {
-    return this.db.getAll('grades');
+    return this.db.getAll<Grade>('grades').pipe(
+      map(grades => grades.sort((a, b) => b.id - a.id))
+    );
   }
 
   getGrade(id: number) {
