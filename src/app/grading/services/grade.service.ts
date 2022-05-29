@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
-import { map, Observable, of, tap } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'any'
@@ -10,16 +10,7 @@ export class GradeService {
 
   getGrades(): Observable<Grade[]> {
     return this.db.getAll<Grade>('grades').pipe(
-      map(grades => grades.sort((a, b) => b.id - a.id)),
-      tap(grades => {
-        const requirements = this.getRequirements();
-        grades.forEach(grade => {
-          grade.projectGrade.forEach((projectGrade, idx) => {
-            projectGrade.requirement = projectGrade.requirement || requirements[idx];
-          });
-          this.updateGrade(grade).subscribe(() => {});
-        });
-      })
+      map(grades => grades.sort((a, b) => b.id - a.id))
     );
   }
 
