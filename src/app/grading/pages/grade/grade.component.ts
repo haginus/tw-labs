@@ -77,7 +77,7 @@ export class GradeComponent implements OnInit {
   }
 
   saveGrade() {
-    const grade = this.gradeForm.value;
+    const grade = JSON.parse(JSON.stringify(this.gradeForm.value));
     grade.projectGrade = grade.projectGrade.map(group => {
       const requirement = this.requirements.find(req => req.requirement === group.requirement);
       return { grade: group.grade, observation: group.observation, requirement };
