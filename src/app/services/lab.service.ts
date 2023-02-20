@@ -29,7 +29,7 @@ export class LabService {
         subtitle: "Laboratorul 1",
         description: "Recapitulare a cunoștințelor de HTML din liceu și înțelegerea noțiunilor de bază.",
         homeworkLink: 'https://forms.gle/aJXtMSuu3YJpgGt27',
-        homeworkDue: "2022-02-24T23:59:59+02:00"
+        homeworkDue: "2023-03-02T12:00:00+02:00",
       }
     ),
     new Lab(
@@ -40,7 +40,8 @@ export class LabService {
         subtitle: "Laboratorul 2",
         description: "Sintaxă, moduri de includere, valori și unități de măsură, proprietăți CSS comune, selectori, etc.",
         homeworkLink: 'https://forms.gle/26SiZGVPdx644AjP6',
-        homeworkDue: "2022-03-17T23:59:59+02:00"
+        homeworkDue: "2023-03-09T12:00:00+02:00",
+        availableOn: "2023-03-02T12:00:00+02:00",
       }
     ),
     new Lab(
@@ -51,7 +52,8 @@ export class LabService {
         subtitle: "Laboratorul 3",
         description: "Metode de poziționare a elementelor, flex, grid, tranziții și animații și media queries.",
         homeworkLink: 'https://forms.gle/zW64tWiHUHNAR1RG7',
-        homeworkDue: "2022-03-17T23:59:59+02:00"
+        homeworkDue: "2023-03-16T12:00:00+02:00",
+        availableOn: "2023-03-09T12:00:00+02:00",
       }
     ),
     new Lab(
@@ -62,7 +64,8 @@ export class LabService {
         subtitle: "Laboratorul 4",
         description: "Moduri de includere, tipuri de date, variabile, operatori, funcții, statements, etc.",
         homeworkLink: 'https://forms.gle/wEvQ9NuwS8ch42pR7',
-        homeworkDue: "2022-03-24T23:59:59+02:00",
+        homeworkDue: "2023-03-23T12:00:00+02:00",
+        availableOn: "2023-03-16T12:00:00+02:00",
       }
     ),
     new Lab(
@@ -73,8 +76,8 @@ export class LabService {
         subtitle: "Laboratorul 5",
         description: "Noduri și elemente. Găsirea elementelor în DOM. Manipularea DOM-ului prin adăugarea, modificarea sau ștergerea de elemente.",
         homeworkLink: 'https://forms.gle/6NjX1m3Akr1oEy8v6',
-        homeworkDue: "2022-03-24T23:59:59+02:00",
-        availableOn: "2022-03-17T12:00:00+02:00"
+        homeworkDue: "2023-03-30T12:00:00+03:00",
+        availableOn: "2023-03-23T12:00:00+02:00",
       }
     ),
     new Lab(
@@ -85,8 +88,8 @@ export class LabService {
         subtitle: "Laboratorul 6",
         description: "Formulare HTML. Diferite evenimente în JavaScript și proprietăți ale acestora. Moduri de atașare.",
         homeworkLink: 'https://forms.gle/mxsT1XjzvtpBwWD48',
-        homeworkDue: "2022-04-07T23:59:59+03:00",
-        availableOn: "2022-03-24T12:00:00+02:00"
+        homeworkDue: "2023-04-06T12:00:00+03:00",
+        availableOn: "2023-03-30T12:00:00+03:00"
       }
     ),
     new Lab(
@@ -97,8 +100,8 @@ export class LabService {
         subtitle: "Laboratorul 7",
         description: "Promise-uri, callbacks, async/await, fetch, setTimeout, setInterval. Stocare în localStorage.",
         homeworkLink: 'https://forms.gle/5b8AousENuttXzLY7',
-        homeworkDue: "2022-04-21T23:59:59+03:00",
-        availableOn: "2022-04-07T12:00:00+03:00"
+        homeworkDue: "2023-04-13T12:00:00+03:00",
+        availableOn: "2023-04-06T12:00:00+03:00"
       }
     ),
     new Lab(
@@ -109,8 +112,8 @@ export class LabService {
         subtitle: "Laboratorul 8",
         description: "Crearea unui proiect Node, instalarea pachetelor. Gestionarea rutelor și erorilor. Transmiterea de date către server.",
         homeworkLink: 'https://forms.gle/AtSHBqbF8zLpGrAQ7',
-        homeworkDue: "2022-04-28T23:59:59+03:00",
-        availableOn: "2022-04-14T12:00:00+03:00"
+        homeworkDue: "2023-04-27T12:00:00+03:00",
+        availableOn: "2023-04-13T12:00:00+03:00"
       }
     ),
     new Lab(
@@ -121,8 +124,8 @@ export class LabService {
         subtitle: "Laboratorul 9",
         description: "Folosirea EJS pentru randarea de șabloane. Încărcare de fișiere.",
         homeworkLink: 'https://forms.gle/XQArQWf6kUU4GeDX8',
-        homeworkDue: "2022-05-12T23:59:59+03:00",
-        availableOn: "2022-05-05T12:00:00+03:00"
+        homeworkDue: "2023-05-04T12:00:00+03:00",
+        availableOn: "2023-04-27T12:00:00+03:00",
       }
     ),
     new Lab(
@@ -132,6 +135,7 @@ export class LabService {
         title: "Model de examen 1",
         subtitle: "Model de examen",
         description: "Subiect dat la un examen anterior.",
+        availableOn: "2023-05-15T12:00:00+03:00",
       }
     ),
     new Lab(
@@ -141,6 +145,7 @@ export class LabService {
         title: "Model de examen 2",
         subtitle: "Model de examen",
         description: "(oare ce o fi?)",
+        availableOn: "2023-05-15T12:00:00+03:00",
       }
     )
   ]
