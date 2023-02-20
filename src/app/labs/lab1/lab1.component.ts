@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ILabComponent } from 'src/app/lib/models/ILabComponent';
-import { LabMeta } from 'src/app/lib/models/LabMeta';
 
 @Component({
   selector: 'app-lab1',
@@ -11,22 +10,20 @@ export class Lab1Component implements OnInit, ILabComponent {
 
   constructor() { }
 
-  @Input() meta: LabMeta;
-
-  commonTags: CommonTag[] = [
-    new CommonTag('div', true, 'Tag generic care se extinde pe toată linia (display: block)'),
-    new CommonTag('span', true, 'Tag generic care este inline (display: inline)'),
-    new CommonTag('p', true, 'Paragraf'),
-    new CommonTag('b', true, 'Text boldat'),
-    new CommonTag('i', true, 'Text italic'),
-    new CommonTag('u', true, 'Text subliniat'),
-    new CommonTag('br', false, '(Break line) Inserează un sfârșit de linie.'),
-    new CommonTag(['h1', 'h6'], true, 'Headere - există 6, mărimea fontului scăzând de la primul la ultimul.'),
-    new CommonTag('a', true, '(Anchor) Definește un link câtre o altă pagină sau o secțiune din document.'),
-    new CommonTag('button', true, 'Buton'),
-    new CommonTag('img', false, 'Permite afișarea unei imagini prin specificarea fișierului sursă.'),
-    new CommonTag('video', true, 'Permite vizionarea unui videoclip prin specificarea fișierului sursă.'),
-    new CommonTag('audio', true, 'Permite ascultarea unui fișier audio prin specificarea fișierului sursă.'),
+  commonElements: CommonElement[] = [
+    new CommonElement('div', true, 'Element generic care se extinde pe toată linia (display: block)'),
+    new CommonElement('span', true, 'Element generic care este inline (display: inline)'),
+    new CommonElement('p', true, 'Paragraf'),
+    new CommonElement('b', true, 'Text boldat'),
+    new CommonElement('i', true, 'Text italic'),
+    new CommonElement('u', true, 'Text subliniat'),
+    new CommonElement('br', false, '(Break line) Inserează un sfârșit de linie.'),
+    new CommonElement(['h1', 'h6'], true, 'Headere - există 6, mărimea fontului scăzând de la primul la ultimul.'),
+    new CommonElement('a', true, '(Anchor) Definește un link câtre o altă pagină sau o secțiune din document.'),
+    new CommonElement('button', true, 'Buton'),
+    new CommonElement('img', false, 'Permite afișarea unei imagini prin specificarea fișierului sursă.'),
+    new CommonElement('video', true, 'Permite vizionarea unui videoclip prin specificarea fișierului sursă.'),
+    new CommonElement('audio', true, 'Permite ascultarea unui fișier audio prin specificarea fișierului sursă.'),
   ];
 
   globalAttributes: GlobalAttribute[] = [
@@ -39,20 +36,20 @@ export class Lab1Component implements OnInit, ILabComponent {
     new GlobalAttribute('data-*', 'Permite stocarea unor date de către programator, care pot fi accesate/modificate prin JavaScript.'),
   ]
 
-  semanticTags: CommonTag[] = [
-    new CommonTag('header', true, 'Antetul paginii web'),
-    new CommonTag('nav', true, 'Meniul de navigare'),
-    new CommonTag('main', true, 'Conținutul principal al paginii'),
-    new CommonTag('section', true, 'O secțiune a paginii; grupare tematică a conținutului'),
-    new CommonTag('article', true, 'Un articol; conținut independent, de sine stătător (ex. o postare pe blog)'),
-    new CommonTag('aside', true, 'Conținut ce se află deoparte față de conținutl principal (de exemplu un sidebar)'),
-    new CommonTag('footer', true, 'Subsolul paginii web'),
+  semanticElements: CommonElement[] = [
+    new CommonElement('header', true, 'Antetul paginii web'),
+    new CommonElement('nav', true, 'Meniul de navigare'),
+    new CommonElement('main', true, 'Conținutul principal al paginii'),
+    new CommonElement('section', true, 'O secțiune a paginii; grupare tematică a conținutului'),
+    new CommonElement('article', true, 'Un articol; conținut independent, de sine stătător (ex. o postare pe blog)'),
+    new CommonElement('aside', true, 'Conținut ce se află deoparte față de conținutl principal (de exemplu un sidebar)'),
+    new CommonElement('footer', true, 'Subsolul paginii web'),
   ];
 
   ngOnInit(): void {
   }
 
-  getTagClosing(tag: CommonTag) {
+  getTagClosing(tag: CommonElement) {
     if(Array.isArray(tag.tagName)) {
       return tag.tagName
         .map(tagName => tag.isContainer ? `<${tagName}></${tagName}>` : `<${tagName} />`)
@@ -63,7 +60,7 @@ export class Lab1Component implements OnInit, ILabComponent {
 
 }
 
-class CommonTag {
+class CommonElement {
   constructor(public tagName: string | string[], public isContainer: boolean, public description: string) { }
 }
 

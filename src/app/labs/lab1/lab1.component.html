@@ -4,7 +4,7 @@
   <p>
     HyperText Markup Language (HTML) este standardul pentru a crea pagini web. 
     Acesta descrie structura unei pagini printr-o structură ierarhică arborescentă,
-    nodurile arborelui fiind tag-urile HTML.
+    nodurile arborelui fiind elementele HTML.
   </p>
   <app-code-example gistId="lab1/html-structure"></app-code-example>
   <app-tip>
@@ -13,32 +13,32 @@
   </app-tip>
 </section>
 <section>
-  <h1>Tipuri de tag-uri</h1>
-  Există două tipuri de tag-uri:
+  <h1>Tipuri de elemente</h1>
+  Există două tipuri de elemente:
   <ul>
     <li>
-      Tag-uri container - acestea pot conține în iteriorul acestora tag-uri copii sau text;
+      Elemente container - acestea pot conține în interiorul acestora elemente copii sau text;
       (ex. <code highlight="<div>conținut</div>"></code>)
     </li>
-    <li>Tag-uri goale (ex. <code highlight="<img/>"></code>)</li>
+    <li>Elemente goale (<i>void elements</i>, ex. <code highlight="<img />"></code>)</li>
   </ul>
-  <p>Iată o listă cu cele mai comune tag-uri:</p>
+  <p>Iată o listă cu cele mai comune elemente:</p>
   <div class="common-table">
     <table>
       <tr>
-        <th>Tag</th>
+        <th>Element</th>
         <th>Descriere</th>
       </tr>
-      <tr *ngFor="let tag of commonTags">
+      <tr *ngFor="let element of commonElements">
         <td>
-          <code [highlight]="getTagClosing(tag)"></code>
+          <code [highlight]="getTagClosing(element)"></code>
         </td>
-        <td> {{ tag.description }} </td>
+        <td> {{ element.description }} </td>
       </tr>
     </table>
   </div>
   <div class="observation">
-    * Observați că tag-urile container se deschid și apoi închid, în timp ce cele goale nu.
+    * Observați că elementele container se deschid și apoi închid, în timp ce cele goale nu.
   </div>
 </section>
 <section>
@@ -50,8 +50,8 @@
     Atributele HTML sunt de două tipuri:
   </p>
   <ul>
-    <li>Globale - acestea funcționează pentru toate tag-urile;</li>
-    <li>Specifice unor tag-uri, precum atributul <code highlight='src'></code> pentru tag-urile multimedia;</li>
+    <li>Globale - acestea funcționează pentru toate elementele;</li>
+    <li>Specifice unor elemente, precum atributul <code highlight='src'></code> pentru elementele multimedia;</li>
   </ul>
   <p>Iată o listă cu cele mai folosite atribute globale:</p>
   <div class="common-table">
@@ -74,22 +74,22 @@
   <h1>Elemente semantice</h1>
   <p>
     Paginile HTML pot fi structurate folosind elemente semantice (elemente cu înțeles). Elementele semantice
-    sunt acele elemente ale căror tag-uri spun ceva despre utilizarea lor în pagină. De exemplu, elementele
+    sunt acele elemente ale căror denumire spune ceva despre utilizarea lor în pagină. De exemplu, elementele
     <code highlight="<div>"></code> și <code highlight="<span>"></code> nu sunt semantice, deoarece numele
-    tag-ului nu ne spune nimic despre ce se află în interiorul acestora. <br> <br>
+    elementului nu ne spune nimic despre ce se află în interiorul acestora. <br> <br>
     Iată câteva elemente semantice:
   </p>
   <div class="common-table">
     <table>
       <tr>
-        <th>Tag</th>
+        <th>Element</th>
         <th>Descriere</th>
       </tr>
-      <tr *ngFor="let tag of semanticTags">
+      <tr *ngFor="let element of semanticElements">
         <td>
-          <code [highlight]="getTagClosing(tag)"></code>
+          <code [highlight]="getTagClosing(element)"></code>
         </td>
-        <td> {{ tag.description }} </td>
+        <td> {{ element.description }} </td>
       </tr>
     </table>
   </div>
@@ -111,8 +111,8 @@
   </ul>
   <p>
   Acestea conțin drept noduri copil elementele din listă. Pentru primele două tipuri de liste, un element
-  din listă este wrapped în tag-ul <code highlight="<li>"></code> (list element). Listele descriptive folosesc
-  două tipuri de tag-uri pentru elemente: <code highlight="<dt>"></code> (termen) și <code highlight="<dd>"></code>
+  din listă este wrapped în elementul <code highlight="<li>"></code> (list item). Listele descriptive folosesc
+  două tipuri de elemente pentru elemente: <code highlight="<dt>"></code> (termen) și <code highlight="<dd>"></code>
   (definiție).
   </p>
   <section>
@@ -132,7 +132,7 @@
 <section>
   <h1>HyperLinks</h1>
   <p>
-    Pentru a crea link-uri în HTML, folosim tag-ul <code highlight="<a>"></code>. Acesta are următoarele atribute:
+    Pentru a crea link-uri în HTML, folosim elementul <code highlight="<a>"></code>. Acesta are următoarele atribute:
   </p>
   <ul>
     <li>
@@ -194,12 +194,12 @@
   </section>
 </section>
 <section>
-  <h1>Tag-uri media</h1>
+  <h1>Elemente media</h1>
   <p>
     Putem adăuga în paginile noastre HTML imagini, videoclipuri și fișiere audio. În timp ce pentru imagini
     putem specifica o singură sursă prin intermediul atributului <code>src</code>, pentru videclipuri și sunete
     avem de ales: fie specificăm o singură sursă prin același atribut, fie specificăm surse multiple folosind
-    tag-ul <code highlight="<source>"></code>.<br>
+    elementul <code highlight="<source>"></code>.<br>
     Putem ascunde controalele pentru audio și video omițând atributul <code>controls</code>. Atributul
     <code>autoplay</code> ne permite pornirea videoclipului/sunetului odată cu încărcarea fișierului.
   </p>
@@ -213,10 +213,10 @@
   <app-code-example gistId="lab1/table"></app-code-example>
   <p>Astfel, </p>
   <ul>
-    <li>Folosim tag-ul <code highlight="<table>"></code> pentru a începe tabelul;</li>
-    <li>Tag-ul <code highlight="<tr>"></code> definește un rând din tabel;</li>
-    <li>Tag-ul <code highlight="<th>"></code> (table header) reprezintă o celulă de tip header;</li>
-    <li>Tag-ul <code highlight="<td>"></code> (table data) reprezintă o celulă în care introducem date.</li>
+    <li>Folosim elementul <code highlight="<table>"></code> pentru a specifica existența unui tabel;</li>
+    <li>Elementul <code highlight="<tr>"></code> (table row) definește un rând din tabel;</li>
+    <li>Elementul <code highlight="<th>"></code> (table header) reprezintă o celulă de tip header;</li>
+    <li>Elementul <code highlight="<td>"></code> (table data) reprezintă o celulă în care introducem date.</li>
   </ul>
 </section>
 <section>
@@ -229,8 +229,8 @@
     <h2>Tema 1.1</h2>
     <p>
       Creați un fișier HTML care să conțină o prezentare detaliată a unui film preferat.
-      Structurați documentul folosind tag-urile semantice. <br>
-      Folosiți și alte tag-uri sugestive pentru elementele din document 
+      Structurați documentul folosind elementele semantice. <br>
+      Folosiți și alte elemente sugestive pentru elementele din document 
       (liste, tabel, paragrafe, imagini, video, ancore, etc.). <br>
       Includeți informații ca:
     </p>
@@ -247,7 +247,7 @@
   <section>
     <h2>Tema 1.2</h2>
     <p>
-      Recreați următorul text într-un fișier HTML folosind tag-urile învățate în acest laborator.
+      Recreați următorul text într-un fișier HTML folosind elementele învățate în acest laborator.
     </p>
     <pre class="pre-wrap">
     *Pateuri cu cașcaval*
