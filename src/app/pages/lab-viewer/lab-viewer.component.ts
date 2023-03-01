@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { MatDrawer } from '@angular/material/sidenav';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs';
 import { LabDirective } from 'src/app/directives/lab.directive';
@@ -23,6 +24,7 @@ export class LabViewerComponent implements OnInit, AfterViewInit {
   timePassed: boolean = false;
   @ViewChild(LabDirective, { static: true }) labHost!: LabDirective;
   @ViewChild('labContent') labContent: ElementRef<HTMLElement>;
+  @ViewChild(MatDrawer) drawer: MatDrawer;
 
   contents: TableOfContentsSection[] = [];
   private _flatContents: TableOfContentsSection[] = [];
@@ -105,8 +107,11 @@ export class LabViewerComponent implements OnInit, AfterViewInit {
     this.activeSection = this._flatContents.find(section => section.element.offsetTop <= scrollTop);
   }
 
-  goToSection(section: TableOfContentsSection) {
+  async goToSection(section: TableOfContentsSection) {
     if(!section) return;
+    if(this.drawer?.opened) {
+      await this.drawer?.close();
+    }
     section.element.scrollIntoView({
       block: 'start',
       behavior: "smooth",

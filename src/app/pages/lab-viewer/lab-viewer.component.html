@@ -1,44 +1,60 @@
-<div class="standard-view">
-  <mat-toolbar *ngIf="lab">
-    <button mat-icon-button (click)="goHome()">
-      <mat-icon>arrow_back</mat-icon>
-    </button>
-    <span class="toolbar-title">{{ lab.meta.subtitle }}</span>
-  </mat-toolbar>
-  <div class="main-container" (scroll)="onScroll($event)">
-    <div class="main-section-wrapper">
-      <div class="lab-container">
-        <div class="lab-header" *ngIf="lab">
-          <div class="lab-subtitle">{{ lab.meta.subtitle }}</div>
-          <h1 class="lab-title">{{ lab.meta.title }}</h1>
-        </div>
-        <div class="lab-content" #labContent>
-          <ng-template labHost></ng-template>
-        </div>
-        <div class="send-homework" *ngIf="lab?.meta?.homeworkLink">
-          <button mat-raised-button color="primary" (click)="sendHomework()" [disabled]="timePassed">Trimite tema</button>
-          <div *ngIf="lab?.meta?.homeworkDue">Termen limită: {{ lab?.meta?.homeworkDue | date:'dd.MM.yyyy, HH:mm' }}</div>
+<mat-drawer-container [hasBackdrop]="true">
+  <mat-drawer #drawer position="end" mode="push">
+    <div class="table-of-contents in-drawer">
+      <ng-container *ngTemplateOutlet="contentList"></ng-container>
+    </div>
+  </mat-drawer>
+  <div class="standard-view">
+    <mat-toolbar *ngIf="lab">
+      <button mat-icon-button (click)="goHome()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <span class="toolbar-title">{{ lab.meta.subtitle }}</span>
+      <span class="spacer"></span>
+      <button mat-icon-button (click)="drawer.open()" class="drawer-activator">
+        <mat-icon>toc</mat-icon>
+      </button>
+    </mat-toolbar>
+    <div class="main-container" (scroll)="onScroll($event)">
+      <div class="main-section-wrapper">
+        <div class="lab-container">
+          <div class="lab-header" *ngIf="lab">
+            <div class="lab-subtitle">{{ lab.meta.subtitle }}</div>
+            <h1 class="lab-title">{{ lab.meta.title }}</h1>
+          </div>
+          <div class="lab-content" #labContent>
+            <ng-template labHost></ng-template>
+          </div>
+          <div class="send-homework" *ngIf="lab?.meta?.homeworkLink">
+            <button mat-raised-button color="primary" (click)="sendHomework()" [disabled]="timePassed">Trimite tema</button>
+            <div *ngIf="lab?.meta?.homeworkDue">Termen limită: {{ lab?.meta?.homeworkDue | date:'dd.MM.yyyy, HH:mm' }}</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="second-section-wrapper" *ngIf="lab">
-      <div class="table-of-contents">
-        <ul>
-          <b>{{ lab.meta.title }}</b>
-          <li *ngFor="let item of contents">
-            <a [href]="getSectionLink(item.slug)" [ngClass]="{ active: item == activeSection }" (click)="goToSection(item)">
-              {{ item.title }}
-            </a> 
-            <ul *ngIf="item.subsections.length">
-              <li *ngFor="let subitem of item.subsections">
-                <a [href]="getSectionLink(subitem.slug)" [ngClass]="{ active: subitem == activeSection }" (click)="goToSection(subitem)">
-                  {{ subitem.title }}
-                </a> 
-              </li>
-            </ul>
-          </li>
-        </ul>
+      <div class="second-section-wrapper" *ngIf="lab">
+        <div class="table-of-contents">
+          <ng-container *ngTemplateOutlet="contentList"></ng-container>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  
+</mat-drawer-container>
+
+<ng-template #contentList>
+  <ul>
+    <b>{{ lab?.meta.title }}</b>
+    <li *ngFor="let item of contents">
+      <a [href]="getSectionLink(item.slug)" [ngClass]="{ active: item == activeSection }" (click)="goToSection(item)">
+        {{ item.title }}
+      </a> 
+      <ul *ngIf="item.subsections.length">
+        <li *ngFor="let subitem of item.subsections">
+          <a [href]="getSectionLink(subitem.slug)" [ngClass]="{ active: subitem == activeSection }" (click)="goToSection(subitem)">
+            {{ subitem.title }}
+          </a> 
+        </li>
+      </ul>
+    </li>
+  </ul>
+</ng-template>
