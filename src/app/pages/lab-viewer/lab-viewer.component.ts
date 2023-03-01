@@ -66,9 +66,9 @@ export class LabViewerComponent implements OnInit, AfterViewInit {
     this._flatContents = this._flattenContents().reverse();
     if(window.location.hash) {
       const section = this._flatContents.find(section => section.slug == window.location.hash);
-      setTimeout(() => {
+      window.addEventListener('load', () => {
         this.goToSection(section);
-      }, 300);
+      });
     }
   }
 
