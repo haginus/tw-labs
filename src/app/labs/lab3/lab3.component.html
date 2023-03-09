@@ -35,7 +35,7 @@
     </p>
     <p>
       Poziționarea relativă descrie faptul că elementul HTML este poziționat relativ la poziția sa normală.
-      Astfel, setând proprietățile proziționale putem devia poziția elementului. Totuși, restul conținutului
+      Astfel, setând proprietățile poziționale putem devia poziția elementului. Totuși, restul conținutului
       din pagină se va raporta la poziția inițială a elementului, după cum se poate observa în exemplul de mai jos.
     </p>
     <app-code-example gistId="lab3/position-relative"></app-code-example>
@@ -71,8 +71,8 @@
     </p>
     <p>
       Poziționarea sticky este o combinație între poziționarea relativă și cea fixă. Este necesar ca cel puțin
-      una dintre cele patru proprități de poziționare ca aceasta să funcționeze. Cât timp offset-ul nu este atins,
-      elementul va avea poziție revolută, iar apoi poziția se transformă în fixă.
+      una dintre cele patru proprietăți de poziționare ca aceasta să funcționeze. Cât timp offset-ul nu este atins,
+      elementul va avea poziție relativă, iar apoi poziția se transformă în fixă.
     </p>
     <app-code-example gistId="lab3/position-sticky"></app-code-example>
   </section>
@@ -97,10 +97,10 @@
     <ul>
       <li><code>left</code> - Elementul plutește în stânga</li>
       <li><code>right</code> - Elementul plutește în dreapta</li>
-      <li><code>right</code> - Elementul nu plutește deloc (va apărea oriunde este în text)</li>
+      <li><code>none</code> - Elementul nu plutește deloc (va apărea oriunde este în text)</li>
     </ul>
     <p>
-      Pentru poziționa și formata diferite elemente în interiorul unui text, folosim proprietatea
+      Pentru a poziționa și formata diferite elemente în interiorul unui text, folosim proprietatea
       <code>float</code>.
     </p>
     <app-code-example gistId="lab3/float"></app-code-example>
@@ -115,7 +115,7 @@
   <section>
     <h2>Flexbox</h2>
     <p>
-      Flexbox-ul ne permite să creem un responsive design flexibil fără să ne folosim de float sau poziționare.
+      Flexbox-ul ne permite să creăm un responsive design flexibil fără să ne folosim de float sau poziționare.
       Pentru ca un element HTML să aibă un layout de tip flexbox, este nevoie să specificăm proprietății
       <code>display</code> valorile <code>flex</code> sau <code>inline-flex</code>. Un flexbox funcționează
       pe două axe, cea principală (inplicit orizontală) și cea secundară.
@@ -757,7 +757,7 @@
       combina: <code>not</code>, <code>and</code> și <code>only</code>. Mai mult, similar modului cum putem
       grupa selectorii CSS, putem grupa și media query-urile separându-le prin virgulă. <br><br>
       Operatorul <code>and</code> ne permite să înlănțuim mai multe tipuri și feature-uri, iar stilurile se
-      vor aplica doar în cazul în care toate condițiile sunt împlinite. Operatorul <code>not</code> neagă un
+      vor aplica doar în cazul în care toate condițiile sunt îndeplinite. Operatorul <code>not</code> neagă un
       media query, modul de funcționare fiind similar selectorilor. Operatorul <code>only</code> previne
       ca aceste stiluri să fie aplicate în browserele vechi care nu suportă media queries.
     </p>
