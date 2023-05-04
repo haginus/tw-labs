@@ -135,7 +135,7 @@ export class LabService {
         title: "Model de examen 1",
         subtitle: "Model de examen",
         description: "Subiect dat la un examen anterior.",
-        availableOn: "2023-05-15T12:00:00+03:00",
+        availableOn: "2023-05-04T12:00:00+03:00",
       }
     ),
     new Lab(
@@ -145,7 +145,7 @@ export class LabService {
         title: "Model de examen 2",
         subtitle: "Model de examen",
         description: "(oare ce o fi?)",
-        availableOn: "2023-05-15T12:00:00+03:00",
+        availableOn: "2023-05-11T12:00:00+03:00",
       }
     )
   ]
