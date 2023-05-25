@@ -211,7 +211,7 @@
         Copiază toate proprietățile din <code>source</code> în <code>target</code>.
       </p>
       <p>
-        <b>Exemplu: </b> <code highlight="let x = { a: 1, c: 3 }; Object.assign({ b: 2, d: 4 });"></code>
+        <b>Exemplu: </b> <code highlight="let x = { a: 1, c: 3 }; Object.assign(x, { b: 2, d: 4 });"></code>
         va face ca <code highlight="x = { a: 1, b: 2, c: 3, d: 4 }"></code>
       </p>
     </section>
@@ -391,7 +391,7 @@
       <h3><code>Array.prototype.find(callbackFn)</code></h3>
       <p class="definition">
         Returnează primul element care satisface condițiile impuse în funcția <code>callbackFn</code>.
-        În cazul în care niciun element nu satisface condiția, se va întoarce <code>null</code>.
+        În cazul în care niciun element nu satisface condiția, se va întoarce <code>undefined</code>.
         Funcția are următorii parametri:
       </p>
       <ul>
