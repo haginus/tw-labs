@@ -2,6 +2,14 @@
   {{ gist?.title || defaultTitle }}
 </mat-toolbar>
 <div class="code-example-wrapper">
+  <div *ngIf="!filesLoaded && !this.filesError" class="code-example-message">
+    <mat-spinner [diameter]="24"></mat-spinner>
+    <span>Exemplul de cod se încarcă...</span>
+  </div>
+  <div *ngIf="this.filesError" class="code-example-message">
+    <mat-icon>error</mat-icon>
+    <span>A apărut o eroare la încărcarea exemplului de cod.</span>
+  </div>
   <div class="code-example-column" *ngIf="gist?.files && filesLoaded">
     <mat-tab-group mat-align-tabs="start">
       <mat-tab [label]="file.label" *ngFor="let file of gistFiles">

@@ -9,7 +9,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatRippleModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const materialDeps = [
   MatIconModule,
@@ -20,6 +20,7 @@ const materialDeps = [
   MatRippleModule,
   MatSnackBarModule,
   MatSidenavModule,
+  MatProgressSpinnerModule,
 ];
 
 @NgModule({

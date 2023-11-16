@@ -16,6 +16,17 @@
 .code-example-wrapper {
   display: flex;
 
+  .code-example-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    gap: 6px;
+    font-size: 14px;
+    padding: 16px;
+    color: rgba(0, 0, 0, 0.54);
+  }
+
   .code-example-column {
     flex: 1;
     min-width: 0;

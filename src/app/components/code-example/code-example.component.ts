@@ -28,6 +28,7 @@ export class CodeExampleComponent implements AfterViewInit, OnDestroy {
   subscription!: Subscription;
 
   filesLoaded: boolean = false;
+  filesError = false;
   gistFiles: GistFileEnritched[];
 
   consoleLogs: ConsoleLog[] = [];
@@ -40,7 +41,8 @@ export class CodeExampleComponent implements AfterViewInit, OnDestroy {
       .pipe(
         switchMap(gist => {
           this.gist = gist;
-          return combineLatest(gist.files.map(file => this.gistService.getGistFile(this.gistId, file, this.external)));
+          this.filesError = !gist;
+          return combineLatest(gist?.files.map(file => this.gistService.getGistFile(this.gistId, file, this.external)) || []);
         })
       ).subscribe(files => {
         this.gistFiles = files.map(file => ({
@@ -48,7 +50,7 @@ export class CodeExampleComponent implements AfterViewInit, OnDestroy {
           label: this.getFileLabel(file),
           language: this.getFileLanguage(file)
         }));
-        this.filesLoaded = true;
+        this.filesLoaded = this.gistFiles.length > 0 && this.gistFiles.every(file => file.content != null);
         if(this.gist.result && !this.external) {
           window.addEventListener("message", this.getSetConsoleLogFunction());
         }
@@ -59,7 +61,6 @@ export class CodeExampleComponent implements AfterViewInit, OnDestroy {
   setIframe() {
     if (!this.gist.result) return;
     if(this.external) {
-      const location = window.location;
       this.resultFrame.nativeElement.src = this.gistService.getExternalGistUrl(this.gistId);
       return;
     }
@@ -69,7 +70,7 @@ export class CodeExampleComponent implements AfterViewInit, OnDestroy {
     const cssCode = this.gistFiles
       .filter(file => file.fileType == 'css')
       .reduce((acc, jsFile) => acc + `<style>${jsFile.content || ''}</style>`, '');
-    
+
     const jsCode = this.prepareJsCode(
       this.gistFiles
         .filter(file => file.fileType == 'js')
@@ -108,7 +109,7 @@ export class CodeExampleComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-    if(this.gist.result) {
+    if(this.gist?.result) {
       window.removeEventListener("message", this.getSetConsoleLogFunction());
     }
   }
@@ -126,7 +127,7 @@ export class CodeExampleComponent implements AfterViewInit, OnDestroy {
 
   getFileLabel(gistFile: GistFile) {
     return this.gist.showFileNames ? gistFile.name : gistFile.fileType.toLocaleUpperCase();
-  } 
+  }
 
   prepareJsCode(code: string) {
     let result = code.replace(/console.log/g, 'sendLog');
